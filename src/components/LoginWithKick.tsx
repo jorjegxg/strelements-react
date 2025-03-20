@@ -37,7 +37,6 @@ const LoginWithKick: React.FC = () => {
 
 
     const clientId = process.env.KICK_CLIENT_ID!;
-    //TODO: schimba
     const redirectUri = process.env.FRONTEND_URL! + '/callback';
     const scope = scopes;
 
@@ -47,7 +46,7 @@ const LoginWithKick: React.FC = () => {
     const url = new URL(authUrl);
     url.searchParams.set('response_type', 'code');
     url.searchParams.set('client_id', clientId!);
-    url.searchParams.set('redirect_uri', redirectUri!);
+    url.searchParams.set('redirect_uri', encodeURIComponent(redirectUri)!);
     url.searchParams.set('scope', scope);
     url.searchParams.set('code_challenge', codeChallenge);
     url.searchParams.set('code_challenge_method', 'S256');
