@@ -46,7 +46,7 @@ const LoginWithKick: React.FC = () => {
     const url = new URL(authUrl);
     url.searchParams.set('response_type', 'code');
     url.searchParams.set('client_id', clientId!);
-    url.searchParams.set('redirect_uri', encodeURIComponent(redirectUri)!);
+    url.searchParams.set('redirect_uri', 'https://react-strelements-84c0b2fe9694.herokuapp.com/callback');
     url.searchParams.set('scope', scope);
     url.searchParams.set('code_challenge', codeChallenge);
     url.searchParams.set('code_challenge_method', 'S256');
