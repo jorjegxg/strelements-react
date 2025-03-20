@@ -1,5 +1,6 @@
 import React from 'react';
 import { authUrl, pkce_verifier, scopes } from '../utils/constants';
+import ReactZus from './CompZus';
 
 const generateCodeVerifier = (): string => {
   const array = new Uint32Array(56 / 2);
@@ -36,7 +37,8 @@ const LoginWithKick: React.FC = () => {
 
 
     const clientId = process.env.KICK_CLIENT_ID!;
-    const redirectUri = process.env.KICK_REDIRECT_URI!;
+    //TODO: schimba
+    const redirectUri = 'https://de-ce-o-iubim-pe-gabita.art';
     const scope = scopes;
 
     const codeChallenge = challenge;
@@ -58,6 +60,7 @@ const LoginWithKick: React.FC = () => {
     <>
       <h1>Login with Kick</h1>
       <button onClick={login}>Login with Kick</button>
+      <ReactZus />
     </>
 
   );

@@ -11,7 +11,7 @@ const CallbackPage: React.FC = () => {
     const verifier = localStorage.getItem('pkce_verifier');
 
     if (code && verifier) {
-      axios.post(process.env.KICK_EXCHANGE_CODE_URI!, {
+      axios.post(`${process.env.BACKEND_URL}/exchange-code`, {
         authorizationCode: code,
         codeVerifier: verifier,
       }).then((res) => {
