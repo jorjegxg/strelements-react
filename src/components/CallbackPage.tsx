@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { log } from 'console';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { pkce_verifier } from '../utils/constants';
@@ -20,13 +19,12 @@ const CallbackPage: React.FC = () => {
 
     if (code && verifier) {
       let url = `${process.env.BACKEND_URL}/exchange-code`;
-      log(url);
+      console.log(url);
       axios.post(url, {
         authorizationCode: code,
         codeVerifier: verifier,
       }).then((res) => {
         console.log('Access token:', res.data.access_token);
-        // Aici poți salva token-ul în Zustand, localStorage, etc.
         navigate('/');
       }).catch((err) => {
         console.error('Token exchange error:', err);
