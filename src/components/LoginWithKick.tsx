@@ -37,7 +37,7 @@ const LoginWithKick: React.FC = () => {
 
 
     const clientId = process.env.KICK_CLIENT_ID!;
-    const redirectUri = process.env.FRONTEND_URL! + '/callback';
+    // const redirectUri = process.env.FRONTEND_URL! + '/callback';
     const scope = scopes;
 
     const codeChallenge = challenge;
