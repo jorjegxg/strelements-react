@@ -32,15 +32,12 @@ const generateCodeChallenge = async (verifier: string): Promise<string> => {
 const LoginWithKick: React.FC = () => {
   const login = async () => {
     const verifier = generateCodeVerifier();
-    const challenge = await generateCodeChallenge(verifier);
+    const codeChallenge = await generateCodeChallenge(verifier);
     localStorage.setItem(pkce_verifier, verifier);
 
 
     const clientId = process.env.KICK_CLIENT_ID!;
-    // const redirectUri = process.env.FRONTEND_URL! + '/callback';
     const scope = scopes;
-
-    const codeChallenge = challenge;
     const state = '<random_value>';
 
     const url = new URL(authUrl);
@@ -51,6 +48,10 @@ const LoginWithKick: React.FC = () => {
     url.searchParams.set('code_challenge', codeChallenge);
     url.searchParams.set('code_challenge_method', 'S256');
     url.searchParams.set('state', state);
+
+    console.log(verifier, codeChallenge);
+    console.log(url.toString());
+
 
     window.location.href = url.toString();
   };

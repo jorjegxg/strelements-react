@@ -1,6 +1,9 @@
 import axios from 'axios';
+import { log } from 'console';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { pkce_verifier } from '../utils/constants';
+
 
 const CallbackPage: React.FC = () => {
   const navigate = useNavigate();
@@ -8,10 +11,17 @@ const CallbackPage: React.FC = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
-    const verifier = localStorage.getItem('pkce_verifier');
+    console.log('code :', code);
+
+    const verifier = localStorage.getItem(pkce_verifier);
+
+    console.log('verifier din local storage :', verifier);
+
 
     if (code && verifier) {
-      axios.post(`${process.env.BACKEND_URL}/exchange-code`, {
+      let url = `${process.env.BACKEND_URL}/exchange-code`;
+      log(url);
+      axios.post(url, {
         authorizationCode: code,
         codeVerifier: verifier,
       }).then((res) => {
