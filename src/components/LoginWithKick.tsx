@@ -43,6 +43,8 @@ const LoginWithKick: React.FC = () => {
 
     const redirect_uri = `${process.env.BACKEND_URL!}/callback`;
 
+    console.log('redirect_uri:', redirect_uri);
+
     const url = new URL(authUrl);
     url.searchParams.set('response_type', 'code');
     url.searchParams.set('client_id', clientId!);
