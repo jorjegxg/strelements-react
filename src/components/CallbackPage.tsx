@@ -19,16 +19,25 @@ const CallbackPage: React.FC = () => {
 
     if (code && verifier) {
       let url = `${process.env.BACKEND_URL}/exchange-code`;
-      console.log(url);
+      console.log('url spre exchange code:', url);
+
+
       axios.post(url, {
         authorizationCode: code,
         codeVerifier: verifier,
       }).then((res) => {
+
+
+
+
         console.log('Access token:', res.data.access_token);
         navigate('/');
       }).catch((err) => {
         console.error('Token exchange error:', err);
       });
+
+
+
     }
   }, [navigate]);
 
