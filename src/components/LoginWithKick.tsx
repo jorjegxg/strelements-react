@@ -41,7 +41,7 @@ const LoginWithKick: React.FC = () => {
     const state = '<random_value>';
 
 
-    const redirect_uri = `${process.env.BACKEND_URL!}/callback`;
+    const redirect_uri = `${process.env.FRONTEND_URL!}/callback`;
 
     console.log('redirect_uri:', redirect_uri);
 
