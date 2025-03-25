@@ -18,7 +18,7 @@ const CallbackPage: React.FC = () => {
 
 
     if (code && verifier) {
-      let url = `${process.env.BACKEND_URL}/exchange-code`;
+      let url = `${process.env.BACKEND_URL}/kick/login/exchange-code`;
       console.log('url spre exchange code:', url);
 
 
