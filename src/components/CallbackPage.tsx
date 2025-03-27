@@ -26,10 +26,6 @@ const CallbackPage: React.FC = () => {
         authorizationCode: code,
         codeVerifier: verifier,
       }).then((res) => {
-
-
-
-
         console.log('Access token:', res.data.access_token);
         navigate('/');
       }).catch((err) => {
