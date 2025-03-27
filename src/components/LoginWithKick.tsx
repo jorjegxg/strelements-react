@@ -2,7 +2,6 @@ import React from 'react';
 import { authUrl, pkce_verifier, scopes } from '../utils/constants';
 import { generateCodeChallenge, generateCodeVerifier } from '../utils/functions';
 import ReactZus from './CompZus';
-require('dotenv').config();
 
 
 
