@@ -2,15 +2,14 @@ import axios from "axios";
 import { create } from "zustand";
 import { CONFIG } from "../../../utils/constants";
 
-interface AuthState {
+interface AppAuthState {
   accessToken: string | null;
   isAuthenticated: boolean;
   login: () => Promise<void>;
   logout: () => void;
 }
 
-
-export const useAuthStore = create<AuthState>((set) => ({
+export const useAppAuthStore = create<AppAuthState>((set) => ({
   accessToken: null,
   isAuthenticated: false,
 

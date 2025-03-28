@@ -1,4 +1,5 @@
 const CONFIG = {
+  accessToken: 'access_token',
   scopes: 'user:read channel:read channel:write chat:write streamkey:read events:subscribe',
   pkce_verifier: 'pkce_verifier',
   authUrl: 'https://id.kick.com/oauth/authorize',
