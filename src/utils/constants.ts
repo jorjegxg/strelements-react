@@ -1,6 +1,12 @@
-const pkce_verifier = 'pkce_verifier';
-const scopes = 'user:read channel:read channel:write chat:write streamkey:read events:subscribe';
-const authUrl = 'https://id.kick.com/oauth/authorize';
+const CONFIG = {
+  scopes: 'user:read channel:read channel:write chat:write streamkey:read events:subscribe',
+  pkce_verifier: 'pkce_verifier',
+  authUrl: 'https://id.kick.com/oauth/authorize',
 
-export { authUrl, pkce_verifier, scopes };
+  clientId: process.env.KICK_CLIENT_ID!,
+  clientSecret: process.env.KICK_CLIENT_SECRET!,
+};
+
+
+export { CONFIG };
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { pkce_verifier } from '../utils/constants';
+import { CONFIG } from '../utils/constants';
 
 
 const CallbackPage: React.FC = () => {
@@ -12,7 +12,7 @@ const CallbackPage: React.FC = () => {
     const code = urlParams.get('code');
     console.log('code :', code);
 
-    const verifier = localStorage.getItem(pkce_verifier);
+    const verifier = localStorage.getItem(CONFIG.pkce_verifier);
 
     console.log('verifier din local storage :', verifier);
 
