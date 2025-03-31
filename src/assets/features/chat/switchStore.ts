@@ -17,7 +17,7 @@ export const useSwitchStore = create<SwitchStore>((set, get) => ({
   toggleState: async () => {
     set({ isLoading: true });
 
-    const token = process.env.NODE_ENV === 'development' ? process.env.ACCESS_TOKEN :
+    const token =
       localStorage.getItem(CONFIG.accessToken);
 
 
@@ -25,7 +25,7 @@ export const useSwitchStore = create<SwitchStore>((set, get) => ({
     const newState = !currentState;
 
     try {
-      const response = await axios.post(`${process.env.BACKEND_URL}/toggle`, { isActive: newState, accessToken: `Bearer ${token}`, }, {
+      const response = await axios.post(`${process.env.BACKEND_URL}/toggle`, { isActive: newState, accessToken: `${token}`, }, {
       });
       console.log('API Response:', response.data);
       set({ isActive: newState, isLoading: false });

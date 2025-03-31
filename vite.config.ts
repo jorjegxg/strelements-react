@@ -5,6 +5,6 @@ import EnvironmentPlugin from 'vite-plugin-environment'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(),
-  EnvironmentPlugin(['KICK_CLIENT_ID', 'BACKEND_URL', 'KICK_CLIENT_SECRET', 'ACCESS_TOKEN', 'NODE_ENV', 'FRONTEND_URL'])
+  EnvironmentPlugin(['KICK_CLIENT_ID', 'BACKEND_URL', 'KICK_CLIENT_SECRET', 'FRONTEND_URL'])
   ],
 })
