@@ -4,16 +4,21 @@ import { CONFIG } from "../../../utils/constants";
 
 interface AppAuthState {
   accessToken: string | null;
+  error?: string;
+  isLoading: boolean;
   isAuthenticated: boolean;
-  login: () => Promise<void>;
+  appLogin: () => Promise<void>;
+  userLogin: () => Promise<void>;
   logout: () => void;
 }
 
 export const useAppAuthStore = create<AppAuthState>((set) => ({
   accessToken: null,
   isAuthenticated: false,
+  isLoading: false,
+  error: "",
 
-  login: async () => {
+  appLogin: async () => {
     try {
       const clientId = CONFIG.clientId;
       const clientSecret = CONFIG.clientSecret;
@@ -44,6 +49,40 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
     } catch (error) {
       console.error("Login failed:", error);
     }
+  },
+
+  userLogin: async () => {
+    set({ isLoading: true });
+
+    try {
+      console.log('window.location.search', window.location.search);
+      const urlParams = new URLSearchParams(window.location.search);
+      console.log('urlParams', urlParams);
+      const code = urlParams.get('code');
+      console.log('code', code);
+      const verifier = localStorage.getItem(CONFIG.pkce_verifier);
+      console.log('verifier', verifier);
+
+      let url = `${process.env.BACKEND_URL}/kick/login/exchange-code`;
+      console.log('url', url);
+
+      const response = await axios.post(url, {
+        authorizationCode: code,
+        codeVerifier: verifier,
+      });
+
+      set({ accessToken: response.data.access_token });
+
+      console.log('Access token:', response.data.access_token);
+      localStorage.setItem(CONFIG.accessToken, response.data.access_token);
+
+    } catch (error) {
+      set({ error: 'Token exchange error' });
+      console.error('Token exchange error:', error);
+    } finally {
+      set({ isLoading: false });
+    }
+
   },
 
   logout: () => {

@@ -17,7 +17,7 @@ const LoginWithKick: React.FC = () => {
 
     localStorage.setItem(CONFIG.pkce_verifier, verifier);
 
-    const redirect_uri = `https://react-strelements-84c0b2fe9694.herokuapp.com/callback`;
+    const redirect_uri = `${process.env.FRONTEND_URL}/callback`;
 
     const url = new URL(CONFIG.authUrl);
     url.searchParams.set('response_type', 'code');
