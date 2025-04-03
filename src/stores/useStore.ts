@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 interface Post {
   message: string;
@@ -20,7 +20,7 @@ const useStore = create<Store>((set) => ({
     try {
       const response = await fetch(`${process.env.BACKEND_URL}`);
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
       const data: Post = await response.json();
       set({ data, loading: false });
