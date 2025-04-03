@@ -10,19 +10,6 @@ interface AppAuthState {
   userLogin: () => Promise<void>;
   logout: () => void;
 }
-/**response: {
-    authData: {
-        access_token: string;
-        expires_in: number;
-        refresh_token: string;
-        scope: string;
-        token_type: string;
-    };
-    client_id: string;
-}
-
- */
-
 const userSchema = z.object({
   data: z.object({
     authData: z.object({
@@ -60,7 +47,12 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
 
       localStorage.setItem(
         CONFIG.localStorage.accessToken,
-        response.data.access_token
+        response.data.authData.access_token
+      );
+
+      console.log(
+        "Tokenul de autentificare:",
+        response.data.authData.access_token
       );
 
       set({ isAuthenticated: true });
