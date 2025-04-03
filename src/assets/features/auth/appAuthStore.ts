@@ -3,7 +3,6 @@ import { create } from "zustand";
 import { CONFIG } from "../../../utils/constants";
 
 interface AppAuthState {
-  accessToken: string | null;
   error?: string;
   isLoading: boolean;
   isAuthenticated: boolean;
@@ -13,7 +12,6 @@ interface AppAuthState {
 }
 
 export const useAppAuthStore = create<AppAuthState>((set) => ({
-  accessToken: null,
   isAuthenticated: false,
   isLoading: false,
   error: "",
@@ -43,7 +41,7 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
       const token = response.data.access_token;
       localStorage.setItem("access_token", token);
 
-      set({ accessToken: token, isAuthenticated: true });
+      set({ isAuthenticated: true });
 
       console.log("Login successful:", token);
     } catch (error) {
@@ -71,11 +69,10 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
         codeVerifier: verifier,
       });
 
-      set({ accessToken: response.data.access_token });
-
       console.log('Access token:', response.data.access_token);
-      localStorage.setItem(CONFIG.accessToken, response.data.access_token);
+      localStorage.setItem(CONFIG.localStorage.accessToken, response.data.access_token);
 
+      set({ isAuthenticated: true });
     } catch (error) {
       set({ error: 'Token exchange error' });
       console.error('Token exchange error:', error);
@@ -86,7 +83,8 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
   },
 
   logout: () => {
-    set({ accessToken: null, isAuthenticated: false });
+    localStorage.removeItem(CONFIG.localStorage.accessToken);
+    set({ isAuthenticated: false });
   },
 }));
 

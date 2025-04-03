@@ -18,7 +18,7 @@ export const useSwitchStore = create<SwitchStore>((set, get) => ({
     set({ isLoading: true });
 
     const token =
-      localStorage.getItem(CONFIG.accessToken);
+      localStorage.getItem(CONFIG.localStorage.accessToken);
 
 
     const currentState = get().isActive;
