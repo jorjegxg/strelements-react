@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
 
-const socket = io(process.env.BACKEND_URL+ ":" +process.env.WEBSOKET_PORT);
+
+
 
 function StrelementsPage() {
   const [messages, setMessages] = useState<string[]>([]);
-
+  
   useEffect(() => {
+    const socket = io(process.env.WEBSOKET_URL);
     socket.on("message", (data) => {
       console.log("Received message:", data.content);
       setMessages((prevMessages) => [...prevMessages, data.content]);
