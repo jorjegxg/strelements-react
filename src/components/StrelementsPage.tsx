@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
 
-const socket = io(process.env.FRONTEND_URL+ "/" +process.env.WEBSOKET_PORT);
+const socket = io(process.env.BACKEND_URL+ ":" +process.env.WEBSOKET_PORT);
 
 function StrelementsPage() {
   const [messages, setMessages] = useState<string[]>([]);
