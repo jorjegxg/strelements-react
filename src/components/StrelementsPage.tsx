@@ -8,7 +8,8 @@ function StrelementsPage() {
 
   useEffect(() => {
     socket.on("message", (data) => {
-      setMessages((prevMessages) => [...prevMessages, data]);
+      console.log("Received message:", data.content);
+      setMessages((prevMessages) => [...prevMessages, data.content]);
     });
 
     return () => {
