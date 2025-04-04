@@ -11,7 +11,7 @@ export default defineConfig({
       "BACKEND_URL",
       "KICK_CLIENT_SECRET",
       "FRONTEND_URL",
-      "WEBSOKET_URL",
+      "WEBSOKET_PORT",
     ]),
   ],
 });
