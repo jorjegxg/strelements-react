@@ -38,17 +38,25 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
 
       let url = `${process.env.BACKEND_URL}/kick/login/exchange-code`;
 
+      console.log('1')
+      
+      console.log('url :' , url)
+      console.log('authorizationCode :' , code)
+      console.log('codeVerifier :' , verifier)
       const response = await axios.post(url, {
         authorizationCode: code,
         codeVerifier: verifier,
       });
-
+      
+      console.log('2')
       userSchema.parse(response);
-
+      console.log('3')
+      
       localStorage.setItem(
         CONFIG.localStorage.accessToken,
         response.data.authData.access_token
       );
+      console.log('4')
 
       console.log(
         "Tokenul de autentificare:",
