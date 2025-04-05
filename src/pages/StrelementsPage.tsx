@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 
 
@@ -19,15 +19,23 @@ function StrelementsPage() {
     };
   }, []);
 
+ 
+
+
   return (
     <div>
+      
       <h1>WebSocket Chat</h1>
       <div>
         {messages.map((msg, index) => (
           <p key={index}>{msg}</p>
         ))}
       </div>
+      <div className="App">
+      </div>
+      
     </div>
+    
   );
 }
 

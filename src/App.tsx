@@ -1,8 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import CallbackPage from "./components/CallbackPage";
-import LoginWithKick from "./components/LoginWithKick";
-import StrelementsPage from "./components/StrelementsPage";
+import CallbackPage from "./pages/CallbackPage";
+import LoginWithKick from "./pages/LoginWithKick";
+import StrelementsPage from "./pages/StrelementsPage";
+import Game from "./features/game/Game";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
             <Route path="/" element={<LoginWithKick />} />
             <Route path="/callback" element={<CallbackPage />} />
             <Route path="/strelements" element={<StrelementsPage />} />
+            <Route path="/game" element={<Game />} />
           </Routes>
         </BrowserRouter>
       </div>
