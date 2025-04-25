@@ -8,7 +8,7 @@ export default function Game() {
   >([]);
 
   const [user_id, setUserId] = useState<number>(0);
-  const [lastMessage, setLastMessage] = useState<string>("");
+  
 
   useEffect(() => {
     const socket = io(process.env.WEBSOKET_URL);
@@ -20,7 +20,6 @@ export default function Game() {
         { content: data.content, senderId: data.sender.user_id },
       ]);
       setUserId(data.sender.user_id);
-      setLastMessage(data.content);
     });
 
     return () => {
@@ -28,6 +27,7 @@ export default function Game() {
     };
   }, []);
 
+  //cumva o sa faci sa arate mesajele bune
   return (
     <div className="bg-transparent">
       <h1>WebSocket Chat</h1>
@@ -39,7 +39,15 @@ export default function Game() {
       <div className="App"></div>
       <div className="flex flex-col items-center justify-center">
         <div className=" w-screen relative overflow-hidden"></div>
-        <Character
+
+        
+          {/* <CharacterMover
+            name={"Mama"}
+            zIndex={1}
+            id={123}
+            message={lastMessage}
+          /> */}
+        {/* <Character
           name={"Mama"}
           zIndex={1}
           id={123}
@@ -59,78 +67,146 @@ export default function Game() {
           id={125}
           currentMessageUserId={user_id}
           message={lastMessage}
-        />
+        /> */}
       </div>
     </div>
   );
 }
 
-const Character = ({
-  name,
-  zIndex,
-  id,
-  currentMessageUserId,
-  message,
-}: {
+
+
+function CharacterMover({ name, zIndex, id, message }: CharacterProps) {
+  const [x, setX] = useState(100);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setX(prevX => prevX + Math.floor(Math.random() * 110 - 50)); 
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: x,
+        top: 100,
+        fontSize: "2rem",
+        transition: "left 1s linear"
+      }}
+    > <Character
+        name={name}
+        zIndex={zIndex}
+        id={id}
+        message={message}
+     />
+      
+      
+    </div>
+  );
+}
+
+type CharacterProps = {
   name: string;
   zIndex: number;
   id: number;
-  currentMessageUserId: number;
   message: string;
-}) => {
-  const maxMove = 250;
-  const controls = useAnimation();
+};
 
-  useEffect(() => {
-    const move = () => {
-      const randomX = Math.floor(Math.random() * maxMove);
-      controls.start({
-        x: randomX,
-        transition: { duration: 2, ease: "easeInOut" },
-      });
-    };
-
-    move();
-
-    const interval = setInterval(() => {
-      move();
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, [controls, maxMove]);
-
+const Character = ({ name, zIndex, id, message }: CharacterProps) => {
   return (
-    <div className="relative flex justify-center items-center">
-      {/* Label pentru caracter */}
-
-      {currentMessageUserId === id && (
-        //container pentru mesaj
-
-        <motion.div
-          animate={controls}
-          className={`absolute top-[-140px] bg-white p-4 rounded-lg shadow-md z-${zIndex} min-w-[250px] max-w-[350px] border-1`} // Padding mai mare și lățime ajustată
-        >
-          <p className="text-black font-semibold text-lg">{message}</p>{" "}
-          {/* Dimensiune text mai mare */}
-        </motion.div>
-      )}
-
-      <motion.p
-        animate={controls}
-        className={
-          "absolute top-[-70px] text-lg font-semibold text-black" + ` z-10`
-        }
-      >
-        {name}
-      </motion.p>
-
-      <motion.div
-        animate={controls}
-        className={
-          "w-20 h-20 bg-blue-500 rounded-full absolute top-1/2 -translate-y-1/2 border-4 border-blue-700 shadow-lg" +
-          ` z-${zIndex}`
-        }
-      />
+    <div style={{ zIndex, position: "absolute" }}>
+      <p className="text-sm font-semibold text-black">
+      {message}
+      </p>
+      <p className="text-sm">
+      {name}
+      </p>
+        🧍
     </div>
   );
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const Character = ({
+//   name,
+//   zIndex,
+//   id,
+//   currentMessageUserId,
+//   message,
+// }: {
+//   name: string;
+//   zIndex: number;
+//   id: number;
+//   currentMessageUserId: number;
+//   message: string;
+// }) => {
+//   const maxMove = 250;
+//   const controls = useAnimation();
+
+//   useEffect(() => {
+//     const move = () => {
+//       const randomX = Math.floor(Math.random() * maxMove);
+//       controls.start({
+//         x: randomX,
+//         transition: { duration: 2, ease: "easeInOut" },
+//       });
+//     };
+
+//     move();
+
+//     const interval = setInterval(() => {
+//       move();
+//     }, 2000);
+
+//     return () => clearInterval(interval);
+//   }, [controls, maxMove]);
+
+//   return (
+//     <div className="relative flex justify-center items-center">
+//       {/* Label pentru caracter */}
+
+//       {currentMessageUserId === id && (
+//         //container pentru mesaj
+
+//         <motion.div
+//           animate={controls}
+//           className={`absolute top-[-140px] bg-white p-4 rounded-lg shadow-md z-${zIndex} min-w-[250px] max-w-[350px] border-1`} // Padding mai mare și lățime ajustată
+//         >
+//           <p className="text-black font-semibold text-lg">{message}</p>{" "}
+//           {/* Dimensiune text mai mare */}
+//         </motion.div>
+//       )}
+
+//       <motion.p
+//         animate={controls}
+//         className={
+//           "absolute top-[-70px] text-lg font-semibold text-black" + ` z-10`
+//         }
+//       >
+//         {name}
+//       </motion.p>
+
+//       <motion.div
+//         animate={controls}
+//         className={
+//           "w-20 h-20 bg-blue-500 rounded-full absolute top-1/2 -translate-y-1/2 border-4 border-blue-700 shadow-lg" +
+//           ` z-${zIndex}`
+//         }
+//       />
+//     </div>
+//   );
+// };
