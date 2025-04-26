@@ -1,18 +1,16 @@
-
+import { AddCharacterButton } from "./AddCharacterButton";
 import { useCharacterMovement } from "./CharacterMovement";
 import { CharacterList } from "./CharactersList";
-import { MyComponent } from "./MyComponent";
 import { useSocketListener } from "./soket";
 
 export default function Game2() {
-    useSocketListener();
-    useCharacterMovement();
+  useSocketListener();
+  useCharacterMovement();
 
- return (
+  return (
     <div>
-      <MyComponent/>
+      <AddCharacterButton />
       <CharacterList />
     </div>
   );
 }
-    

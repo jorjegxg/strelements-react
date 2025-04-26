@@ -14,14 +14,15 @@ export const CharacterList = () => {
             zIndex: char.zIndex,
           }}
         >
-
           {/* Mesajul caracterului */}
           <div className="bg-white text-sm px-3 py-1 mt-1 rounded-xl shadow-md border max-w-[150px] text-center">
             {cutString(char.message)}
           </div>
-          
+
           {/* Emoji + Numele personajului */}
-          <div className="text-xl font-semibold text-gray-700 mt-2">{char.name}</div>
+          <div className="text-xl font-semibold text-gray-700 mt-2">
+            {char.name}
+          </div>
           <div className="text-5xl animate-bounce">{char.emoji}</div>
         </div>
       ))}

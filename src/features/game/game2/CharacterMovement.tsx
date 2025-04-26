@@ -2,7 +2,9 @@ import { useEffect } from "react";
 import { useCharacterStore } from "./characterStore";
 
 export const useCharacterMovement = () => {
-  const moveCharactersRandomly = useCharacterStore((s) => s.moveCharactersRandomly);
+  const moveCharactersRandomly = useCharacterStore(
+    (s) => s.moveCharactersRandomly
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {

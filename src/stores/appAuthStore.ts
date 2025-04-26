@@ -2,12 +2,16 @@ import axios from "axios";
 import { z } from "zod";
 import { create } from "zustand";
 import { CONFIG } from "../utils/constants";
+import { generateCodeChallenge, generateCodeVerifier } from "../utils/functions";
 
 interface AppAuthState {
   error?: string;
   isLoading: boolean;
   isAuthenticated: boolean;
+  setAuthenticated: (isAuthenticated: boolean) => void;
+
   userLogin: () => Promise<void>;
+  login: () => Promise<void>;
   logout: () => void;
 }
 const userSchema = z.object({
@@ -28,15 +32,40 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
   isLoading: false,
   error: "",
 
+  login: async () => {
+      const verifier = generateCodeVerifier();
+      const codeChallenge = await generateCodeChallenge(verifier);
+  
+      localStorage.setItem(CONFIG.localStorage.pkce_verifier, verifier);
+  
+      const redirect_uri = `${process.env.FRONTEND_URL}/callback`;
+  
+      const url = new URL(CONFIG.authUrl);
+      url.searchParams.set("response_type", "code");
+      url.searchParams.set("client_id", CONFIG.clientId!);
+      url.searchParams.set("redirect_uri", redirect_uri);
+      url.searchParams.set("scope", CONFIG.scopes);
+      url.searchParams.set("code_challenge", codeChallenge);
+      url.searchParams.set("code_challenge_method", "S256");
+      url.searchParams.set("state", "random_value");
+  
+      window.location.href = url.toString();
+    
+  },
+
+  setAuthenticated: (isAuthenticated) => {
+    set({ isAuthenticated });
+  },
+
   userLogin: async () => {
     set({ isLoading: true });
 
     try {
       const urlParams = new URLSearchParams(window.location.search);
       const code = urlParams.get("code");
-      const verifier = localStorage.getItem(CONFIG.pkce_verifier);
+      const verifier = localStorage.getItem(CONFIG.localStorage.pkce_verifier);
 
-      let url = `${process.env.BACKEND_URL}/kick/login/exchange-code`;
+      const url = `${process.env.BACKEND_URL}/kick/login/exchange-code`;
 
       console.log('1')
       
@@ -83,6 +112,7 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
 
   logout: () => {
     localStorage.removeItem(CONFIG.localStorage.accessToken);
+    localStorage.removeItem(CONFIG.localStorage.pkce_verifier);
     set({ isAuthenticated: false });
   },
 }));

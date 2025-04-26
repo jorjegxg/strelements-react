@@ -1,10 +1,10 @@
 import React from "react";
-import { useSwitchStore } from "../stores/switchStore";
-import { CONFIG } from "../utils/constants";
+import { useSwitchStore } from "../../stores/switchStore";
+import { CONFIG } from "../../utils/constants";
 import {
   generateCodeChallenge,
   generateCodeVerifier,
-} from "../utils/functions";
+} from "../../utils/functions";
 
 const LoginWithKick: React.FC = () => {
   const isActive = useSwitchStore((state) => state.isActive);
@@ -15,7 +15,7 @@ const LoginWithKick: React.FC = () => {
     const verifier = generateCodeVerifier();
     const codeChallenge = await generateCodeChallenge(verifier);
 
-    localStorage.setItem(CONFIG.pkce_verifier, verifier);
+    localStorage.setItem(CONFIG.localStorage.pkce_verifier, verifier);
 
     const redirect_uri = `${process.env.FRONTEND_URL}/callback`;
 
@@ -33,6 +33,8 @@ const LoginWithKick: React.FC = () => {
 
   return (
     <>
+      <div></div>
+
       <h1>Login with Kick</h1>
       <button onClick={login}>Login with Kick</button>
 
