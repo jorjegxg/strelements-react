@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { io } from "socket.io-client";
 import { CONFIG } from "../../../utils/constants";
-import { useDasboardStore } from "../../dashboard/dashboardStore";
+import { useDasboardStore } from "../../dashboardStore";
 import { useCharacterStore } from "./characterStore";
 
 const socket = io(process.env.WEBSOKET_URL!);
