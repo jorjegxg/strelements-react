@@ -1,5 +1,5 @@
 import { useSocketListener } from "../game/game2/soket";
-import useDasboardStore from "./dashboardStore";
+import { useDasboardStore } from "./dashboardStore";
 
 const Dashboard = () => {
   useSocketListener();

@@ -5,9 +5,9 @@ export interface Dashboard {
     setIsLive: (isLive: boolean) => void
 }
 
-const useDasboardStore = create<Dashboard>((set) => ({
+export const useDasboardStore = create<Dashboard>((set) => ({
     isLive: false,
     setIsLive: (isLive) => set((state) => ({ ...state, isLive })),
 }));
 
-export default useDasboardStore;
+
