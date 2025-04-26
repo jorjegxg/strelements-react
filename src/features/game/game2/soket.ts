@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from "react";
 import { io } from "socket.io-client";
 import { CONFIG } from "../../../utils/constants";
-import { Dashboard, useDasboardStore } from "../../dashboard/dashboardStore";
+import { useDasboardStore } from "../../dashboard/dashboardStore";
 import { useCharacterStore } from "./characterStore";
 
 const socket = io(process.env.WEBSOKET_URL!);
 
 export const useSocketListener = () => {
   const addOrUpdateCharacter = useCharacterStore((state) => state.addOrUpdateCharacter);
-  const setIsLive = useDasboardStore((state: Dashboard) => state.setIsLive);
+  const setIsLive = useDasboardStore((state : any) => state.setIsLive);
 
   useEffect(() => {
 
