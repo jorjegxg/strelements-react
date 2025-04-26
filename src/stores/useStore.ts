@@ -24,8 +24,8 @@ const useStore = create<Store>((set) => ({
       }
       const data: Post = await response.json();
       set({ data, loading: false });
-    } catch (error: any) {
-      set({ error: error.message, loading: false });
+    } catch (error) {
+      set({ error: (error as Error).message, loading: false });
     }
   },
 }));

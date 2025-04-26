@@ -2,7 +2,7 @@ const CONFIG = {
   localStorage: {
     accessToken: 'access_token',
     pkce_verifier: 'pkce_verifier',
-
+    user_id: 'user_id',
   },
   scopes: 'user:read channel:read channel:write chat:write streamkey:read events:subscribe',
   authUrl: 'https://id.kick.com/oauth/authorize',

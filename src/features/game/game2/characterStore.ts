@@ -81,6 +81,7 @@ export const useCharacterStore = create<Store>((set, get) => ({
     // Ștergem timerul asociat
     if (timers[id]) {
       clearTimeout(timers[id]);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { [id]: _, ...restTimers } = timers;
       set({ timers: restTimers });
     }

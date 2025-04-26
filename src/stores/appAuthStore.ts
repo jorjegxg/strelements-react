@@ -92,6 +92,11 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
         response.data.authData.access_token
       );
 
+      console.log('5')
+      console.log("response.data.client_id:", response.data.client_id);
+
+      localStorage.setItem(CONFIG.localStorage.user_id, response.data.client_id);
+
       set({ isAuthenticated: true });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -113,6 +118,7 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
   logout: () => {
     localStorage.removeItem(CONFIG.localStorage.accessToken);
     localStorage.removeItem(CONFIG.localStorage.pkce_verifier);
+    localStorage.removeItem(CONFIG.localStorage.user_id);
     set({ isAuthenticated: false });
   },
 }));
