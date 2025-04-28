@@ -13,29 +13,33 @@ export const useSocketListener = () => {
 
   useEffect(() => {
 
-    const clientId = localStorage.getItem(CONFIG.localStorage.user_id);
-    socket.emit('join_room', clientId);
-
-    socket.on("message", (data) => {
-      console.log("Received message:", data);
-
-      if(data.headers["kick-event-type"] === "chat.message.sent"){
-        const userId = data.body.sender.user_id;
-        const content = data.body.content;
-        const name = data.body.sender.username;
-        addOrUpdateCharacter(userId, content , name);
-
-      }else if(data.headers["kick-event-type"] === "livestream.status.updated"){
-        const isLive = data.body.is_live;
-        console.log("Is live:", isLive);
-        setIsLive(isLive);
-      }
+    const userId = localStorage.getItem(CONFIG.localStorage.user_id);
+    socket.emit('join_room', userId);
 
 
+    socket.on("live" , (data) => {
+      console.log("Socket.on('live') registered"); 
+      console.log("Live data:", data);
+
+      const isLive = data.body.is_live;
+      console.log("Is live:", isLive);
+      setIsLive(isLive);
+    });
+
+    socket.on("chat" , (data) => {
+      console.log("Socket.on('chat') registered");
 
       
-
+      const userId = data.body.sender.user_id;
+      const content = data.body.content;
+      const name = data.body.sender.username;
+      addOrUpdateCharacter(userId, content , name);
     });
+
+
+
+
+  
 
     return () => {
       socket.off("message");
