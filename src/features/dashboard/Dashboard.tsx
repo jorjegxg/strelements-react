@@ -1,8 +1,8 @@
 import { useDasboardStore } from "../dashboardStore";
-import { useSocketListener } from "../game/game2/soket";
+import { useLiveSoket } from "../game/game2/soket";
 
 const Dashboard = () => {
-  useSocketListener();
+  useLiveSoket();
 
   const { isLive } = useDasboardStore();
 

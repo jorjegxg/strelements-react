@@ -7,8 +7,30 @@ import { useCharacterStore } from "./characterStore";
 
 const socket = io(process.env.WEBSOKET_URL!);
 
-export const useSocketListener = () => {
+ const useChatSoket = () => {
   const addOrUpdateCharacter = useCharacterStore((state) => state.addOrUpdateCharacter);
+
+  useEffect(() => {
+
+    const userId = localStorage.getItem(CONFIG.localStorage.user_id);
+    socket.emit('join_room', userId);
+
+    socket.on("chat" , (data) => {
+      console.log("Socket.on('chat') registered");
+      console.log("Chat data:", data);
+
+      const userId = data.body.sender.user_id;
+      const content = data.body.content;
+      const name = data.body.sender.username;
+      addOrUpdateCharacter(userId, content , name);
+    });
+
+    return () => {
+      socket.off("chat");
+    };
+  }, []);
+};
+ const useLiveSoket = () => {
   const setIsLive = useDasboardStore((state : any) => state.setIsLive);
 
   useEffect(() => {
@@ -26,23 +48,15 @@ export const useSocketListener = () => {
       setIsLive(isLive);
     });
 
-    socket.on("chat" , (data) => {
-      console.log("Socket.on('chat') registered");
+   
 
-      
-      const userId = data.body.sender.user_id;
-      const content = data.body.content;
-      const name = data.body.sender.username;
-      addOrUpdateCharacter(userId, content , name);
-    });
-
-
-
-
-  
 
     return () => {
-      socket.off("message");
+      socket.off("live");
     };
   }, []);
 };
+
+
+export { useChatSoket, useLiveSoket };
+
