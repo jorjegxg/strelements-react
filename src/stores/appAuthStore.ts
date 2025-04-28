@@ -23,9 +23,17 @@ const userSchema = z.object({
       scope: z.string(),
       token_type: z.string(),
     }),
-    client_id: z.string(),
+    user :  z.object({
+      user_id: z.number(),
+      name: z.string(),
+      email: z.string().email(),
+      profile_picture: z.string().url(),
+    }),
   }),
 });
+
+
+
 
 export const useAppAuthStore = create<AppAuthState>((set) => ({
   isAuthenticated: false,
@@ -66,36 +74,31 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
       const verifier = localStorage.getItem(CONFIG.localStorage.pkce_verifier);
 
       const url = `${process.env.BACKEND_URL}/kick/login/exchange-code`;
-
-      console.log('1')
-      
-      console.log('url :' , url)
-      console.log('authorizationCode :' , code)
-      console.log('codeVerifier :' , verifier)
       const response = await axios.post(url, {
         authorizationCode: code,
         codeVerifier: verifier,
       });
       
-      console.log('2')
       userSchema.parse(response);
-      console.log('3')
       
       localStorage.setItem(
         CONFIG.localStorage.accessToken,
         response.data.authData.access_token
       );
-      console.log('4')
 
       console.log(
         "Tokenul de autentificare:",
         response.data.authData.access_token
       );
 
-      console.log('5')
-      console.log("response.data.client_id:", response.data.client_id);
+      console.log("User ID:", response.data.user.user_id);
 
-      localStorage.setItem(CONFIG.localStorage.user_id, response.data.client_id);
+      localStorage.setItem(
+        CONFIG.localStorage.user_id,
+        response.data.user.user_id.toString()
+      );
+
+
 
       set({ isAuthenticated: true });
     } catch (error) {
