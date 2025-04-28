@@ -47,6 +47,7 @@ const Navigation = () => {
     if (isAuthenticated)
       return (
         <button
+          data-testid="dashboard-button"
           className="btn btn-outline btn-primary"
           onClick={() => {
             if (isAuthenticated) window.location.href = "/dashboard";
@@ -61,6 +62,7 @@ const Navigation = () => {
     return (
       <div className="bg-white p-6">
         <button
+          data-testid="login-button"
           className="btn btn-outline btn-primary"
           onClick={() => {
             login();
