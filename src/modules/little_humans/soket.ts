@@ -7,14 +7,14 @@ import { useCharacterStore } from "./characterStore";
 
 const socket = io(process.env.WEBSOKET_URL!);
 
-const useChatSoket = () => {
+const useChatSoket = (sessionID: string) => {
   const addOrUpdateCharacter = useCharacterStore(
     (state) => state.addOrUpdateCharacter
   );
 
   useEffect(() => {
-    const userId = localStorage.getItem(CONFIG.localStorage.kickUserId);
-    socket.emit("join_room", userId);
+    // const userId = localStorage.getItem(CONFIG.localStorage.kickUserId);
+    socket.emit("join_room", sessionID);
 
     socket.on("chat", (data) => {
       console.log("Socket.on('chat') registered");

@@ -1,9 +1,9 @@
 import React from "react";
-import { CONFIG } from "../../shared/utils/constants";
 import {
   generateCodeChallenge,
   generateCodeVerifier,
-} from "../../shared/utils/functions";
+} from "../../shared/utils/auth_functions";
+import { CONFIG } from "../../shared/utils/constants";
 import { useSwitchStore } from "../stores/switchStore";
 
 const LoginWithKick: React.FC = () => {

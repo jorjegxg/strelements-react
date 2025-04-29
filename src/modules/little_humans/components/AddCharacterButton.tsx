@@ -9,15 +9,6 @@ export const AddCharacterButton = () => {
     addOrUpdateCharacter(id, message, name);
   };
 
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     handleMessage(Math.floor(Math.random() * 1000) + 1, "Salut!", "Mama ta");
-  //   }, 1000);
-
-  //   // cleanup: când componenta se distruge, oprește intervalul
-  //   return () => clearInterval(intervalId);
-  // }, []);
-
   return (
     <button
       onClick={() =>
