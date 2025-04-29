@@ -1,10 +1,10 @@
 import React from "react";
-import { useSwitchStore } from "../../stores/switchStore";
-import { CONFIG } from "../../utils/constants";
+import { CONFIG } from "../../shared/utils/constants";
 import {
   generateCodeChallenge,
   generateCodeVerifier,
-} from "../../utils/functions";
+} from "../../shared/utils/functions";
+import { useSwitchStore } from "../stores/switchStore";
 
 const LoginWithKick: React.FC = () => {
   const isActive = useSwitchStore((state) => state.isActive);

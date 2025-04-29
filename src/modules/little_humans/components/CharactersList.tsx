@@ -1,4 +1,4 @@
-import { useCharacterStore } from "./characterStore";
+import { useCharacterStore } from "../characterStore";
 
 export const CharacterList = () => {
   const characters = useCharacterStore((state) => state.characters);

@@ -1,8 +1,11 @@
 import axios from "axios";
 import { z } from "zod";
 import { create } from "zustand";
-import { CONFIG } from "../utils/constants";
-import { generateCodeChallenge, generateCodeVerifier } from "../utils/functions";
+import { CONFIG } from "../../shared/utils/constants";
+import {
+  generateCodeChallenge,
+  generateCodeVerifier,
+} from "../../shared/utils/functions";
 
 interface AppAuthState {
   error?: string;
@@ -10,7 +13,7 @@ interface AppAuthState {
   isAuthenticated: boolean;
   setAuthenticated: (isAuthenticated: boolean) => void;
 
-  userLogin: () => Promise<void>;
+  getKickAuthToken: () => Promise<void>;
   login: () => Promise<void>;
   logout: () => void;
 }
@@ -23,7 +26,7 @@ const userSchema = z.object({
       scope: z.string(),
       token_type: z.string(),
     }),
-    user :  z.object({
+    user: z.object({
       user_id: z.number(),
       name: z.string(),
       email: z.string().email(),
@@ -32,40 +35,36 @@ const userSchema = z.object({
   }),
 });
 
-
-
-
 export const useAppAuthStore = create<AppAuthState>((set) => ({
   isAuthenticated: false,
   isLoading: false,
   error: "",
 
   login: async () => {
-      const verifier = generateCodeVerifier();
-      const codeChallenge = await generateCodeChallenge(verifier);
-  
-      localStorage.setItem(CONFIG.localStorage.pkce_verifier, verifier);
-  
-      const redirect_uri = `${process.env.FRONTEND_URL}/callback`;
-  
-      const url = new URL(CONFIG.authUrl);
-      url.searchParams.set("response_type", "code");
-      url.searchParams.set("client_id", CONFIG.clientId!);
-      url.searchParams.set("redirect_uri", redirect_uri);
-      url.searchParams.set("scope", CONFIG.scopes);
-      url.searchParams.set("code_challenge", codeChallenge);
-      url.searchParams.set("code_challenge_method", "S256");
-      url.searchParams.set("state", "random_value");
-  
-      window.location.href = url.toString();
-    
+    const verifier = generateCodeVerifier();
+    const codeChallenge = await generateCodeChallenge(verifier);
+
+    localStorage.setItem(CONFIG.localStorage.pkce_verifier, verifier);
+
+    const redirect_uri = `${process.env.FRONTEND_URL}/callback`;
+
+    const url = new URL(CONFIG.authUrl);
+    url.searchParams.set("response_type", "code");
+    url.searchParams.set("client_id", CONFIG.clientId!);
+    url.searchParams.set("redirect_uri", redirect_uri);
+    url.searchParams.set("scope", CONFIG.scopes);
+    url.searchParams.set("code_challenge", codeChallenge);
+    url.searchParams.set("code_challenge_method", "S256");
+    url.searchParams.set("state", "random_value");
+
+    window.location.href = url.toString();
   },
 
   setAuthenticated: (isAuthenticated) => {
     set({ isAuthenticated });
   },
 
-  userLogin: async () => {
+  getKickAuthToken: async () => {
     set({ isLoading: true });
 
     try {
@@ -78,11 +77,11 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
         authorizationCode: code,
         codeVerifier: verifier,
       });
-      
+
       userSchema.parse(response);
-      
+
       localStorage.setItem(
-        CONFIG.localStorage.accessToken,
+        CONFIG.localStorage.kickaAcessToken,
         response.data.authData.access_token
       );
 
@@ -94,11 +93,9 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
       console.log("User ID:", response.data.user.user_id);
 
       localStorage.setItem(
-        CONFIG.localStorage.user_id,
+        CONFIG.localStorage.kickUserId,
         response.data.user.user_id.toString()
       );
-
-
 
       set({ isAuthenticated: true });
     } catch (error) {
@@ -119,9 +116,9 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
   },
 
   logout: () => {
-    localStorage.removeItem(CONFIG.localStorage.accessToken);
+    localStorage.removeItem(CONFIG.localStorage.kickaAcessToken);
     localStorage.removeItem(CONFIG.localStorage.pkce_verifier);
-    localStorage.removeItem(CONFIG.localStorage.user_id);
+    localStorage.removeItem(CONFIG.localStorage.kickUserId);
     set({ isAuthenticated: false });
   },
 }));

@@ -11,8 +11,8 @@ type Character = {
 
 type Store = {
   characters: Character[];
-  timers: Record<number, ReturnType<typeof setTimeout>>; // ținem timeout-urile per user_id
-  addOrUpdateCharacter: (id: number, message: string , name:string) => void;
+  timers: Record<number, ReturnType<typeof setTimeout>>;
+  addOrUpdateCharacter: (id: number, message: string, name: string) => void;
   removeCharacter: (id: number) => void;
   setCharacters: (chars: Character[]) => void;
   moveCharactersRandomly: () => void;
@@ -25,7 +25,6 @@ const getEmoji = (name: string) => {
     .reduce((acc, char) => acc + char.charCodeAt(0), 0);
   return emojis[hash % emojis.length];
 };
-
 
 export const useCharacterStore = create<Store>((set, get) => ({
   characters: [],
@@ -90,16 +89,19 @@ export const useCharacterStore = create<Store>((set, get) => ({
   moveCharactersRandomly: () => {
     const screenWidth = window.innerWidth;
     const characterWidth = 150; // sau cât are efectiv elementul tău (px)
-  
+
     set((state) => ({
       characters: state.characters.map((char) => {
         // Mutare aleatoare între -50 și +50
         const deltaX = Math.floor(Math.random() * 100) - 50;
         const newX = char.x + deltaX;
-  
+
         // Clamping: ne asigurăm că noua poziție e între 0 și screenWidth - characterWidth
-        const clampedX = Math.max(0, Math.min(newX, screenWidth - characterWidth));
-  
+        const clampedX = Math.max(
+          0,
+          Math.min(newX, screenWidth - characterWidth)
+        );
+
         return {
           ...char,
           x: clampedX,
@@ -107,7 +109,4 @@ export const useCharacterStore = create<Store>((set, get) => ({
       }),
     }));
   },
-  
 }));
-
-

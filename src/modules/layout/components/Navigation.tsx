@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-import { useAppAuthStore } from "../../stores/appAuthStore";
-import { CONFIG } from "../../utils/constants";
+import { CONFIG } from "../../../shared/utils/constants";
+import { useAppAuthStore } from "../../auth/appAuthStore";
 
 const Navigation = () => {
   const { isAuthenticated, setAuthenticated, logout, login } =
     useAppAuthStore();
 
   useEffect(() => {
-    const token = localStorage.getItem(CONFIG.localStorage.accessToken);
+    const token = localStorage.getItem(CONFIG.localStorage.kickaAcessToken);
     if (token) {
       console.log("Token found in local storage:", token);
       setAuthenticated(true);

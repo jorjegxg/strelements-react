@@ -1,4 +1,4 @@
-import Layout from "../app_structure/Layout";
+import Layout from "../layout/Layout";
 
 const FrontPage = () => {
   return (

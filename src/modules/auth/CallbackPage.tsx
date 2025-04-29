@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Bounce, toast, ToastContainer } from "react-toastify";
-import { useAppAuthStore } from "../stores/appAuthStore";
+import { useAppAuthStore } from "./appAuthStore";
 
 const CallbackPage: React.FC = () => {
-  const userLogin = useAppAuthStore((state) => state.userLogin);
+  const userLogin = useAppAuthStore((state) => state.getKickAuthToken);
   const error = useAppAuthStore((state) => state.error);
   const navigate = useNavigate();
   const isAuthenticated = useAppAuthStore((state) => state.isAuthenticated);

@@ -1,5 +1,5 @@
-import { useDasboardStore } from "../dashboardStore";
-import { useLiveSoket } from "../game/game2/soket";
+import { useLiveSoket } from "../little_humans/soket";
+import { useDasboardStore } from "./dashboardStore";
 
 const Dashboard = () => {
   useLiveSoket();

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { create } from "zustand";
-import { CONFIG } from "../utils/constants";
+import { CONFIG } from "../../shared/utils/constants";
 
 interface SwitchStore {
   isActive: boolean;
@@ -16,7 +16,7 @@ export const useSwitchStore = create<SwitchStore>((set, get) => ({
   toggleState: async () => {
     set({ isLoading: true });
 
-    const token = localStorage.getItem(CONFIG.localStorage.accessToken);
+    const token = localStorage.getItem(CONFIG.localStorage.kickaAcessToken);
 
     const currentState = get().isActive;
     const newState = !currentState;
