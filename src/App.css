@@ -2,8 +2,7 @@
 @plugin "daisyui";
 
 #root {
-  margin: 0 auto; /* Adaugă această linie pentru a centra containerul pe orizontală */
-  /* padding: 1rem; Poți adăuga padding pentru a adăuga margini interioare */
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -21,7 +20,6 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #fb61c8e7);
 }
-
 
 .card {
   padding: 2em;
