@@ -3,6 +3,10 @@ const CONFIG = {
     kickaAcessToken: "kickaAcessToken",
     pkce_verifier: "pkce_verifier",
     kickUserId: "kickUserId",
+    profile_picture: "profile_picture",
+    kickUsername: "kickUsername",
+    token_expires_in: "token_expires_in",
+    refresh_token: "refresh_token",
   },
   scopes:
     "user:read channel:read channel:write chat:write streamkey:read events:subscribe",

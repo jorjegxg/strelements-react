@@ -78,24 +78,40 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
         codeVerifier: verifier,
       });
 
-      userSchema.parse(response);
+      const parsedResponse = userSchema.parse(response);
 
       localStorage.setItem(
         CONFIG.localStorage.kickaAcessToken,
-        response.data.authData.access_token
+        parsedResponse.data.authData.access_token
+      );
+      localStorage.setItem(
+        CONFIG.localStorage.token_expires_in,
+        parsedResponse.data.authData.expires_in.toString()
+      );
+      localStorage.setItem(
+        CONFIG.localStorage.refresh_token,
+        parsedResponse.data.authData.refresh_token
+      );
+      localStorage.setItem(
+        CONFIG.localStorage.profile_picture,
+        parsedResponse.data.user.profile_picture
+      );
+      localStorage.setItem(
+        CONFIG.localStorage.kickUsername,
+        parsedResponse.data.user.name
+      );
+
+      localStorage.setItem(
+        CONFIG.localStorage.kickUserId,
+        parsedResponse.data.user.user_id.toString()
       );
 
       console.log(
         "Tokenul de autentificare:",
-        response.data.authData.access_token
+        parsedResponse.data.authData.access_token
       );
 
       console.log("User ID:", response.data.user.user_id);
-
-      localStorage.setItem(
-        CONFIG.localStorage.kickUserId,
-        response.data.user.user_id.toString()
-      );
 
       set({ isAuthenticated: true });
     } catch (error) {
