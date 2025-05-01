@@ -1,5 +1,4 @@
 import axios from "axios";
-
 import { z } from "zod";
 import { create } from "zustand";
 import {
@@ -133,6 +132,14 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
         "Tokenul de autentificare:",
         parsedResponse.data.authData.access_token
       );
+
+      console.log("Refresh token:", parsedResponse.data.authData.refresh_token);
+
+      console.log(
+        "Tokenul expira in:",
+        parsedResponse.data.authData.expires_in
+      );
+      console.log("Tokenul expira la:", expiresAt);
 
       console.log("User ID:", response.data.user.user_id);
 

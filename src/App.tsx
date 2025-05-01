@@ -9,11 +9,8 @@ import FrontPage from "./modules/front_page/page";
 import Game2 from "./modules/little_humans/Game2";
 import TestPage from "./modules/test/TestPage";
 import ProtectedRoute from "./PrivateRoute";
-import { CONFIG } from "./shared/utils/constants";
 
 function App() {
-  const authToken = localStorage.getItem(CONFIG.localStorage.kickAcessToken);
-
   return (
     <>
       <div>
@@ -26,7 +23,7 @@ function App() {
             <Route
               path="/dashboard"
               element={
-                <ProtectedRoute authToken={authToken}>
+                <ProtectedRoute>
                   <DashboardPage />
                 </ProtectedRoute>
               }
@@ -34,7 +31,7 @@ function App() {
             <Route
               path="/strelements"
               element={
-                <ProtectedRoute authToken={authToken}>
+                <ProtectedRoute>
                   <StrelementsPage />
                 </ProtectedRoute>
               }

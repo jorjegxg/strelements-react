@@ -1,6 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { create } from "zustand";
+import api from "../../shared/utils/autoRefresh";
 import { CONFIG } from "../../shared/utils/constants";
 
 interface SwitchStore {
@@ -18,19 +19,15 @@ export const useSwitchStore = create<SwitchStore>((set, get) => ({
   toggleState: async () => {
     set({ isLoading: true });
 
-    const token = localStorage.getItem(CONFIG.localStorage.kickAcessToken);
-
     const currentState = get().isActive;
     const newState = !currentState;
 
     console.log("Toggling state:", newState);
 
     try {
-      const response = await axios.post(
-        `${process.env.BACKEND_URL}/toggle`,
-        { isActive: newState, accessToken: `${token}` },
-        {}
-      );
+      const response = await api.post(`${process.env.BACKEND_URL}/toggle`, {
+        isActive: newState,
+      });
       console.log("API Response:", response.data);
 
       if (newState) {

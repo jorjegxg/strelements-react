@@ -24,13 +24,30 @@ const Navigation = () => {
 
   useEffect(() => {
     const token = localStorage.getItem(CONFIG.localStorage.kickAcessToken);
+
     if (token) {
-      console.log("Token found in local storage:", token);
+      console.log("1.---------------- Token found in local storage:", token);
+      // console.log("Token found in local storage:", token);
       setAuthenticated(true);
     } else {
       console.log("No token found in local storage.");
       setAuthenticated(false);
     }
+
+    //TODO: STERGE
+    const refreshToken = localStorage.getItem(
+      CONFIG.localStorage.kickRefreshToken
+    );
+    console.log("Refresh token found in local storage:", refreshToken);
+    const expiresAt = localStorage.getItem(
+      CONFIG.localStorage.kickTokenExpiresAt
+    );
+    console.log(
+      "Expires at found in local storage:",
+      new Date(Number(expiresAt))
+    );
+
+    // //TODO: STERGE pana aici
   }, [setAuthenticated]);
 
   return (
