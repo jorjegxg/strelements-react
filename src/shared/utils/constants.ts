@@ -1,12 +1,12 @@
 const CONFIG = {
   localStorage: {
     kickAcessToken: "kickAcessToken",
-    pkce_verifier: "pkce_verifier",
+    pkceVerifier: "pkceVerifier",
     kickUserId: "kickUserId",
-    profile_picture: "profile_picture",
+    profilePicture: "profilePicture",
     kickUsername: "kickUsername",
-    token_expires_in: "token_expires_in",
-    refresh_token: "refresh_token",
+    kickTokenExpiresAt: "kickTokenExpiresAt",
+    kickRefreshToken: "kickRefreshToken",
   },
   scopes:
     "user:read channel:read channel:write chat:write streamkey:read events:subscribe",

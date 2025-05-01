@@ -12,6 +12,7 @@ interface AppAuthState {
   isLoading: boolean;
   isAuthenticated: boolean;
   setAuthenticated: (isAuthenticated: boolean) => void;
+  kickTokenIntrospect: () => Promise<void>;
 
   getKickAuthToken: () => Promise<void>;
   login: () => Promise<void>;
@@ -44,7 +45,7 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
     const verifier = generateCodeVerifier();
     const codeChallenge = await generateCodeChallenge(verifier);
 
-    localStorage.setItem(CONFIG.localStorage.pkce_verifier, verifier);
+    localStorage.setItem(CONFIG.localStorage.pkceVerifier, verifier);
 
     const redirect_uri = `${process.env.FRONTEND_URL}/callback`;
 
@@ -70,7 +71,7 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
     try {
       const urlParams = new URLSearchParams(window.location.search);
       const code = urlParams.get("code");
-      const verifier = localStorage.getItem(CONFIG.localStorage.pkce_verifier);
+      const verifier = localStorage.getItem(CONFIG.localStorage.pkceVerifier);
 
       const url = `${process.env.BACKEND_URL}/kick/login/exchange-code`;
       const response = await axios.post(url, {
@@ -84,12 +85,16 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
         CONFIG.localStorage.kickAcessToken,
         parsedResponse.data.authData.access_token
       );
+      //
+      const expiresAt =
+        parsedResponse.data.authData.expires_in * 1000 + Date.now();
       localStorage.setItem(
-        CONFIG.localStorage.token_expires_in,
-        parsedResponse.data.authData.expires_in.toString()
+        CONFIG.localStorage.kickTokenExpiresAt,
+        expiresAt.toString()
       );
+      //
       localStorage.setItem(
-        CONFIG.localStorage.refresh_token,
+        CONFIG.localStorage.kickRefreshToken,
         parsedResponse.data.authData.refresh_token
       );
       //
@@ -135,10 +140,48 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
     }
   },
 
-  logout: () => {
-    localStorage.removeItem(CONFIG.localStorage.kickAcessToken);
-    localStorage.removeItem(CONFIG.localStorage.pkce_verifier);
-    localStorage.removeItem(CONFIG.localStorage.kickUserId);
-    set({ isAuthenticated: false });
+  //TODO: Nu trece prin backend, fa-l sa treaca
+  kickTokenIntrospect: async () => {
+    const accessToken = localStorage.getItem(
+      CONFIG.localStorage.kickAcessToken
+    );
+    const url = "https://api.kick.com/public/v1/token/introspect";
+    try {
+      const response = await axios.post(url, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      console.log("Introspect response:", response.data);
+    } catch (error) {
+      console.error("Error during introspection:", error);
+    }
+  },
+
+  logout: async () => {
+    try {
+      set({ isLoading: true });
+      const url = `${process.env.BACKEND_URL}/kick/logout`;
+      await axios.post(url, {
+        token: localStorage.getItem(CONFIG.localStorage.kickAcessToken),
+        token_hint_type: "access_token",
+      });
+      //////////////////
+      localStorage.removeItem(CONFIG.localStorage.kickAcessToken);
+      localStorage.removeItem(CONFIG.localStorage.pkceVerifier);
+      localStorage.removeItem(CONFIG.localStorage.kickUserId);
+      localStorage.removeItem(CONFIG.localStorage.kickUsername);
+      localStorage.removeItem(CONFIG.localStorage.kickTokenExpiresAt);
+      localStorage.removeItem(CONFIG.localStorage.kickRefreshToken);
+      localStorage.removeItem(CONFIG.localStorage.profilePicture);
+      //////////////////
+
+      set({ isAuthenticated: false });
+    } catch (error) {
+      console.error("Logout error:", error);
+      set({ error: "Logout error" });
+    } finally {
+      set({ isLoading: false });
+    }
   },
 }));

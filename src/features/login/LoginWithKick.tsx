@@ -15,7 +15,7 @@ const LoginWithKick: React.FC = () => {
     const verifier = generateCodeVerifier();
     const codeChallenge = await generateCodeChallenge(verifier);
 
-    localStorage.setItem(CONFIG.localStorage.pkce_verifier, verifier);
+    localStorage.setItem(CONFIG.localStorage.pkceVerifier, verifier);
 
     const redirect_uri = `${process.env.FRONTEND_URL}/callback`;
 
