@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import { z } from "zod";
 import { create } from "zustand";
 import {
@@ -11,6 +12,12 @@ interface AppAuthState {
   error?: string;
   isLoading: boolean;
   isAuthenticated: boolean;
+  status: {
+    name: "idle" | "success" | "error";
+    message: string;
+  };
+
+  setStatus: (name: "idle" | "success" | "error", message: string) => void;
   setAuthenticated: (isAuthenticated: boolean) => void;
   kickTokenIntrospect: () => Promise<void>;
 
@@ -36,10 +43,17 @@ const userSchema = z.object({
   }),
 });
 
-export const useAppAuthStore = create<AppAuthState>((set) => ({
+export const useAppAuthStore = create<AppAuthState>((set, get) => ({
   isAuthenticated: false,
   isLoading: false,
   error: "",
+  status: {
+    name: "idle",
+    message: "",
+  },
+  setStatus: (name, message) => {
+    set({ status: { name, message } });
+  },
 
   login: async () => {
     const verifier = generateCodeVerifier();
@@ -122,6 +136,9 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
 
       console.log("User ID:", response.data.user.user_id);
 
+      //set status to success thru setStatus
+      get().setStatus("success", "Login successful");
+
       set({ isAuthenticated: true });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -134,6 +151,7 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
         console.error("Altă eroare:", error);
       }
 
+      get().setStatus("error", "Token exchange error");
       set({ error: "Token exchange error" });
     } finally {
       set({ isLoading: false });
@@ -176,9 +194,12 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
       localStorage.removeItem(CONFIG.localStorage.profilePicture);
       //////////////////
 
+      get().setStatus("success", "Logout successful");
       set({ isAuthenticated: false });
     } catch (error) {
       console.error("Logout error:", error);
+
+      get().setStatus("error", "Logout error");
       set({ error: "Logout error" });
     } finally {
       set({ isLoading: false });

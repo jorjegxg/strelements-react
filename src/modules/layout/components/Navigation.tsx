@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import { CONFIG } from "../../../shared/utils/constants";
 import { useAppAuthStore } from "../../auth/appAuthStore";
 
@@ -7,6 +8,19 @@ const Navigation = () => {
   const setAuthenticated = useAppAuthStore((state) => state.setAuthenticated);
   const logout = useAppAuthStore((state) => state.logout);
   const login = useAppAuthStore((state) => state.login);
+  const authIsLoading = useAppAuthStore((state) => state.isLoading);
+  const status = useAppAuthStore((state) => state.status);
+  const setStatus = useAppAuthStore((state) => state.setStatus);
+
+  useEffect(() => {
+    if (status.name === "error") {
+      toast.error(status.message);
+      setStatus("idle", "");
+    } else if (status.name === "success") {
+      toast.success(status.message);
+      setStatus("idle", "");
+    }
+  }, [status]);
 
   useEffect(() => {
     const token = localStorage.getItem(CONFIG.localStorage.kickAcessToken);
@@ -20,29 +34,32 @@ const Navigation = () => {
   }, [setAuthenticated]);
 
   return (
-    <div className="navbar ">
-      <div className="navbar-start">
-        <img src={"./vite.svg"} alt="Logo-ul aplicației" className="logo" />
-      </div>
+    <>
+      <div className="navbar ">
+        <div className="navbar-start">
+          <img src={"./vite.svg"} alt="Logo-ul aplicației" className="logo" />
+        </div>
 
-      {isAuthenticated ? (
-        <>
-          <div className="navbar-end">
-            {dashboardButton(isAuthenticated)}
-            <div className="ml-4"></div>
-            {avatar()}
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="navbar-end">
-            {dashboardButton(isAuthenticated)}
-            <div className="ml-4"></div>
-            {loginButton()}
-          </div>
-        </>
-      )}
-    </div>
+        <div className="navbar-end">
+          {authIsLoading ? (
+            <span className="loading loading-spinner loading-xl"></span>
+          ) : isAuthenticated ? (
+            <>
+              {dashboardButton(isAuthenticated)}
+              <div className="ml-4"></div>
+              {avatar()}
+            </>
+          ) : (
+            <>
+              {dashboardButton(isAuthenticated)}
+              <div className="ml-4"></div>
+              {loginButton()}
+            </>
+          )}
+        </div>
+      </div>
+      <ToastContainer position="bottom-right" autoClose={2000} />
+    </>
   );
 
   function dashboardButton(isAuthenticated: boolean) {
