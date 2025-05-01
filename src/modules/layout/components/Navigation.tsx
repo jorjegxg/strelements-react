@@ -42,10 +42,14 @@ const Navigation = () => {
     const expiresAt = localStorage.getItem(
       CONFIG.localStorage.kickTokenExpiresAt
     );
-    console.log(
-      "Expires at found in local storage:",
-      new Date(Number(expiresAt))
-    );
+    if (expiresAt) {
+      console.log(
+        "Expires at found in local storage:",
+        new Date(Number(expiresAt))
+      );
+    } else {
+      console.log("Expires at not found in local storage");
+    }
 
     // //TODO: STERGE pana aici
   }, [setAuthenticated]);

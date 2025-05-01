@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import { create } from "zustand";
-import api from "../../shared/utils/autoRefresh";
+import { api } from "../../shared/utils/autoRefresh";
 
 interface SwitchStore {
   isActive: boolean;

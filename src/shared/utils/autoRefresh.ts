@@ -72,4 +72,4 @@ async function refreshAccessToken(): Promise<string> {
   return data.access_token;
 }
 
-export default api;
+export { api, refreshAccessToken };

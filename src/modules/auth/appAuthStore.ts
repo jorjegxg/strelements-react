@@ -98,12 +98,18 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
         parsedResponse.data.authData.access_token
       );
       //
-      const expiresAt =
-        parsedResponse.data.authData.expires_in * 1000 + Date.now();
-      localStorage.setItem(
-        CONFIG.localStorage.kickTokenExpiresAt,
-        expiresAt.toString()
-      );
+      const expiresIn = parsedResponse.data.authData.expires_in;
+      if (expiresIn !== null) {
+        const expiresAt = expiresIn * 1000 + Date.now();
+        localStorage.setItem(
+          CONFIG.localStorage.kickTokenExpiresAt,
+          expiresAt.toString()
+        );
+
+        console.log("Tokenul expira la:", expiresAt);
+      } else {
+        console.log("Tokenul expira la:", null);
+      }
       //
       localStorage.setItem(
         CONFIG.localStorage.kickRefreshToken,
@@ -129,7 +135,6 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
         "Tokenul expira in:",
         parsedResponse.data.authData.expires_in
       );
-      console.log("Tokenul expira la:", expiresAt);
 
       console.log("User ID:", response.data.user.user_id);
 
