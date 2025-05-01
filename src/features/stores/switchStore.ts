@@ -1,8 +1,6 @@
-import axios from "axios";
 import { toast } from "react-toastify";
 import { create } from "zustand";
 import api from "../../shared/utils/autoRefresh";
-import { CONFIG } from "../../shared/utils/constants";
 
 interface SwitchStore {
   isActive: boolean;
@@ -46,12 +44,9 @@ export const useSwitchStore = create<SwitchStore>((set, get) => ({
     console.log("Fetching effects state...");
     set({ isLoading: true });
 
-    const token = localStorage.getItem(CONFIG.localStorage.kickAcessToken);
-
     try {
-      const response = await axios.get(
-        `${process.env.BACKEND_URL}/effects-state`,
-        { headers: { Authorization: `${token}` } }
+      const response = await api.get(
+        `${process.env.BACKEND_URL}/effects-state`
       );
       console.log("API Response:", response.data);
 

@@ -18,7 +18,6 @@ interface AppAuthState {
 
   setStatus: (name: "idle" | "success" | "error", message: string) => void;
   setAuthenticated: (isAuthenticated: boolean) => void;
-  kickTokenIntrospect: () => Promise<void>;
 
   getKickAuthToken: () => Promise<void>;
   login: () => Promise<void>;
@@ -110,15 +109,6 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
         CONFIG.localStorage.kickRefreshToken,
         parsedResponse.data.authData.refresh_token
       );
-      //
-      // const profilePictureUrl = parsedResponse.data.user.profile_picture;
-      // localStorage.setItem(
-      //   CONFIG.localStorage.profile_picture,
-      //   profilePictureUrl
-      // );
-      // set({ profilePicture: profilePictureUrl });
-      // console.log("URL-ul pozei de profil:", profilePictureUrl);
-      //
       localStorage.setItem(
         CONFIG.localStorage.kickUsername,
         parsedResponse.data.user.name
@@ -162,24 +152,6 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
       set({ error: "Token exchange error" });
     } finally {
       set({ isLoading: false });
-    }
-  },
-
-  //TODO: Nu trece prin backend, fa-l sa treaca
-  kickTokenIntrospect: async () => {
-    const accessToken = localStorage.getItem(
-      CONFIG.localStorage.kickAcessToken
-    );
-    const url = "https://api.kick.com/public/v1/token/introspect";
-    try {
-      const response = await axios.post(url, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      console.log("Introspect response:", response.data);
-    } catch (error) {
-      console.error("Error during introspection:", error);
     }
   },
 
