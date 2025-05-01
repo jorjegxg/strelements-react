@@ -1,6 +1,6 @@
 const CONFIG = {
   localStorage: {
-    kickaAcessToken: "kickaAcessToken",
+    kickAcessToken: "kickAcessToken",
     pkce_verifier: "pkce_verifier",
     kickUserId: "kickUserId",
     profile_picture: "profile_picture",

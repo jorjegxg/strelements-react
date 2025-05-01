@@ -10,18 +10,14 @@ import { useDasboardStore } from "./dashboardStore";
 
 const DashboardPage = () => {
   useLiveSoket();
-  {
-    /*   -------------------------------------- */
-  }
+  const userId = localStorage.getItem(CONFIG.localStorage.kickUserId);
+  const sessionId = userId;
+  const link = `https://strelements-original/${sessionId}`;
+
   const navigate = useNavigate();
   const createSession = () => {
-    const userId = localStorage.getItem(CONFIG.localStorage.kickUserId);
-    const sessionId = userId; // generateId();
     navigate(`/strelements-original/${sessionId}`);
   };
-  {
-    /*   -------------------------------------- */
-  }
 
   const { isLive } = useDasboardStore();
 
@@ -35,7 +31,7 @@ const DashboardPage = () => {
       )}
 
       <div className="flex flex-col justify-start items-center h-screen w-screen bg-gray-100 p-4">
-        <EffectComponent textToCopy="httpschimba/feasfefeaf/aefeafaefgrgr" />
+        <EffectComponent textToCopy={link} />
 
         <button
           className="btn btn-outline btn-primary w-100 mt-4"

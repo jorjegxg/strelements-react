@@ -8,8 +8,12 @@ import DashboardPage from "./modules/dashboard/DashboardPage";
 import FrontPage from "./modules/front_page/page";
 import Game2 from "./modules/little_humans/Game2";
 import TestPage from "./modules/test/TestPage";
+import ProtectedRoute from "./PrivateRoute";
+import { CONFIG } from "./shared/utils/constants";
 
 function App() {
+  const authToken = localStorage.getItem(CONFIG.localStorage.kickAcessToken);
+
   return (
     <>
       <div>
@@ -18,9 +22,23 @@ function App() {
             <Route path="/" element={<FrontPage />} />
             <Route path="/callback" element={<CallbackPage />} />
             <Route path="/login" element={<LoginWithKick />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/strelements" element={<StrelementsPage />} />
-            <Route path="/game2" element={<Game2 />} />
+
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute authToken={authToken}>
+                  <DashboardPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/strelements"
+              element={
+                <ProtectedRoute authToken={authToken}>
+                  <StrelementsPage />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/strelements-original/:sessionId"
               element={<Game2 />}

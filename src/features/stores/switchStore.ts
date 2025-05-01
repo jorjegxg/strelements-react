@@ -18,7 +18,7 @@ export const useSwitchStore = create<SwitchStore>((set, get) => ({
   toggleState: async () => {
     set({ isLoading: true });
 
-    const token = localStorage.getItem(CONFIG.localStorage.kickaAcessToken);
+    const token = localStorage.getItem(CONFIG.localStorage.kickAcessToken);
 
     const currentState = get().isActive;
     const newState = !currentState;
@@ -49,7 +49,7 @@ export const useSwitchStore = create<SwitchStore>((set, get) => ({
     console.log("Fetching effects state...");
     set({ isLoading: true });
 
-    const token = localStorage.getItem(CONFIG.localStorage.kickaAcessToken);
+    const token = localStorage.getItem(CONFIG.localStorage.kickAcessToken);
 
     try {
       const response = await axios.get(

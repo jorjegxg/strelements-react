@@ -81,7 +81,7 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
       const parsedResponse = userSchema.parse(response);
 
       localStorage.setItem(
-        CONFIG.localStorage.kickaAcessToken,
+        CONFIG.localStorage.kickAcessToken,
         parsedResponse.data.authData.access_token
       );
       localStorage.setItem(
@@ -92,15 +92,19 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
         CONFIG.localStorage.refresh_token,
         parsedResponse.data.authData.refresh_token
       );
-      localStorage.setItem(
-        CONFIG.localStorage.profile_picture,
-        parsedResponse.data.user.profile_picture
-      );
+      //
+      // const profilePictureUrl = parsedResponse.data.user.profile_picture;
+      // localStorage.setItem(
+      //   CONFIG.localStorage.profile_picture,
+      //   profilePictureUrl
+      // );
+      // set({ profilePicture: profilePictureUrl });
+      // console.log("URL-ul pozei de profil:", profilePictureUrl);
+      //
       localStorage.setItem(
         CONFIG.localStorage.kickUsername,
         parsedResponse.data.user.name
       );
-
       localStorage.setItem(
         CONFIG.localStorage.kickUserId,
         parsedResponse.data.user.user_id.toString()
@@ -132,7 +136,7 @@ export const useAppAuthStore = create<AppAuthState>((set) => ({
   },
 
   logout: () => {
-    localStorage.removeItem(CONFIG.localStorage.kickaAcessToken);
+    localStorage.removeItem(CONFIG.localStorage.kickAcessToken);
     localStorage.removeItem(CONFIG.localStorage.pkce_verifier);
     localStorage.removeItem(CONFIG.localStorage.kickUserId);
     set({ isAuthenticated: false });
