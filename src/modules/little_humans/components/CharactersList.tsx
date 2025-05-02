@@ -6,8 +6,10 @@ export const CharacterList = () => {
   const characters = useCharacterStore((state) => state.characters);
 
   return (
-    <div className="relative w-screen h-screen bg-transparent  flex-col justify-between ">
+    <div className="relative w-screen h-screen   flex-col justify-between bg-black">
+      {/* //bg-transparent */}
       <AddCharacterButton />
+
       {characters.map((char) => (
         <div
           key={char.id}
@@ -24,7 +26,7 @@ export const CharacterList = () => {
 
           <div className="text-5xl animate-bounce">{char.emoji}</div>
           {/* Emoji + Numele personajului */}
-          <div className="text-xl font-semibold text-gray-700 mt-2">
+          <div className="text-xl font-semibold text-white mt-2">
             {char.name}
           </div>
         </div>

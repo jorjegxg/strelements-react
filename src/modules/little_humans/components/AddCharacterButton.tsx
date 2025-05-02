@@ -41,7 +41,7 @@ export const AddCharacterButton = () => {
   };
 
   return (
-    <button className="btn btn-ghost" onClick={handleMessage}>
+    <button className="btn btn-ghost text-white" onClick={handleMessage}>
       Send chat user
     </button>
   );

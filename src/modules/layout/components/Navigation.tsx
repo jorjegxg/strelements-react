@@ -4,7 +4,10 @@ import { toast, ToastContainer } from "react-toastify";
 import { CONFIG } from "../../../shared/utils/constants";
 import { useAppAuthStore } from "../../auth/appAuthStore";
 
-const Navigation = () => {
+type Props = {
+  relative?: boolean;
+};
+const Navigation: React.FC<Props> = ({ relative = true }) => {
   const isAuthenticated = useAppAuthStore((state) => state.isAuthenticated);
   const setAuthenticated = useAppAuthStore((state) => state.setAuthenticated);
   const logout = useAppAuthStore((state) => state.logout);
@@ -57,13 +60,18 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="navbar px-8">
+      <div
+        className={
+          "navbar  top-0 left-0 w-full z-20 px-8 bg-transparent" +
+          (relative ? " fixed" : "")
+        }
+      >
         <div className="navbar-start">
           <Link to="/">
             <img src={"./vite.svg"} alt="Logo-ul aplicației" className="logo" />
           </Link>
           <Link to="/">
-            <button className="btn btn-ghost">Home</button>
+            <button className="btn btn-ghost text-white">Home</button>
           </Link>
         </div>
 
@@ -92,7 +100,7 @@ const Navigation = () => {
     return (
       <button
         data-testid="dashboard-button"
-        className="btn btn-outline btn-primary"
+        className="btn btn-ghost text-white"
         onClick={() => {
           window.location.href = "/dashboard";
         }}
@@ -104,10 +112,10 @@ const Navigation = () => {
 
   function loginButton() {
     return (
-      <div className="bg-white p-6">
+      <div className=" p-6">
         <button
           data-testid="login-button"
-          className="btn btn-outline btn-primary"
+          className="btn btn-ghost text-white"
           onClick={() => {
             login();
           }}
@@ -129,22 +137,23 @@ const Navigation = () => {
           </div>
         </summary>
 
-        <ul className="menu dropdown-content bg-base-100 rounded-box z-10 w-52 p-2 shadow-md mt-2">
-          <li className="">
+        <ul className="menu dropdown-content bg-base-100 rounded-box z-10 w-52 p-2 shadow-md mt-2  ">
+          {/* <li>
             <div
-              className=""
               onClick={() => {
                 window.location.href = "/dashboard";
               }}
             >
               Dashboard
             </div>
-          </li>
-        </ul>
-
-        <ul className="menu dropdown-content bg-base-100 rounded-box z-10 w-52 p-2 shadow-md mt-2">
-          <li className="text-red-400">
-            <div className="" onClick={() => logout()}>
+          </li> */}
+          <li className="text-red-400 ">
+            <div
+              className=""
+              onClick={() => {
+                logout().then(() => (window.location.href = "/"));
+              }}
+            >
               Logout
             </div>
           </li>

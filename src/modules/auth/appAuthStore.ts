@@ -22,7 +22,7 @@ interface AppAuthState {
 
   getKickAuthToken: () => Promise<void>;
   login: () => Promise<void>;
-  logout: () => void;
+  logout: () => Promise<void>;
 }
 const userSchema = z.object({
   data: z.object({

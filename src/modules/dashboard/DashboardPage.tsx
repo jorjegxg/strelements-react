@@ -23,7 +23,7 @@ const DashboardPage = () => {
   const isLive = useDasboardStore((state: Dashboard) => state.isLive);
 
   return (
-    <Layout>
+    <Layout relative={false}>
       <div className="p-8">
         <div className="flex flex-col items-s justify-start space-y-4">
           {isLive ? (
