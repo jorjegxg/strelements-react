@@ -5,12 +5,12 @@ import Navigation from "./components/Navigation";
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
-      <div className="w-screen h-screen flex flex-col justify-between">
-        <div className="m-8">
+      <div className="w-screen h-screen flex flex-col justify-between ">
+        <div>
           <Navigation />
           <main>{children}</main>
-          <Footer />
         </div>
+        <Footer />
       </div>
     </>
   );

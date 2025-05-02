@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { CONFIG } from "../../../shared/utils/constants";
 import { useAppAuthStore } from "../../auth/appAuthStore";
@@ -56,9 +57,14 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="navbar ">
+      <div className="navbar px-8">
         <div className="navbar-start">
-          <img src={"./vite.svg"} alt="Logo-ul aplicației" className="logo" />
+          <Link to="/">
+            <img src={"./vite.svg"} alt="Logo-ul aplicației" className="logo" />
+          </Link>
+          <Link to="/">
+            <button className="btn btn-ghost">Home</button>
+          </Link>
         </div>
 
         <div className="navbar-end">
@@ -66,13 +72,12 @@ const Navigation = () => {
             <span className="loading loading-spinner loading-xl"></span>
           ) : isAuthenticated ? (
             <>
-              {dashboardButton(isAuthenticated)}
+              {dashboardButton()}
               <div className="ml-4"></div>
               {avatar()}
             </>
           ) : (
             <>
-              {dashboardButton(isAuthenticated)}
               <div className="ml-4"></div>
               {loginButton()}
             </>
@@ -83,19 +88,18 @@ const Navigation = () => {
     </>
   );
 
-  function dashboardButton(isAuthenticated: boolean) {
-    if (isAuthenticated)
-      return (
-        <button
-          data-testid="dashboard-button"
-          className="btn btn-outline btn-primary"
-          onClick={() => {
-            if (isAuthenticated) window.location.href = "/dashboard";
-          }}
-        >
-          Try strelements now
-        </button>
-      );
+  function dashboardButton() {
+    return (
+      <button
+        data-testid="dashboard-button"
+        className="btn btn-outline btn-primary"
+        onClick={() => {
+          window.location.href = "/dashboard";
+        }}
+      >
+        Try strelements now
+      </button>
+    );
   }
 
   function loginButton() {
@@ -124,6 +128,19 @@ const Navigation = () => {
             </div>
           </div>
         </summary>
+
+        <ul className="menu dropdown-content bg-base-100 rounded-box z-10 w-52 p-2 shadow-md mt-2">
+          <li className="">
+            <div
+              className=""
+              onClick={() => {
+                window.location.href = "/dashboard";
+              }}
+            >
+              Dashboard
+            </div>
+          </li>
+        </ul>
 
         <ul className="menu dropdown-content bg-base-100 rounded-box z-10 w-52 p-2 shadow-md mt-2">
           <li className="text-red-400">

@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { useSwitchStore } from "../../features/stores/switchStore";
 import { CONFIG } from "../../shared/utils/constants";
+import Layout from "../layout/Layout";
 import { useLiveSoket } from "../little_humans/soket";
-import { useDasboardStore } from "./dashboardStore";
+import { Dashboard, useDasboardStore } from "./dashboardStore";
 // import { CONFIG } from "../../shared/utils/constants";
 
 const DashboardPage = () => {
@@ -19,30 +20,35 @@ const DashboardPage = () => {
     navigate(`/strelements-original/${sessionId}`);
   };
 
-  const { isLive } = useDasboardStore();
+  const isLive = useDasboardStore((state: Dashboard) => state.isLive);
 
   return (
-    <div className="flex flex-col items-s justify-start h-screen w-screen bg-gray-100">
-      <h1>Strelements dashboard</h1>
-      {isLive ? (
-        <p className="bg-red-500 text-white">Live</p>
-      ) : (
-        <p className="bg-gray-600 text-white">Not live</p>
-      )}
+    <Layout>
+      <div className="p-8">
+        <div className="flex flex-col items-s justify-start space-y-4">
+          {isLive ? (
+            <p className="bg-red-500 text-white rounded-md">You are live</p>
+          ) : (
+            <p className="bg-gray-600 text-white rounded-md">
+              You are not live
+            </p>
+          )}
 
-      <div className="flex flex-col justify-start items-center h-screen w-screen bg-gray-100 p-4">
-        <EffectComponent textToCopy={link} />
+          <div className="flex flex-col justify-center items-center ">
+            <EffectComponent textToCopy={link} />
 
-        <button
-          className="btn btn-outline btn-primary w-100 mt-4"
-          onClick={createSession}
-        >
-          See efects in action
-        </button>
+            <button
+              className="btn btn-outline btn-primary w-100 mt-4"
+              onClick={createSession}
+            >
+              See efects in action
+            </button>
+          </div>
+
+          <ToastContainer position="bottom-right" autoClose={2000} />
+        </div>
       </div>
-
-      <ToastContainer position="bottom-right" autoClose={2000} />
-    </div>
+    </Layout>
   );
 };
 
