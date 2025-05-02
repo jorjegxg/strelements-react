@@ -9,4 +9,5 @@ export const colors2 = {
   background: "#141517",
   secondary: "#35383d",
   text: "#ffffff",
+  error: "#d21a52",
 };

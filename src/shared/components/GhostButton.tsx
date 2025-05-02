@@ -1,3 +1,5 @@
+import { colors2 } from "../utils/colors";
+
 function GhostButton({
   text,
   onClick,
@@ -7,7 +9,8 @@ function GhostButton({
 }) {
   return (
     <button
-      className={`btn btn-ghost text-[var(--kick)] hover:bg-transparent `}
+      className={`btn btn-ghost text- hover:bg-transparent `}
+      style={{ color: colors2.kick }}
       onClick={onClick}
     >
       {text}

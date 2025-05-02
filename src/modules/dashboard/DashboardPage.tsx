@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { useSwitchStore } from "../../features/stores/switchStore";
+import { colors2 } from "../../shared/utils/colors";
 import { CONFIG } from "../../shared/utils/constants";
 import Layout from "../layout/Layout";
 import { useLiveSoket } from "../little_humans/soket";
@@ -24,12 +25,23 @@ const DashboardPage = () => {
 
   return (
     <Layout relative={false}>
-      <div className={`p-8 bg-[var(--color-bg)] h-screen`}>
+      <div
+        className={`p-8  h-screen`}
+        style={{ background: colors2.background }}
+      >
         <div className="flex flex-col items-s justify-start space-y-4">
           {isLive ? (
-            <p className="bg-red-500 text-white rounded-md">You are live</p>
+            <p
+              className="text-white rounded-md"
+              style={{ background: colors2.error }}
+            >
+              You are live
+            </p>
           ) : (
-            <p className="bg-gray-600 text-white rounded-md">
+            <p
+              className=" text-white rounded-md"
+              style={{ background: colors2.secondary }}
+            >
               You are not live
             </p>
           )}
@@ -38,7 +50,8 @@ const DashboardPage = () => {
             <EffectComponent textToCopy={link} />
 
             <button
-              className="btn btn-outline btn-primary w-100 mt-4"
+              className="btn btn-outline w-100 mt-4"
+              style={{ background: "transparent", color: colors2.text }}
               onClick={createSession}
             >
               See efects in action
@@ -76,9 +89,12 @@ const EffectComponent = ({ textToCopy }: { textToCopy: string }) => {
   };
 
   return (
-    <div className="px-8 py-4 flex justify-between items-center w-full ring-2 ring-gray-300 rounded-lg bg-white shadow-sm space-x-8">
+    <div
+      className="px-8 py-4 flex justify-between items-center w-full ring-2  rounded-lg  shadow-sm space-x-8"
+      style={{ background: colors2.secondary }}
+    >
       <div className="flex space-x-2">
-        <UsergroupAddOutlined />
+        <UsergroupAddOutlined style={{ color: colors2.text }} />
         <h2>Little men</h2>
 
         <input
@@ -88,12 +104,18 @@ const EffectComponent = ({ textToCopy }: { textToCopy: string }) => {
           checked={isActive}
           onChange={toggleState}
           disabled={isLoading}
+          style={{ color: colors2.text, background: colors2.secondary }}
         />
       </div>
       <div className="flex">
         <div className="flex flex-col md:flex-row md:flex-wrap space-y-2 md:space-y-0 md:space-x-2 items-center">
           <p>Copy this link into obs browser source:</p>
-          <p className="bg-gray-300 p-2 rounded-xl break-all">{textToCopy}</p>
+          <p
+            className=" p-2 rounded-xl break-all"
+            style={{ background: colors2.background }}
+          >
+            {textToCopy}
+          </p>
         </div>
         <button
           onClick={handleCopy}

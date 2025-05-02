@@ -1,7 +1,15 @@
+import { colors2 } from "../../../shared/utils/colors";
+
 const Footer = () => {
   return (
-    <footer className="footer sm:footer-horizontal flex justify-center items-center p-4 bg-[var(--color-bg)]">
-      <aside className="grid-flow-col items-center text-[var(--kick)]">
+    <footer
+      className="footer sm:footer-horizontal flex justify-center items-center p-4"
+      style={{ background: colors2.background }}
+    >
+      <aside
+        className="grid-flow-col items-center "
+        style={{ color: colors2.kick }}
+      >
         <svg
           width="36"
           height="36"
