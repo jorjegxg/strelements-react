@@ -1,5 +1,5 @@
 import { create } from "zustand";
-const timeForCharacter = 100 * 1000;
+const timeForCharacter = 6 * 1000;
 const timeForChat = 3 * 1000;
 type Character = {
   id: number;
@@ -109,7 +109,7 @@ export const useCharacterStore = create<Store>((set, get) => ({
 
   moveCharactersRandomly: () => {
     const screenWidth = window.innerWidth;
-    const characterWidth = 40; // ajustează dacă știi dimensiunea exactă
+    const characterWidth = 150; // ajustează dacă știi dimensiunea exactă
 
     set((state) => ({
       characters: state.characters.map((char) => {

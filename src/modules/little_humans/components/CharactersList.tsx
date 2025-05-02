@@ -1,4 +1,4 @@
-import { cutString } from "../../../shared/utils/other";
+import { cutString, getRandomColor } from "../../../shared/utils/other";
 import { useCharacterStore } from "../characterStore";
 import { AddCharacterButton } from "./AddCharacterButton";
 
@@ -21,17 +21,29 @@ export const CharacterList = () => {
         >
           {/* Mesajul caracterului */}
           {char.message !== "" ? (
-            <div className="bg-white text-sm px-3 py-1 mt-1 rounded-xl shadow-md border max-w-[150px] text-center">
+            <div className="bg-white text-sm px-3 py-1 mt-1 rounded-lg shadow-md border max-w-[150px] text-center">
               {cutString(char.message)}
             </div>
           ) : (
             <></>
           )}
+          {/* {char.message !== "" ? (
+            <div className="chat-bubble chat-bubble-neutral bg-white rounded-lg">
+              {cutString(char.message)}
+            </div>
+          ) : (
+            <></>
+          )} */}
 
           <div className="text-5xl animate-bounce">{char.emoji}</div>
           {/* Emoji + Numele personajului */}
-          <div className="text-xl font-semibold text-white mt-2">
-            {char.name}
+
+          <div
+            className={`textarea-sm font-semibold  mt-2 ${getRandomColor(
+              char.name
+            )}`}
+          >
+            {cutString(char.name, 20)}
           </div>
         </div>
       ))}
