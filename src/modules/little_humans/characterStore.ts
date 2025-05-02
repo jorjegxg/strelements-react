@@ -10,6 +10,7 @@ type Character = {
 };
 
 type Store = {
+  lastZIndex: number;
   characters: Character[];
   timers: Record<number, ReturnType<typeof setTimeout>>;
   addOrUpdateCharacter: (id: number, message: string, name: string) => void;
@@ -27,7 +28,9 @@ const getEmoji = (name: string) => {
 };
 
 export const useCharacterStore = create<Store>((set, get) => ({
+  lastZIndex: 0,
   characters: [],
+
   timers: {},
 
   setCharacters: (chars) => set({ characters: chars }),
@@ -44,16 +47,17 @@ export const useCharacterStore = create<Store>((set, get) => ({
         ),
       });
     } else {
+      const index = get().lastZIndex++;
       // Dacă NU există, îl adăugăm
       const newCharacter: Character = {
         id,
         name: name,
-        zIndex: Math.floor(Math.random() * 100),
+        zIndex: index,
         x: Math.floor(Math.random() * 300) + 100,
         message,
         emoji: getEmoji(name),
       };
-      set({ characters: [...characters, newCharacter] });
+      set({ characters: [...characters, newCharacter], lastZIndex: index });
     }
 
     // Dacă exista un timer, îl anulăm
