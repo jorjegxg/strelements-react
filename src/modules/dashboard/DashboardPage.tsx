@@ -24,7 +24,7 @@ const DashboardPage = () => {
 
   return (
     <Layout relative={false}>
-      <div className="p-8">
+      <div className={`p-8 bg-[var(--color-bg)] h-screen`}>
         <div className="flex flex-col items-s justify-start space-y-4">
           {isLive ? (
             <p className="bg-red-500 text-white rounded-md">You are live</p>

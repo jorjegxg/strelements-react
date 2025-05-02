@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Bounce, toast, ToastContainer } from "react-toastify";
+import { colors2 } from "../../shared/utils/colors";
 import { useAppAuthStore } from "./appAuthStore";
 
 const CallbackPage: React.FC = () => {
@@ -35,8 +36,11 @@ const CallbackPage: React.FC = () => {
   }, [error, isAuthenticated]);
 
   return (
-    <div>
-      <h1>Logging in...</h1>
+    <div
+      className="w-screen h-screen flex items-center justify-center "
+      style={{ background: colors2.background }}
+    >
+      <h1 style={{ color: colors2.kick }}>Logging in...🦾</h1>
       <ToastContainer />
     </div>
   );

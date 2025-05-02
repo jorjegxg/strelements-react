@@ -5,28 +5,14 @@ import { refreshTokensSchema } from "./schemas";
 const api = axios.create();
 
 api.interceptors.request.use(async (config) => {
-  console.log("Request interceptor called 1");
-
   let accessToken = localStorage.getItem(CONFIG.localStorage.kickAcessToken);
   const expiresAt = Number(
     localStorage.getItem(CONFIG.localStorage.kickTokenExpiresAt)
   );
-  console.log("Request interceptor called 2");
 
   if (!accessToken || !expiresAt || Date.now() > expiresAt) {
-    try {
-      console.log("Request interceptor called 3");
-      accessToken = await refreshAccessToken();
-    } catch (error) {
-      console.log("Request interceptor called 4");
-      console.error("Token refresh failed", error);
-      throw error; // Sau redirect la login
-    }
+    accessToken = await refreshAccessToken();
   }
-
-  console.log("Request interceptor called 5");
-
-  console.log("NEW ACCESS TOKEN : ", accessToken);
 
   config.headers = config.headers || {};
   config.headers.set("Authorization", `${accessToken}`);
@@ -50,8 +36,6 @@ async function refreshAccessToken(): Promise<string> {
     client_secret: client_secret,
     grant_type: "refresh_token",
   });
-
-  console.log("Old tokens expired , these are new tokens:", response.data);
 
   const parsedResponse = refreshTokensSchema.safeParse(response.data);
 

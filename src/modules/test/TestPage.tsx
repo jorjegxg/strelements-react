@@ -9,13 +9,6 @@ export default function TestPage() {
         <p>Aceasta este o pagină de test cu fundal transparent.</p>
         <button
           onClick={async () => {
-            console.log("ceBoooneaf");
-
-            const exp = localStorage.getItem(
-              CONFIG.localStorage.kickTokenExpiresAt
-            );
-            console.log("expires ", exp);
-
             localStorage.setItem(
               CONFIG.localStorage.kickTokenExpiresAt,
               String(Date.now() - 1000)

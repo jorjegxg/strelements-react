@@ -6,7 +6,7 @@ export const CharacterList = () => {
   const characters = useCharacterStore((state) => state.characters);
 
   return (
-    <div className="relative w-screen h-screen flex-col justify-between bg-black  ">
+    <div className="relative w-screen h-screen flex-col justify-between bg-transparent  ">
       {/* //bg-transparent */}
       <AddCharacterButton />
 

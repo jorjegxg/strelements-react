@@ -6,9 +6,7 @@ import { useChatSoket } from "./soket";
 
 export default function Game2() {
   const { sessionId } = useParams();
-  useEffect(() => {
-    console.log("sessionId", sessionId);
-  }, []);
+  useEffect(() => {}, []);
   useChatSoket(sessionId!);
   useCharacterMovement();
 

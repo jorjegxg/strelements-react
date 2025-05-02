@@ -17,9 +17,6 @@ const useChatSoket = (sessionID: string) => {
     socket.emit("join_room", sessionID);
 
     socket.on("chat", (data) => {
-      console.log("Socket.on('chat') registered");
-      console.log("Chat data:", data);
-
       const userId = data.body.sender.user_id;
       const content = data.body.content;
       const name = data.body.sender.username;
@@ -39,11 +36,8 @@ const useLiveSoket = () => {
     socket.emit("join_room", userId);
 
     socket.on("live", (data) => {
-      console.log("Socket.on('live') registered");
-      console.log("Live data:", data);
-
       const isLive = data.body.is_live;
-      console.log("Is live:", isLive);
+
       setIsLive(isLive);
     });
 

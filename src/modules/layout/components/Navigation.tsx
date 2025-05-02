@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import GhostButton from "../../../shared/components/GhostButton";
+import { colors2 } from "../../../shared/utils/colors";
 import { CONFIG } from "../../../shared/utils/constants";
 import { useAppAuthStore } from "../../auth/appAuthStore";
 
@@ -30,54 +32,45 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
     const token = localStorage.getItem(CONFIG.localStorage.kickAcessToken);
 
     if (token) {
-      console.log("1.---------------- Token found in local storage:", token);
-      // console.log("Token found in local storage:", token);
       setAuthenticated(true);
     } else {
-      console.log("No token found in local storage.");
       setAuthenticated(false);
     }
-
-    //TODO: STERGE
-    const refreshToken = localStorage.getItem(
-      CONFIG.localStorage.kickRefreshToken
-    );
-    console.log("Refresh token found in local storage:", refreshToken);
-    const expiresAt = localStorage.getItem(
-      CONFIG.localStorage.kickTokenExpiresAt
-    );
-    if (expiresAt) {
-      console.log(
-        "Expires at found in local storage:",
-        new Date(Number(expiresAt))
-      );
-    } else {
-      console.log("Expires at not found in local storage");
-    }
-
-    // //TODO: STERGE pana aici
   }, [setAuthenticated]);
 
   return (
     <>
       <div
         className={
-          "navbar  top-0 left-0 w-full z-20 px-8 bg-transparent" +
-          (relative ? " fixed" : "")
+          `navbar  top-0 left-0 w-full z-20 px-8` + (relative ? " fixed" : "")
         }
+        style={{ background: relative ? "transparent" : colors2.background }}
       >
         <div className="navbar-start">
           <Link to="/">
-            <img src={"./vite.svg"} alt="Logo-ul aplicației" className="logo" />
+            <img
+              src={"/logo.svg"}
+              alt="Logo-ul aplicației"
+              style={{ color: colors2.text }}
+              className="w-[50px]"
+            />
           </Link>
           <Link to="/">
-            <button className="btn btn-ghost text-white">Home</button>
+            <GhostButton
+              text="Home"
+              onClick={() => {
+                window.location.href = "/";
+              }}
+            />{" "}
           </Link>
         </div>
 
         <div className="navbar-end">
           {authIsLoading ? (
-            <span className="loading loading-spinner loading-xl"></span>
+            <span
+              className="loading loading-spinner loading-xl"
+              style={{ color: colors2.kick }}
+            ></span>
           ) : isAuthenticated ? (
             <>
               {dashboardButton()}
@@ -98,31 +91,27 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
 
   function dashboardButton() {
     return (
-      <button
-        data-testid="dashboard-button"
-        className="btn btn-ghost text-white"
+      <GhostButton
+        text="Try strelements now"
         onClick={() => {
           window.location.href = "/dashboard";
         }}
-      >
-        Try strelements now
-      </button>
+      />
     );
   }
 
   function loginButton() {
     return (
-      <div className=" p-6">
-        <button
-          data-testid="login-button"
-          className="btn btn-ghost text-white"
-          onClick={() => {
-            login();
-          }}
-        >
-          Login
-        </button>
-      </div>
+      <button
+        data-testid="login-button"
+        className="btn btn-ghost hover:bg-transparent"
+        onClick={() => {
+          login();
+        }}
+        style={{ color: colors2.kick }}
+      >
+        Login
+      </button>
     );
   }
 
@@ -137,7 +126,10 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
           </div>
         </summary>
 
-        <ul className="menu dropdown-content bg-base-100 rounded-box z-10 w-52 p-2 shadow-md mt-2  ">
+        <ul
+          className="menu dropdown-content bg-base-100 rounded-box z-10 w-52 p-2 shadow-md mt-2  "
+          style={{ background: colors2.kick }}
+        >
           {/* <li>
             <div
               onClick={() => {
@@ -147,9 +139,8 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
               Dashboard
             </div>
           </li> */}
-          <li className="text-red-400 ">
+          <li>
             <div
-              className=""
               onClick={() => {
                 logout().then(() => (window.location.href = "/"));
               }}

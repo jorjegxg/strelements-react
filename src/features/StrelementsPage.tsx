@@ -7,7 +7,6 @@ function StrelementsPage() {
   useEffect(() => {
     const socket = io(process.env.WEBSOKET_URL);
     socket.on("message", (data) => {
-      console.log("Received message:", data.content);
       setMessages((prevMessages) => [...prevMessages, data.content]);
     });
 
