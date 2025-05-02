@@ -5,6 +5,7 @@ import {
   generateCodeChallenge,
   generateCodeVerifier,
 } from "../../shared/utils/auth_functions";
+import { api } from "../../shared/utils/autoRefresh";
 import { CONFIG } from "../../shared/utils/constants";
 
 interface AppAuthState {
@@ -164,7 +165,7 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
     try {
       set({ isLoading: true });
       const url = `${process.env.BACKEND_URL}/kick/logout`;
-      await axios.post(url, {
+      await api.post(url, {
         token: localStorage.getItem(CONFIG.localStorage.kickAcessToken),
         token_hint_type: "access_token",
       });
