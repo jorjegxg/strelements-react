@@ -6,7 +6,7 @@ export const CharacterList = () => {
   const characters = useCharacterStore((state) => state.characters);
 
   return (
-    <div className="relative w-screen h-screen   flex-col justify-between bg-black">
+    <div className="relative w-screen h-screen flex-col justify-between bg-black  ">
       {/* //bg-transparent */}
       <AddCharacterButton />
 
@@ -15,14 +15,18 @@ export const CharacterList = () => {
           key={char.id}
           className="absolute bottom-0 transition-all duration-500 ease-in-out flex flex-col items-center"
           style={{
-            left: `${char.x}px`,
+            right: `${char.x}px`,
             zIndex: char.zIndex,
           }}
         >
           {/* Mesajul caracterului */}
-          <div className="bg-white text-sm px-3 py-1 mt-1 rounded-xl shadow-md border max-w-[150px] text-center">
-            {cutString(char.message)}
-          </div>
+          {char.message !== "" ? (
+            <div className="bg-white text-sm px-3 py-1 mt-1 rounded-xl shadow-md border max-w-[150px] text-center">
+              {cutString(char.message)}
+            </div>
+          ) : (
+            <></>
+          )}
 
           <div className="text-5xl animate-bounce">{char.emoji}</div>
           {/* Emoji + Numele personajului */}

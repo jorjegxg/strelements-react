@@ -13,8 +13,11 @@ type Store = {
   lastZIndex: number;
   characters: Character[];
   timers: Record<number, ReturnType<typeof setTimeout>>;
+  messageTimers: Record<number, ReturnType<typeof setTimeout>>;
+
   addOrUpdateCharacter: (id: number, message: string, name: string) => void;
   removeCharacter: (id: number) => void;
+  // TODO: inca nefolosita
   setCharacters: (chars: Character[]) => void;
   moveCharactersRandomly: () => void;
 };
@@ -32,11 +35,12 @@ export const useCharacterStore = create<Store>((set, get) => ({
   characters: [],
 
   timers: {},
+  messageTimers: {},
 
   setCharacters: (chars) => set({ characters: chars }),
 
   addOrUpdateCharacter: (id, message, name) => {
-    const { characters, timers } = get();
+    const { characters, timers, messageTimers } = get();
     const existingChar = characters.find((char) => char.id === id);
 
     // Dacă caracterul există, actualizăm mesajul
@@ -66,11 +70,21 @@ export const useCharacterStore = create<Store>((set, get) => ({
     // Setăm un nou timeout pentru a elimina caracterul după X secunde (ex: 10s)
     const timeout = setTimeout(() => {
       get().removeCharacter(id);
-    }, 100000); // 100 secunde
+    }, 10000); // 5
+
+    if (messageTimers[id]) clearTimeout(messageTimers[id]);
+    const msgTimeout = setTimeout(() => {
+      set({
+        characters: get().characters.map((char) =>
+          char.id === id ? { ...char, message: "" } : char
+        ),
+      });
+    }, 3000); // 3 secunde
 
     // Salvăm noul timer
     set({
       timers: { ...timers, [id]: timeout },
+      messageTimers: { ...messageTimers, [id]: msgTimeout },
     });
   },
 
@@ -91,8 +105,8 @@ export const useCharacterStore = create<Store>((set, get) => ({
   },
 
   moveCharactersRandomly: () => {
-    const screenWidth = window.innerWidth;
-    const characterWidth = 150; // sau cât are efectiv elementul tău (px)
+    const screenWidth = window.screen.availWidth;
+    const characterWidth = 20; // sau cât are efectiv elementul tău (px)
 
     set((state) => ({
       characters: state.characters.map((char) => {
