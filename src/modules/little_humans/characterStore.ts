@@ -1,5 +1,6 @@
 import { create } from "zustand";
-
+const timeForCharacter = 100 * 1000;
+const timeForChat = 3 * 1000;
 type Character = {
   id: number;
   name: string;
@@ -52,12 +53,14 @@ export const useCharacterStore = create<Store>((set, get) => ({
       });
     } else {
       const index = get().lastZIndex++;
+      const randomX = Math.floor(Math.random() * window.innerWidth);
+
       // Dacă NU există, îl adăugăm
       const newCharacter: Character = {
         id,
         name: name,
         zIndex: index,
-        x: Math.floor(Math.random() * 300) + 100,
+        x: randomX,
         message,
         emoji: getEmoji(name),
       };
@@ -70,7 +73,7 @@ export const useCharacterStore = create<Store>((set, get) => ({
     // Setăm un nou timeout pentru a elimina caracterul după X secunde (ex: 10s)
     const timeout = setTimeout(() => {
       get().removeCharacter(id);
-    }, 10000); // 5
+    }, timeForCharacter);
 
     if (messageTimers[id]) clearTimeout(messageTimers[id]);
     const msgTimeout = setTimeout(() => {
@@ -79,7 +82,7 @@ export const useCharacterStore = create<Store>((set, get) => ({
           char.id === id ? { ...char, message: "" } : char
         ),
       });
-    }, 3000); // 3 secunde
+    }, timeForChat); // 3 secunde
 
     // Salvăm noul timer
     set({
@@ -105,16 +108,16 @@ export const useCharacterStore = create<Store>((set, get) => ({
   },
 
   moveCharactersRandomly: () => {
-    const screenWidth = window.screen.availWidth;
-    const characterWidth = 20; // sau cât are efectiv elementul tău (px)
+    const screenWidth = window.innerWidth;
+    const characterWidth = 40; // ajustează dacă știi dimensiunea exactă
 
     set((state) => ({
       characters: state.characters.map((char) => {
-        // Mutare aleatoare între -50 și +50
-        const deltaX = Math.floor(Math.random() * 100) - 50;
+        // Mutare aleatoare între -50 și +50 px
+        const deltaX = Math.floor(Math.random() * 101) - 50;
         const newX = char.x + deltaX;
 
-        // Clamping: ne asigurăm că noua poziție e între 0 și screenWidth - characterWidth
+        // Ne asigurăm că nu iese în afara ecranului
         const clampedX = Math.max(
           0,
           Math.min(newX, screenWidth - characterWidth)
