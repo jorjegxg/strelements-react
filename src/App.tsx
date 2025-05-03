@@ -37,6 +37,10 @@ function App() {
               }
             />
             <Route
+              path="/strelements-original/:sessionId/:isPreview"
+              element={<Game2 />}
+            />
+            <Route
               path="/strelements-original/:sessionId"
               element={<Game2 />}
             />

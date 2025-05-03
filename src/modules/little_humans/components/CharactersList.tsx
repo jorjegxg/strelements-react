@@ -1,15 +1,11 @@
 import { cutString, getRandomColor } from "../../../shared/utils/other";
 import { useCharacterStore } from "../characterStore";
-import { AddCharacterButton } from "./AddCharacterButton";
 
 export const CharacterList = () => {
   const characters = useCharacterStore((state) => state.characters);
 
   return (
-    <div className="relative w-screen h-screen flex-col justify-between bg-transparent  ">
-      {/* //bg-transparent */}
-      <AddCharacterButton />
-
+    <>
       {characters.map((char) => (
         <div
           key={char.id}
@@ -40,6 +36,6 @@ export const CharacterList = () => {
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };

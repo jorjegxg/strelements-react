@@ -1,3 +1,4 @@
+import GhostButton from "../../../shared/components/GhostButton";
 import { useCharacterStore } from "../characterStore";
 
 const randomNames = [
@@ -41,12 +42,8 @@ export const AddCharacterButton = () => {
   };
 
   return (
-    <button
-      className="btn btn-ghost outline-1 m-4"
-      onClick={handleMessage}
-      style={{}}
-    >
-      Send test user
-    </button>
+    <div className="p-8">
+      <GhostButton text={"Send test user"} onClick={handleMessage} />
+    </div>
   );
 };

@@ -18,7 +18,7 @@ const DashboardPage = () => {
 
   const navigate = useNavigate();
   const createSession = () => {
-    navigate(`/strelements-original/${sessionId}`);
+    navigate(`/strelements-original/${sessionId}/preview`);
   };
 
   const isLive = useDasboardStore((state: Dashboard) => state.isLive);
