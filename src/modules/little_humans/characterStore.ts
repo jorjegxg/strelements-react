@@ -39,16 +39,16 @@ export const useCharacterStore = create<Store>((set, get) => ({
   addOrUpdateCharacter: (id, message, name) => {
     const { characters, timers, messageTimers } = get();
     const existingChar = characters.find((char) => char.id === id);
+    const index = get().lastZIndex++;
 
     // Dacă caracterul există, actualizăm mesajul
     if (existingChar) {
       set({
         characters: characters.map((char) =>
-          char.id === id ? { ...char, message } : char
+          char.id === id ? { ...char, message, zIndex: index } : char
         ),
       });
     } else {
-      const index = get().lastZIndex++;
       const randomX = Math.floor(Math.random() * window.innerWidth);
 
       // Dacă NU există, îl adăugăm
