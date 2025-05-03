@@ -50,7 +50,7 @@ const DashboardPage = () => {
             <EffectComponent textToCopy={link} />
 
             <button
-              className="btn btn-outline w-100 mt-4"
+              className="btn btn-outline w-100 mt-16"
               style={{ background: "transparent", color: colors2.text }}
               onClick={createSession}
             >

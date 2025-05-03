@@ -55,7 +55,7 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
               className="w-[50px]"
             />
           </Link>
-          <Link to="/">
+          <Link to="/" className="ml-4">
             <GhostButton
               text="Home"
               onClick={() => {

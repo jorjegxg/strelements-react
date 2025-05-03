@@ -27,13 +27,6 @@ export const CharacterList = () => {
           ) : (
             <></>
           )}
-          {/* {char.message !== "" ? (
-            <div className="chat-bubble chat-bubble-neutral bg-white rounded-lg">
-              {cutString(char.message)}
-            </div>
-          ) : (
-            <></>
-          )} */}
 
           <div className="text-5xl animate-bounce">{char.emoji}</div>
           {/* Emoji + Numele personajului */}

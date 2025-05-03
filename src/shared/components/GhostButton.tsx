@@ -10,7 +10,7 @@ function GhostButton({
   return (
     <button
       className={`btn btn-ghost text- hover:bg-transparent `}
-      style={{ color: colors2.kick }}
+      style={{ color: colors2.kick, background: colors2.background }}
       onClick={onClick}
     >
       {text}

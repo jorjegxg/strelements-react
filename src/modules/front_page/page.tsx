@@ -1,4 +1,5 @@
 // import { colors } from "../../shared/utils/colors";
+import GhostButton from "../../shared/components/GhostButton";
 import { colors2 } from "../../shared/utils/colors";
 import Layout from "../layout/Layout";
 
@@ -8,7 +9,10 @@ const FrontPage = () => {
       <Layout>
         <div className={`m-0 p-0  `}>
           {/* Hero Section with Background Video */}
-          <section className="relative h-screen w-screen  ">
+          <section
+            className="relative h-screen w-screen "
+            style={{ background: colors2.background }}
+          >
             <video
               className="absolute top-0 left-0 w-full h-full object-cover object-bottom z-0"
               src="/videos/ceva.mp4"
@@ -62,6 +66,13 @@ const FrontPage = () => {
                 </figure>
               </div>
             </div>
+
+            <GhostButton
+              text="Try strelements now"
+              onClick={() => {
+                window.location.href = "/dashboard";
+              }}
+            />
           </section>
         </div>
       </Layout>
