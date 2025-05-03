@@ -102,16 +102,13 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
 
   function loginButton() {
     return (
-      <button
-        data-testid="login-button"
-        className="btn btn-ghost hover:bg-transparent"
+      <GhostButton
+        text={"Login"}
         onClick={() => {
           login();
         }}
-        style={{ color: colors2.kick }}
-      >
-        Login
-      </button>
+        data-testid="login-button"
+      />
     );
   }
 
