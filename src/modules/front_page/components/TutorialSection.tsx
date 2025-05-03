@@ -48,7 +48,7 @@ const tutorialSteps = [
   {
     title: "You're done! 🎉",
     description: "Enjoy your new Strelements overlay and have fun streaming!",
-    image: "/tutorial/8.Browser-settings.png", // Înlocuiește cu o imagine reprezentativă sau un celebratory banner
+    image: "/tutorial/9.enjoy-streaming.png",
   },
 ];
 

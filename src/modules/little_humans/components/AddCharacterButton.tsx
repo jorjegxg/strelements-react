@@ -33,7 +33,7 @@ export const AddCharacterButton = () => {
   );
 
   const handleMessage = () => {
-    const id = Math.floor(Math.random() * 10) + 1;
+    const id = Math.floor(Math.random() * 100) + 1;
     const name = randomNames[Math.floor(Math.random() * randomNames.length)];
     const message =
       randomMessages[Math.floor(Math.random() * randomMessages.length)];
