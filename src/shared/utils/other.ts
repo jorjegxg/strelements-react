@@ -1,8 +1,24 @@
-function cutString(str: string, maxLength: number = 40) {
-  if (str.length > maxLength) {
-    return str.slice(0, maxLength) + "...";
+function cutString(
+  str: string,
+  chunkSize: number = 15,
+  maxChunks: number = 3
+): string {
+  const chunks = [];
+  for (let i = 0; i < str.length && chunks.length < maxChunks; i += chunkSize) {
+    chunks.push(str.slice(i, i + chunkSize));
   }
-  return str;
+
+  const needsEllipsis = str.length > chunkSize * maxChunks;
+  return chunks.join("\n") + (needsEllipsis ? "\n..." : "");
+}
+
+function removeKickEmotes(message: string): string {
+  // Înlocuiește emote-ul cu spațiu dacă e între 2 cuvinte
+  message = message.replace(/(?<=\S)\[emote:\d+:[^\]]+\](?=\S)/g, " ");
+  // Elimină toate celelalte emote-uri (început sau sfârșit de propoziție)
+  message = message.replace(/\[emote:\d+:[^\]]+\]/g, "");
+  // Normalizează spațiile
+  return message.replace(/\s+/g, " ").trim();
 }
 
 function generateId(length = 8) {
@@ -30,4 +46,4 @@ const getRandomColor = (name: string) => {
   return colors[hash % colors.length];
 };
 
-export { cutString, generateId, getRandomColor };
+export { cutString, generateId, getRandomColor, removeKickEmotes };

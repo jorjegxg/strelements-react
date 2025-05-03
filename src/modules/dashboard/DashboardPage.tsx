@@ -14,7 +14,7 @@ const DashboardPage = () => {
   useLiveSoket();
   const userId = localStorage.getItem(CONFIG.localStorage.kickUserId);
   const sessionId = userId;
-  const link = `https://strelements-original/${sessionId}`;
+  const link = `https://strelements.com/strelements-original/${sessionId}`;
 
   const navigate = useNavigate();
   const createSession = () => {

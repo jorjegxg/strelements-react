@@ -1,6 +1,6 @@
 import { create } from "zustand";
-const timeForCharacter = 6 * 1000;
-const timeForChat = 3 * 1000;
+const timeForCharacter = 13 * 1000;
+const timeForChat = 6 * 1000;
 type Character = {
   id: number;
   name: string;
@@ -18,8 +18,6 @@ type Store = {
 
   addOrUpdateCharacter: (id: number, message: string, name: string) => void;
   removeCharacter: (id: number) => void;
-  // TODO: inca nefolosita
-  setCharacters: (chars: Character[]) => void;
   moveCharactersRandomly: () => void;
 };
 
@@ -37,8 +35,6 @@ export const useCharacterStore = create<Store>((set, get) => ({
 
   timers: {},
   messageTimers: {},
-
-  setCharacters: (chars) => set({ characters: chars }),
 
   addOrUpdateCharacter: (id, message, name) => {
     const { characters, timers, messageTimers } = get();
