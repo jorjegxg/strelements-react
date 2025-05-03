@@ -1,9 +1,12 @@
 // import { colors } from "../../shared/utils/colors";
 import GhostButton from "../../shared/components/GhostButton";
 import { colors2 } from "../../shared/utils/colors";
+import { useAppAuthStore } from "../auth/appAuthStore";
 import Layout from "../layout/Layout";
+import TutorialSection from "./components/TutorialSection";
 
 const FrontPage = () => {
+  const isAuthenticated = useAppAuthStore((state) => state.isAuthenticated);
   return (
     <>
       <Layout>
@@ -46,33 +49,20 @@ const FrontPage = () => {
 
           {/* Alte secțiuni */}
           <section
-            className="py-20 px-4 h-screen bg-kick "
-            style={{ background: colors2.kick }}
+            className="py-20 px-4 "
+            style={{ background: colors2.secondary }}
           >
-            <div className="overflow-x-auto whitespace-nowrap space-x-4 p-4 flex">
-              <div className="card w-64 bg-base-100 shadow-xl inline-block">
-                <figure>
-                  <img src="/img1.jpg" alt="Poza 1" />
-                </figure>
-              </div>
-              <div className="card w-64 bg-base-100 shadow-xl inline-block">
-                <figure>
-                  <img src="/img2.jpg" alt="Poza 2" />
-                </figure>
-              </div>
-              <div className="card w-64 bg-base-100 shadow-xl inline-block">
-                <figure>
-                  <img src="/img3.jpg" alt="Poza 3" />
-                </figure>
-              </div>
-            </div>
-
-            <GhostButton
-              text="Try strelements now"
-              onClick={() => {
-                window.location.href = "/dashboard";
-              }}
-            />
+            <TutorialSection />
+            {isAuthenticated ? (
+              <GhostButton
+                text="Try strelements now"
+                onClick={() => {
+                  window.location.href = "/dashboard";
+                }}
+              />
+            ) : (
+              <></>
+            )}
           </section>
         </div>
       </Layout>

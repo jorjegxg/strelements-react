@@ -95,7 +95,7 @@ const EffectComponent = ({ textToCopy }: { textToCopy: string }) => {
     >
       <div className="flex space-x-2">
         <UsergroupAddOutlined style={{ color: colors2.text }} />
-        <h2>Little men</h2>
+        <h2>Tiny Walkers</h2>
 
         <input
           type="checkbox"
