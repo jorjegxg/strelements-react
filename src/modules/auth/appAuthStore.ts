@@ -62,6 +62,8 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
 
     const redirect_uri = `${process.env.FRONTEND_URL}/callback`;
 
+    console.log("redirect_uri: ", redirect_uri);
+
     const url = new URL(CONFIG.authUrl);
     url.searchParams.set("response_type", "code");
     url.searchParams.set("client_id", CONFIG.clientId!);
