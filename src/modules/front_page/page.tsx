@@ -25,7 +25,7 @@ const FrontPage = () => {
               playsInline
             />
             <div
-              className="absolute w-screen h-screen justify-center items-center "
+              className="max-md:hidden absolute w-screen h-screen justify-center items-center "
               style={{ color: colors2.text }}
             >
               Welcome to my stream &lt;3

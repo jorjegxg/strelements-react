@@ -50,7 +50,7 @@ const DashboardPage = () => {
             <EffectComponent textToCopy={link} />
 
             <button
-              className="btn btn-outline w-100 mt-16"
+              className="btn btn-outline px-6 mt-16"
               style={{ background: "transparent", color: colors2.text }}
               onClick={createSession}
             >
@@ -90,10 +90,11 @@ const EffectComponent = ({ textToCopy }: { textToCopy: string }) => {
 
   return (
     <div
-      className="px-8 py-4 flex justify-between items-center w-full ring-2  rounded-lg  shadow-sm space-x-8"
+      className="px-8 py-4 flex justify-between items-center w-full ring-2  rounded-lg  shadow-sm space-x-8
+      max-sm:flex-col max-sm:items-start max-sm:space-y-2"
       style={{ background: colors2.secondary }}
     >
-      <div className="flex space-x-2">
+      <div className="flex items-center  space-x-2">
         <UsergroupAddOutlined style={{ color: colors2.text }} />
         <h2>Tiny Walkers</h2>
 
@@ -107,13 +108,16 @@ const EffectComponent = ({ textToCopy }: { textToCopy: string }) => {
           style={{ color: colors2.text, background: colors2.secondary }}
         />
       </div>
-      <div className="flex">
+      <div className="flex max-sm:w-full max-sm:justify-between ">
         <div className="flex flex-col md:flex-row md:flex-wrap space-y-2 md:space-y-0 md:space-x-2 items-center">
-          <p>Copy this link into obs browser source:</p>
+          <p className="max-md:hidden">
+            Copy this link into obs browser source:
+          </p>
           <p
-            className=" p-2 rounded-xl break-all"
+            className=" p-2 rounded-xl break-all text-wrap max-md:max-w-[250px] text-center"
             style={{ background: colors2.background }}
           >
+            {/* {cutString(textToCopy, 18, 1)} */}
             {textToCopy}
           </p>
         </div>
