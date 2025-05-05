@@ -3,6 +3,7 @@ import GhostButton from "../../shared/components/GhostButton";
 import { colors2 } from "../../shared/utils/colors";
 import { useAppAuthStore } from "../auth/appAuthStore";
 import Layout from "../layout/Layout";
+import NewEffectSection from "./components/NewEffect";
 import TutorialSection from "./components/TutorialSection";
 
 const FrontPage = () => {
@@ -47,12 +48,19 @@ const FrontPage = () => {
             </div>
           </section>
 
+          <section
+            className="py-10 px-4 "
+            style={{ background: colors2.secondary }}
+          >
+            <NewEffectSection />
+          </section>
           {/* Alte secțiuni */}
           <section
-            className="py-20 px-4 "
+            className="py-10 px-4 "
             style={{ background: colors2.secondary }}
           >
             <TutorialSection />
+
             {isAuthenticated ? (
               <GhostButton
                 text="Try strelements now"

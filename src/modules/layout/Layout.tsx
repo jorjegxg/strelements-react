@@ -10,7 +10,7 @@ type Props = {
 const Layout: React.FC<Props> = ({ children, relative = true }) => {
   return (
     <>
-      <div className="w-screen  flex flex-col justify-between ">
+      <div className="w-screen flex flex-col justify-between ">
         <div>
           <Navigation relative={relative} />
           <main>{children}</main>
