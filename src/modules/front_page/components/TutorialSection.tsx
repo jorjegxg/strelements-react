@@ -7,7 +7,7 @@ const tutorialSteps = [
     image: "/tutorial/1-login.png",
   },
   {
-    title: "Step 2: Allow access to your Kick account",
+    title: "Step 2: Login with your Kick account",
     description:
       "Grant the necessary permissions so the app can read your Kick data.",
     image: "/tutorial/2.kick-allow-access.png",
