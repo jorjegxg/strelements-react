@@ -7,8 +7,6 @@ import { useChatSoket } from "./soket";
 
 export default function Game2() {
   const { sessionId, isPreview } = useParams();
-  console.log("Session ", sessionId);
-  console.log("isPreview ", isPreview != null);
 
   useEffect(() => {}, []);
   useChatSoket(sessionId!);

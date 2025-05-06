@@ -62,8 +62,6 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
 
     const redirect_uri = `${process.env.FRONTEND_URL}/callback`;
 
-    console.log("redirect_uri: ", redirect_uri);
-
     const url = new URL(CONFIG.authUrl);
     url.searchParams.set("response_type", "code");
     url.searchParams.set("client_id", CONFIG.clientId!);
@@ -100,7 +98,7 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
         CONFIG.localStorage.kickAcessToken,
         parsedResponse.data.authData.access_token
       );
-      //
+      //TODO: cred ca trebuie sters
       const expiresIn = parsedResponse.data.authData.expires_in;
       if (expiresIn !== null) {
         const expiresAt = expiresIn * 1000 + Date.now();
@@ -108,10 +106,6 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
           CONFIG.localStorage.kickTokenExpiresAt,
           expiresAt.toString()
         );
-
-        console.log("Tokenul expira la:", expiresAt);
-      } else {
-        console.log("Tokenul expira la:", null);
       }
       //
       localStorage.setItem(
@@ -127,33 +121,13 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
         parsedResponse.data.user.user_id.toString()
       );
 
-      console.log(
-        "Tokenul de autentificare:",
-        parsedResponse.data.authData.access_token
-      );
-
-      console.log("Refresh token:", parsedResponse.data.authData.refresh_token);
-
-      console.log(
-        "Tokenul expira in:",
-        parsedResponse.data.authData.expires_in
-      );
-
-      console.log("User ID:", response.data.user.user_id);
-
       //set status to success thru setStatus
       get().setStatus("success", "Login successful");
 
       set({ isAuthenticated: true });
     } catch (error) {
       if (error instanceof z.ZodError) {
-        console.error("Erori Zod:", error.errors);
-
-        error.errors.forEach((issue) => {
-          console.error(`Eroare la ${issue.path.join(".")}: ${issue.message}`);
-        });
-      } else {
-        console.error("Altă eroare:", error);
+        error.errors.forEach((issue) => {});
       }
 
       get().setStatus("error", "Token exchange error");
@@ -184,8 +158,6 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
       get().setStatus("success", "Logout successful");
       set({ isAuthenticated: false });
     } catch (error) {
-      console.error("Logout error:", error);
-
       get().setStatus("error", "Logout error");
       set({ error: "Logout error" });
     } finally {
