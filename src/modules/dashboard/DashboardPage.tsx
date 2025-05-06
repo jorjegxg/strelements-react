@@ -7,6 +7,7 @@ import { colors2 } from "../../shared/utils/colors";
 import { CONFIG } from "../../shared/utils/constants";
 import Layout from "../layout/Layout";
 import { useLiveSoket } from "../little_humans/soket";
+import IconButton from "./components/IconButton";
 import { Dashboard, useDasboardStore } from "./dashboardStore";
 // import { CONFIG } from "../../shared/utils/constants";
 
@@ -95,6 +96,7 @@ const EffectComponent = ({ textToCopy }: { textToCopy: string }) => {
       style={{ background: colors2.secondary }}
     >
       <div className="flex items-center  space-x-2">
+        <IconButton />
         <UsergroupAddOutlined style={{ color: colors2.text }} />
         <h2>Tiny Walkers</h2>
 

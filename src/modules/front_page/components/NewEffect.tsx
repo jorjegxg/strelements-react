@@ -29,7 +29,7 @@ function NewEffectSection() {
         {effects.map((effect, index) => (
           <div
             key={index}
-            className="card shadow-xl w-1/3"
+            className="card shadow-xl w-[300px]"
             style={{ background: colors2.background }}
           >
             <figure className="relative">

@@ -54,7 +54,7 @@ const tutorialSteps = [
 
 export default function TutorialSection() {
   return (
-    <section className="px-4 py-10 max-w-5xl mx-auto">
+    <section className="px-4 py-10 max-w-5xl mx-auto flex items-center flex-col justify-center">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold tracking-tight">
           How to use{" "}
@@ -67,11 +67,11 @@ export default function TutorialSection() {
         </p>
       </div>
 
-      <div className="space-y-14">
+      <div className="space-y-14 max-md:flex max-md:items-center max-md:flex-col">
         {tutorialSteps.map((step, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row items-start md:items-center gap-8"
+            className="flex flex-col md:flex-row  items-start max-md:items-center max-md:flex-col gap-8"
           >
             <img
               src={step.image}
