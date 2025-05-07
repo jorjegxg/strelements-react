@@ -11,6 +11,19 @@ type Character = {
 };
 
 type Store = {
+  nameBackgroundColor: string;
+  messageBackgroundColor: string;
+  messageColor: string;
+  size: number;
+  messageSize: number;
+  nameSize: number;
+  setNameBackgroundColor: (color: string) => void;
+  setMessageBackgroundColor: (color: string) => void;
+  setMessageColor: (color: string) => void;
+  setSize: (size: number) => void;
+  setMessageSize: (size: number) => void;
+  setNameSize: (textSize: number) => void;
+
   lastZIndex: number;
   characters: Character[];
   timers: Record<number, ReturnType<typeof setTimeout>>;
@@ -30,6 +43,19 @@ const getEmoji = (name: string) => {
 };
 
 export const useCharacterStore = create<Store>((set, get) => ({
+  nameBackgroundColor: "#000000",
+  messageBackgroundColor: "#f3f3f3",
+  messageColor: "#263238",
+  size: 1,
+  messageSize: 1,
+  nameSize: 1,
+  setNameBackgroundColor: (color) => set({ nameBackgroundColor: color }),
+  setMessageBackgroundColor: (color) => set({ messageBackgroundColor: color }),
+  setMessageColor: (color) => set({ messageColor: color }),
+  setSize: (size) => set({ size }),
+  setMessageSize: (size) => set({ messageSize: size }),
+  setNameSize: (textSize) => set({ nameSize: textSize }),
+
   lastZIndex: 0,
   characters: [],
 
