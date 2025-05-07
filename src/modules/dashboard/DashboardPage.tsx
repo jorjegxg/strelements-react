@@ -7,7 +7,6 @@ import { colors2 } from "../../shared/utils/colors";
 import { CONFIG } from "../../shared/utils/constants";
 import Layout from "../layout/Layout";
 import { useLiveSoket } from "../little_humans/soket";
-import IconButton from "./components/IconButton";
 import { Dashboard, useDasboardStore } from "./dashboardStore";
 // import { CONFIG } from "../../shared/utils/constants";
 
@@ -96,7 +95,6 @@ const EffectComponent = ({ textToCopy }: { textToCopy: string }) => {
       style={{ background: colors2.secondary }}
     >
       <div className="flex items-center  space-x-2">
-        <IconButton />
         <UsergroupAddOutlined style={{ color: colors2.text }} />
         <h2>Tiny Walkers</h2>
 
@@ -112,11 +110,11 @@ const EffectComponent = ({ textToCopy }: { textToCopy: string }) => {
       </div>
       <div className="flex max-sm:w-full max-sm:justify-between ">
         <div className="flex flex-col md:flex-row md:flex-wrap space-y-2 md:space-y-0 md:space-x-2 items-center">
-          <p className="max-md:hidden">
+          <p className="max-lg:hidden ">
             Copy this link into obs browser source:
           </p>
           <p
-            className=" p-2 rounded-xl break-all text-wrap max-md:max-w-[250px] text-center"
+            className=" p-2 rounded-xl break-all text-wrap max-md:max-w-[250px] text-start"
             style={{ background: colors2.background }}
           >
             {/* {cutString(textToCopy, 18, 1)} */}
