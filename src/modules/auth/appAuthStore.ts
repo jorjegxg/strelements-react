@@ -121,6 +121,11 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
         parsedResponse.data.user.user_id.toString()
       );
 
+      console.log(
+        "parsedResponse.data.authData.access_token",
+        parsedResponse.data.authData.access_token
+      );
+
       //set status to success thru setStatus
       get().setStatus("success", "Login successful");
 

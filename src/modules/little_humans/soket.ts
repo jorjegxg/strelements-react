@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { io } from "socket.io-client";
 import { CONFIG } from "../../shared/utils/constants";
+import Logger from "../../shared/utils/Logger";
 import { useDasboardStore } from "../dashboard/dashboardStore";
 import { useCharacterStore } from "./characterStore";
 
@@ -13,6 +14,8 @@ const useChatSoket = (sessionID: string) => {
   );
 
   useEffect(() => {
+    Logger.log("Sunt in useChatSoket");
+
     // const userId = localStorage.getItem(CONFIG.localStorage.kickUserId);
     socket.emit("join_room", sessionID);
 
@@ -20,6 +23,7 @@ const useChatSoket = (sessionID: string) => {
       const userId = data.body.sender.user_id;
       const content = data.body.content;
       const name = data.body.sender.username;
+      Logger.log("IN CHAT SOKET - data " + data);
       addOrUpdateCharacter(userId, content, name);
     });
 

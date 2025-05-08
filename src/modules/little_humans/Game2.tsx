@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { AddCharacterButton } from "./components/AddCharacterButton";
 import { useCharacterMovement } from "./components/CharacterMovement";
@@ -8,7 +7,6 @@ import { useChatSoket } from "./soket";
 export default function Game2() {
   const { sessionId, isPreview } = useParams();
 
-  useEffect(() => {}, []);
   useChatSoket(sessionId!);
   useCharacterMovement();
 
@@ -17,7 +15,7 @@ export default function Game2() {
   return (
     <div
       className={`relative w-screen h-screen flex-col justify-between ${
-        isForPreview ? "bg-black" : "bg-transparent"
+        isForPreview ? "bg-transparent" : "bg-transparent"
       }`}
     >
       {isForPreview ? <AddCharacterButton /> : <></>}
