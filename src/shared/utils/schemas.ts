@@ -8,4 +8,13 @@ const refreshTokensSchema = z.object({
   token_type: z.string(),
 });
 
-export { refreshTokensSchema };
+type Character = {
+  id: number;
+  name: string;
+  zIndex: number;
+  x: number;
+  message: string;
+  emoji: string;
+};
+
+export { Character, refreshTokensSchema };

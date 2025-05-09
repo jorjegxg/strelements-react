@@ -1,8 +1,4 @@
-import {
-  cutString,
-  getRandomColor,
-  removeKickEmotes,
-} from "../../../shared/utils/other";
+import { cutString, getRandomColor } from "../../../shared/utils/other";
 import { useCharacterStore } from "../characterStore";
 
 export const CharacterList = () => {
@@ -22,7 +18,11 @@ export const CharacterList = () => {
           {/* Mesajul caracterului */}
           {char.message !== "" ? (
             <div className="bg-white text-sm px-3 py-1 mt-1 rounded-lg shadow-md border max-w-[150px] text-center">
-              {cutString(removeKickEmotes(char.message))}
+              {cutString(char.message).map((line, index) => (
+                <span key={index} className="block">
+                  {line}
+                </span>
+              ))}
             </div>
           ) : (
             <></>

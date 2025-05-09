@@ -2,14 +2,18 @@ function cutString(
   str: string,
   chunkSize: number = 15,
   maxChunks: number = 3
-): string {
+): string[] {
   const chunks = [];
   for (let i = 0; i < str.length && chunks.length < maxChunks; i += chunkSize) {
-    chunks.push(str.slice(i, i + chunkSize));
+    const chunk = str.slice(i, i + chunkSize);
+    if (chunks.length === maxChunks - 1 && i + chunkSize < str.length) {
+      chunks.push(chunk.slice(0, -3) + "...");
+      break;
+    } else {
+      chunks.push(chunk);
+    }
   }
-
-  const needsEllipsis = str.length > chunkSize * maxChunks;
-  return chunks.join("\n") + (needsEllipsis ? "\n..." : "");
+  return chunks;
 }
 
 function removeKickEmotes(message: string): string {

@@ -1,14 +1,7 @@
 import { create } from "zustand";
+import { Character } from "../../shared/utils/schemas";
 const timeForCharacter = 13 * 1000;
 const timeForChat = 6 * 1000;
-type Character = {
-  id: number;
-  name: string;
-  zIndex: number;
-  x: number;
-  message: string;
-  emoji: string;
-};
 
 type Store = {
   lastZIndex: number;
