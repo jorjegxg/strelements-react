@@ -71,9 +71,11 @@ const EffectComponent = ({ textToCopy }: { textToCopy: string }) => {
   const isLoading = useSwitchStore((state) => state.isLoading);
   const toggleState = useSwitchStore((state) => state.toggleState);
   const getEffectsState = useSwitchStore((state) => state.getEffectsState);
+  const getIsLive = useDasboardStore((state) => state.getIsLive);
 
   useEffect(() => {
     getEffectsState();
+    getIsLive();
   }, []);
 
   const handleCopy = async () => {
