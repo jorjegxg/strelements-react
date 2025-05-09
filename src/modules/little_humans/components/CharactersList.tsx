@@ -1,6 +1,11 @@
 import { cutString, getRandomColor } from "../../../shared/utils/other";
 import { useCharacterStore } from "../characterStore";
 
+//nameBackgroundColor
+//messageBackgroundColor
+//size=1
+//textSize=1
+
 export const CharacterList = () => {
   const characters = useCharacterStore((state) => state.characters);
 

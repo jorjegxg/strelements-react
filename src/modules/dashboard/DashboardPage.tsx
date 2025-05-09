@@ -7,6 +7,7 @@ import { colors2 } from "../../shared/utils/colors";
 import { CONFIG } from "../../shared/utils/constants";
 import Layout from "../layout/Layout";
 import { useLiveSoket } from "../little_humans/soket";
+import IconButton from "./components/IconButton";
 import { Dashboard, useDasboardStore } from "./dashboardStore";
 // import { CONFIG } from "../../shared/utils/constants";
 
@@ -66,6 +67,8 @@ const DashboardPage = () => {
 };
 
 const EffectComponent = ({ textToCopy }: { textToCopy: string }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
   const [copied, setCopied] = useState(false);
   const isActive = useSwitchStore((state) => state.isActive);
   const isLoading = useSwitchStore((state) => state.isLoading);
@@ -97,6 +100,10 @@ const EffectComponent = ({ textToCopy }: { textToCopy: string }) => {
       style={{ background: colors2.secondary }}
     >
       <div className="flex items-center  space-x-2">
+        <IconButton onClick={() => setModalOpen(true)} />
+
+        {/* <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)} /> */}
+
         <UsergroupAddOutlined style={{ color: colors2.text }} />
         <h2>Tiny Walkers</h2>
 
