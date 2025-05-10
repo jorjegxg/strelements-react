@@ -1,7 +1,7 @@
-import { colors2 } from "../../../shared/utils/colors";
-import Layout from "../../layout/Layout";
-import { useCharacterStore } from "../../little_humans/characterStore";
-import Character from "../../little_humans/components/Character";
+import { colors2 } from "../../shared/utils/colors";
+import Layout from "../layout/Layout";
+import { useCharacterStore } from "../little_humans/characterStore";
+import CharacterTsx from "../little_humans/components/Character";
 
 const CharacterSettingsPage = () => {
   const setNameBackgroundColor = useCharacterStore(
@@ -33,7 +33,10 @@ const CharacterSettingsPage = () => {
           🎨 Character Settings
         </h2>
 
-        <div className="min-h-screen w-screen p-6 flex flex-col md:flex-row gap-6  items-start body-normal">
+        <div
+          className="min-h-screen w-screen p-6 flex flex-col md:flex-row gap-6  items-start body-normal"
+          style={{ background: colors2.background }}
+        >
           {/* Settings Card */}
           <div className="   p-6 w-full md:w-1/2 space-y-5 ">
             <div className=" ">
@@ -75,19 +78,20 @@ const CharacterSettingsPage = () => {
                 />
               </div>
 
-              <div>
+              <div className=" ">
                 <label className="block font-medium mb-1">
                   🔠 Overall Size
                 </label>
+
                 <input
                   type="range"
                   min={0.5}
                   max={2}
                   step={0.1}
-                  className="w-full "
+                  value={size}
+                  className="range range-neutral w-full"
                   onChange={(e) => setSize(Number(e.target.value))}
-                  defaultValue={size}
-                  style={{ background: colors2.kick }}
+                  style={{ color: colors2.kick, background: colors2.text }}
                 />
               </div>
 
@@ -95,14 +99,16 @@ const CharacterSettingsPage = () => {
                 <label className="block font-medium mb-1">
                   🔤 Message Text Size
                 </label>
+
                 <input
                   type="range"
                   min={0.75}
                   max={2}
                   step={0.1}
-                  className="w-full"
+                  value={messageSize}
+                  className="range range-neutral w-full"
                   onChange={(e) => setMessageSize(Number(e.target.value))}
-                  defaultValue={messageSize}
+                  style={{ color: colors2.kick, background: colors2.text }}
                 />
               </div>
 
@@ -110,13 +116,16 @@ const CharacterSettingsPage = () => {
                 <label className="block font-medium mb-1">
                   👤 Name Text Size
                 </label>
+
                 <input
                   type="range"
                   min={0.75}
                   max={2}
                   step={0.1}
-                  className="w-full"
+                  value={nameSize}
+                  className="range range-neutral w-full"
                   onChange={(e) => setNameSize(Number(e.target.value))}
+                  style={{ color: colors2.kick, background: colors2.text }}
                   defaultValue={nameSize}
                 />
               </div>
@@ -131,7 +140,7 @@ const CharacterSettingsPage = () => {
             <div className="relative w-full h-[400px] border border-dashed border-gray-300  rounded-xl">
               {/* Character preview, bottom-centered */}
               <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 scale-[var(--scale)]">
-                {Character({
+                {CharacterTsx({
                   id: 1,
                   name: "Streamer123",
                   zIndex: 2,

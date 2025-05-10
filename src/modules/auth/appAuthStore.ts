@@ -132,7 +132,9 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
       set({ isAuthenticated: true });
     } catch (error) {
       if (error instanceof z.ZodError) {
-        error.errors.forEach((issue) => {});
+        error.errors.forEach((issue) => {
+          console.log(issue);
+        });
       }
 
       get().setStatus("error", "Token exchange error");
@@ -163,6 +165,7 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
       get().setStatus("success", "Logout successful");
       set({ isAuthenticated: false });
     } catch (error) {
+      console.log(error);
       get().setStatus("error", "Logout error");
       set({ error: "Logout error" });
     } finally {
