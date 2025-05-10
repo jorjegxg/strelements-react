@@ -4,6 +4,7 @@ import LoginWithKick from "./features/login/LoginWithKick";
 import StrelementsPage from "./features/StrelementsPage";
 import "./index.css";
 import CallbackPage from "./modules/auth/CallbackPage";
+import CharacterSettingsPage from "./modules/dashboard/components/SettingsModal";
 import DashboardPage from "./modules/dashboard/DashboardPage";
 import FrontPage from "./modules/front_page/page";
 import Game2 from "./modules/little_humans/Game2";
@@ -36,6 +37,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route path="/ef1/settings" element={<CharacterSettingsPage />} />
             <Route
               path="/strelements-original/:sessionId/:isPreview"
               element={<Game2 />}

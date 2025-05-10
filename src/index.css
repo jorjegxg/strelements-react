@@ -34,6 +34,10 @@ body {
   background-color: transparent;
 }
 
+.body-normal {
+  background-color: var(--color-bg);
+}
+
 h1,
 h2,
 h3,

@@ -1,14 +1,9 @@
-import React from "react";
 import { colors2 } from "../../../shared/utils/colors";
+import Layout from "../../layout/Layout";
 import { useCharacterStore } from "../../little_humans/characterStore";
 import Character from "../../little_humans/components/Character";
 
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-const CharacterSettingsModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+const CharacterSettingsPage = () => {
   const setNameBackgroundColor = useCharacterStore(
     (state) => state.setNameBackgroundColor
   );
@@ -32,110 +27,125 @@ const CharacterSettingsModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const nameSize = useCharacterStore((state) => state.nameSize);
 
   return (
-    <>
-      <input
-        type="checkbox"
-        checked={isOpen}
-        onChange={onClose}
-        className="modal-toggle"
-        readOnly
-      />
+    <Layout>
+      <div>
+        <h2 className="text-2xl font-bold  body-normal">
+          🎨 Character Settings
+        </h2>
 
-      <div className="modal">
-        <div
-          className="modal-box max-w-xl space-y-4"
-          style={{ background: colors2.secondary }}
-        >
-          <h3 className="font-bold text-lg">🎨 Character Settings</h3>
-          <div className="w-full ring-1 ring-gray-200">
-            {Character({
-              id: 1,
-              name: "Streamer123",
-              zIndex: 2,
-              x: 300,
-              message: "Thanks for the sub!",
-              emoji: "🎉",
-            })}
+        <div className="min-h-screen w-screen p-6 flex flex-col md:flex-row gap-6  items-start body-normal">
+          {/* Settings Card */}
+          <div className="   p-6 w-full md:w-1/2 space-y-5 ">
+            <div className=" ">
+              {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4"> */}
+              <div>
+                <label className="block font-medium mb-1">
+                  📛 Name Background Color
+                </label>
+                ;
+                <input
+                  type="color"
+                  className="w-full h-10 rounded"
+                  onChange={(e) => setNameBackgroundColor(e.target.value)}
+                  defaultValue={nameBackgroundColor}
+                />
+              </div>
+
+              <div>
+                <label className="block font-medium mb-1">
+                  💬 Message Background Color
+                </label>
+                <input
+                  type="color"
+                  className="w-full h-10 rounded"
+                  onChange={(e) => setMessageBackgroundColor(e.target.value)}
+                  defaultValue={messageBackgroundColor}
+                />
+              </div>
+
+              <div>
+                <label className="block font-medium mb-1">
+                  📝 Message Text Color
+                </label>
+                <input
+                  type="color"
+                  className="w-full h-10 rounded"
+                  onChange={(e) => setMessageColor(e.target.value)}
+                  defaultValue={messageColor}
+                />
+              </div>
+
+              <div>
+                <label className="block font-medium mb-1">
+                  🔠 Overall Size
+                </label>
+                <input
+                  type="range"
+                  min={0.5}
+                  max={2}
+                  step={0.1}
+                  className="w-full "
+                  onChange={(e) => setSize(Number(e.target.value))}
+                  defaultValue={size}
+                  style={{ background: colors2.kick }}
+                />
+              </div>
+
+              <div>
+                <label className="block font-medium mb-1">
+                  🔤 Message Text Size
+                </label>
+                <input
+                  type="range"
+                  min={0.75}
+                  max={2}
+                  step={0.1}
+                  className="w-full"
+                  onChange={(e) => setMessageSize(Number(e.target.value))}
+                  defaultValue={messageSize}
+                />
+              </div>
+
+              <div>
+                <label className="block font-medium mb-1">
+                  👤 Name Text Size
+                </label>
+                <input
+                  type="range"
+                  min={0.75}
+                  max={2}
+                  step={0.1}
+                  className="w-full"
+                  onChange={(e) => setNameSize(Number(e.target.value))}
+                  defaultValue={nameSize}
+                />
+              </div>
+            </div>
+            <div>
+              <h3>(Autosaving)</h3>
+            </div>
           </div>
 
-          <div>
-            <label className="label">📛 Name Background Color</label>
-            <input
-              type="color"
-              className="input input-bordered w-full"
-              onChange={(e) => setNameBackgroundColor(e.target.value)}
-              defaultValue={nameBackgroundColor}
-            />
-          </div>
-
-          <div>
-            <label className="label">💬 Message Background Color</label>
-            <input
-              type="color"
-              className="input input-bordered w-full"
-              onChange={(e) => setMessageBackgroundColor(e.target.value)}
-              defaultValue={messageBackgroundColor}
-            />
-          </div>
-
-          <div>
-            <label className="label">📝 Message Text Color</label>
-            <input
-              type="color"
-              className="input input-bordered w-full"
-              onChange={(e) => setMessageColor(e.target.value)}
-              defaultValue={messageColor}
-            />
-          </div>
-
-          <div>
-            <label className="label">🔠 Overall Size (scale)</label>
-            <input
-              type="range"
-              min={0.5}
-              max={2}
-              step={0.1}
-              className="range"
-              onChange={(e) => setSize(Number(e.target.value))}
-              defaultValue={size}
-            />
-          </div>
-
-          <div>
-            <label className="label">🔤 Message Text Size</label>
-            <input
-              type="range"
-              min={1}
-              max={2}
-              step={0.1}
-              className="range"
-              onChange={(e) => setMessageSize(Number(e.target.value))}
-              defaultValue={messageSize}
-            />
-          </div>
-
-          <div>
-            <label className="label">👤 Name Text Size</label>
-            <input
-              type="range"
-              min={1}
-              max={2}
-              step={0.1}
-              className="range"
-              onChange={(e) => setNameSize(Number(e.target.value))}
-              defaultValue={nameSize}
-            />
-          </div>
-
-          <div className="modal-action">
-            <button onClick={onClose} className="btn btn-primary">
-              Close
-            </button>
+          {/* Preview Area */}
+          <div className="flex-1 rounded-2xl  p-6 flex items-center justify-center relative overflow-hidden">
+            <div className="relative w-full h-[400px] border border-dashed border-gray-300  rounded-xl">
+              {/* Character preview, bottom-centered */}
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 scale-[var(--scale)]">
+                {Character({
+                  id: 1,
+                  name: "Streamer123",
+                  zIndex: 2,
+                  x: 0,
+                  message: "Thanks for the sub!",
+                  emoji: "🎉",
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </>
+    </Layout>
   );
 };
 
-export default CharacterSettingsModal;
+export default CharacterSettingsPage;

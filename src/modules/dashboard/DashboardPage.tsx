@@ -67,7 +67,7 @@ const DashboardPage = () => {
 };
 
 const EffectComponent = ({ textToCopy }: { textToCopy: string }) => {
-  const [isModalOpen, setModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const [copied, setCopied] = useState(false);
   const isActive = useSwitchStore((state) => state.isActive);
@@ -100,7 +100,11 @@ const EffectComponent = ({ textToCopy }: { textToCopy: string }) => {
       style={{ background: colors2.secondary }}
     >
       <div className="flex items-center  space-x-2">
-        <IconButton onClick={() => setModalOpen(true)} />
+        <IconButton
+          onClick={() => {
+            navigate("/ef1/settings");
+          }}
+        />
 
         {/* <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)} /> */}
 

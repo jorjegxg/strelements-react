@@ -8,6 +8,16 @@ import { useCharacterStore } from "../characterStore";
 
 export const CharacterList = () => {
   const characters = useCharacterStore((state) => state.characters);
+  const messageBackgroundColor = useCharacterStore(
+    (state) => state.messageBackgroundColor
+  );
+  const messageColor = useCharacterStore((state) => state.messageColor);
+  const nameBackgroundColor = useCharacterStore(
+    (state) => state.nameBackgroundColor
+  );
+  const size = useCharacterStore((state) => state.size);
+  const messageSize = useCharacterStore((state) => state.messageSize);
+  const nameSize = useCharacterStore((state) => state.nameSize);
 
   return (
     <>
@@ -22,7 +32,14 @@ export const CharacterList = () => {
         >
           {/* Mesajul caracterului */}
           {char.message !== "" ? (
-            <div className="bg-white text-sm px-3 py-1 mt-1 rounded-lg shadow-md border max-w-[150px] text-center">
+            <div
+              className="text-sm px-3 py-1 mt-1 rounded-lg shadow-md border max-w-[150px] text-center"
+              style={{
+                background: messageBackgroundColor,
+                color: messageColor,
+                fontSize: 15 * messageSize,
+              }}
+            >
               {cutString(char.message).map((line, index) => (
                 <span key={index} className="block">
                   {line}
