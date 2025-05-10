@@ -37,7 +37,15 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/ef1/settings" element={<CharacterSettingsPage />} />
+            <Route
+              path="/ef1/settings"
+              element={
+                <ProtectedRoute>
+                  <CharacterSettingsPage />
+                </ProtectedRoute>
+              }
+            />
+
             <Route
               path="/strelements-original/:sessionId/:isPreview"
               element={<Game2 />}
