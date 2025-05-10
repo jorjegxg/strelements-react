@@ -28,15 +28,12 @@ const CharacterSettingsPage = () => {
 
   return (
     <Layout>
-      <div>
+      <div style={{ background: colors2.background }}>
         <h2 className="text-2xl font-bold  body-normal">
           🎨 Character Settings
         </h2>
 
-        <div
-          className="min-h-screen w-screen p-6 flex flex-col md:flex-row gap-6  items-start body-normal"
-          style={{ background: colors2.background }}
-        >
+        <div className="min-h-screen w-screen p-6 flex flex-col md:flex-row gap-6  items-start body-normal">
           {/* Settings Card */}
           <div className="   p-6 w-full md:w-1/2 space-y-5 ">
             <div className=" ">

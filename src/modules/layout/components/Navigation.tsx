@@ -118,7 +118,7 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
         <summary className="m-1 cursor-pointer list-none">
           <div className="avatar">
             <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-              <img src={"./avatar.svg"} alt="Avatar" />
+              <img src={"/avatar.svg"} alt="Avatar" />
             </div>
           </div>
         </summary>
