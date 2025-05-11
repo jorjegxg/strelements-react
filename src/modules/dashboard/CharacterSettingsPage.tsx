@@ -133,10 +133,10 @@ const CharacterSettingsPage = () => {
           </div>
 
           {/* Preview Area */}
-          <div className="flex-1 rounded-2xl  p-6 flex items-center justify-center relative overflow-hidden">
-            <div className="relative w-full h-[400px] border border-dashed border-gray-300  rounded-xl">
+          <div className="flex-1 rounded-2xl p-6 flex items-center justify-center relative overflow-hidden">
+            <div className="relative w-full h-[400px] border border-dashed border-gray-300 rounded-xl ">
               {/* Character preview, bottom-centered */}
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 scale-[var(--scale)]">
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 ">
                 {CharacterTsx({
                   id: 1,
                   name: "Streamer123",
