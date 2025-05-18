@@ -1,22 +1,31 @@
 // import { colors } from "../../shared/utils/colors";
+import { useRive } from "@rive-app/react-canvas";
 import GhostButton from "../../shared/components/GhostButton";
 import { colors2 } from "../../shared/utils/colors";
 import { useAppAuthStore } from "../auth/appAuthStore";
 import Layout from "../layout/Layout";
 import NewEffectSection from "./components/NewEffect";
 import TutorialSection from "./components/TutorialSection";
-
 const FrontPage = () => {
   const isAuthenticated = useAppAuthStore((state) => state.isAuthenticated);
+
+  const { RiveComponent } = useRive({
+    src: "/untitled.riv",
+    autoplay: true,
+    stateMachines: "State Machine 1",
+    // artboard: 'New Artboard',
+  });
+
   return (
     <>
       <Layout>
         <div className={`m-0 p-0  `}>
           {/* Hero Section with Background Video */}
-          <section
+          {/* <section
             className="relative h-screen w-screen "
             style={{ background: colors2.background }}
-          >
+            >
+            
             <video
               className="absolute top-0 left-0 w-full h-full object-cover object-bottom z-0"
               src="/videos/ceva.mp4"
@@ -46,7 +55,13 @@ const FrontPage = () => {
                 SCROLL DOWN
               </h3>
             </div>
-          </section>
+          </section> */}
+          <div style={{ background: colors2.secondary, color: colors2.text }}>
+            Mama
+          </div>
+          <div className="w-screen h-100">
+            <RiveComponent />
+          </div>
 
           <section
             className="py-10 px-4 "
