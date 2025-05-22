@@ -20,12 +20,12 @@ const FrontPage = () => {
           >
             <FrontPageVideo />
 
-            <div
+            {/* <div
               className="max-md:hidden absolute w-screen h-screen justify-center items-center "
               style={{ color: colors2.text }}
             >
               Welcome to my stream &lt;3
-            </div>
+            </div> */}
 
             <div className="relative z-10 flex items-center justify-between h-full">
               <h3
@@ -44,16 +44,17 @@ const FrontPage = () => {
           </section>
 
           <section
-            className="py-10 px-4 "
+            className="h-screen w-screen flex items-center justify-center "
             style={{ background: colors2.secondary }}
           >
             <NewEffectSection />
+
+            {/* customise your stream avatar */}
+            {/* <div className="p-8"></div>
+            <NewEffectSection /> */}
           </section>
           {/* Alte secțiuni */}
-          <section
-            className="py-10 px-4 "
-            style={{ background: colors2.secondary }}
-          >
+          <section className="py-10 px-4 " style={{ background: colors2.fp }}>
             <TutorialSection />
 
             {isAuthenticated ? (
