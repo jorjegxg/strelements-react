@@ -1,30 +1,32 @@
 import GhostButton from "../../../shared/components/GhostButton";
 import { useCharacterStore } from "../characterStore";
 
+// stream live names
 const randomNames = [
-  "GamerBoy99",
+  "GamerBoi99",
   "PixelQueen",
-  "NoobMaster",
-  "xXDragonXx",
-  "SpeedyCat",
-  "LavaHunter",
-  "SilentKiller",
-  "TwitchLover",
-  "CrispyFries",
-  "DonutSlayer",
+  "NoScopeLegend",
+  "ChillVibes42",
+  "TTV_FluffyFox",
+  "xXShadowXx",
+  "LunaByte",
+  "AFK_Master",
+  "CryptoK1ng",
+  "SussySamurai",
 ];
 
+// stream chat messages
 const randomMessages = [
-  "Hello everyone!",
-  "What's going on here?",
-  "LOL that was wild!",
-  "GG!",
-  "Awesome stream!",
-  "I'm back!",
-  "Give it another try!",
-  "Respect!",
-  "No way that just happened!",
-  "Absolute legend!",
+  "Let's goooo!",
+  "That was insane 😱",
+  "Anyone else saw that clutch?",
+  "Bro you cracked 💀",
+  "Drop the playlist please 🎶",
+  "This stream is 🔥",
+  "W streamer fr fr",
+  "LOL I can’t stop laughing 😂",
+  "Where's the mod?",
+  "POV: You're addicted to this stream now",
 ];
 
 export const AddCharacterButton = () => {

@@ -15,7 +15,7 @@ export default function Game2() {
   return (
     <div
       className={`relative w-screen h-screen flex-col justify-between ${
-        isForPreview ? "bg-black" : "bg-transparent"
+        isForPreview ? "bg-transparent" : "bg-transparent"
       }`}
     >
       {isForPreview ? <AddCharacterButton /> : <></>}
