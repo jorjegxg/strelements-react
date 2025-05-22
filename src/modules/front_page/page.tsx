@@ -3,6 +3,7 @@ import GhostButton from "../../shared/components/GhostButton";
 import { colors2 } from "../../shared/utils/colors";
 import { useAppAuthStore } from "../auth/appAuthStore";
 import Layout from "../layout/Layout";
+import { FrontPageVideo } from "./components/FrontPageVideo";
 import NewEffectSection from "./components/NewEffect";
 import TutorialSection from "./components/TutorialSection";
 
@@ -11,20 +12,14 @@ const FrontPage = () => {
   return (
     <>
       <Layout>
-        <div className={`m-0 p-0  `}>
+        <div>
           {/* Hero Section with Background Video */}
           <section
             className="relative h-screen w-screen "
-            style={{ background: colors2.background }}
+            style={{ background: colors2.fp }}
           >
-            <video
-              className="absolute top-0 left-0 w-full h-full object-cover object-bottom z-0"
-              src="/videos/ceva.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-            />
+            <FrontPageVideo />
+
             <div
               className="max-md:hidden absolute w-screen h-screen justify-center items-center "
               style={{ color: colors2.text }}

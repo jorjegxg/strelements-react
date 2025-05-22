@@ -36,7 +36,7 @@ interface Store extends PersistentSettings, TemporaryState {
 }
 
 const getEmoji = (name: string) => {
-  const emojis = ["🧙‍♂️", "🧛", "🧟", "🤖", "🧑‍🚀", "🐸", "🐱", "👾"];
+  const emojis = ["🧙‍♂️", "🧛", "🧟", "🤖", "🧑", "🐸", "🐱", "👾"];
   const hash = name
     .split("")
     .reduce((acc, char) => acc + char.charCodeAt(0), 0);
