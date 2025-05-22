@@ -11,6 +11,8 @@ type ProtectedRouteProps = {
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   useEffect(() => {
     const checkAuth = async () => {
+      console.log("Checking auth");
+
       const expiresAt = Number(
         localStorage.getItem(CONFIG.localStorage.kickTokenExpiresAt)
       );
@@ -26,15 +28,24 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 
       if (!expiresAt || Date.now() > expiresAt) {
         Logger.log("Token expired");
+
+        // Așteaptă 2 secunde înainte de a continua
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+
         try {
           Logger.log("Is refreshing token");
           await refreshAccessToken();
         } catch {
           Logger.log("No refresh token");
+
+          // Așteaptă puțin și înainte de redirect
+          await new Promise((resolve) => setTimeout(resolve, 2000));
+
           window.location.href = "/";
         }
       }
     };
+
     checkAuth();
   }, []);
 

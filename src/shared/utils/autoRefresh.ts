@@ -1,5 +1,6 @@
 import axios from "axios";
 import { CONFIG } from "./constants";
+import Logger from "./Logger";
 import { refreshTokensSchema } from "./schemas";
 
 const api = axios.create();
@@ -21,6 +22,7 @@ api.interceptors.request.use(async (config) => {
 });
 
 async function refreshAccessToken(): Promise<string> {
+  Logger.log("Is refreshing token ------");
   //get items
   const refreshToken = localStorage.getItem(
     CONFIG.localStorage.kickRefreshToken
