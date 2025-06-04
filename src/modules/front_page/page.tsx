@@ -29,13 +29,13 @@ const FrontPage = () => {
 
             <div className="relative z-10 flex items-center justify-between h-full">
               <h3
-                className={`font-bold rotate-270 whitespace-nowrap`}
+                className={`font-bold rotate-270 whitespace-nowrap max-md:absolute max-md:top-1/3 right-0`}
                 style={{ color: colors2.kick }}
               >
                 SCROLL DOWN
               </h3>
               <h3
-                className={`font-bold rotate-90  whitespace-nowrap`}
+                className={`font-bold rotate-90  whitespace-nowrap max-md:absolute max-md:top-1/3`}
                 style={{ color: colors2.kick }}
               >
                 SCROLL DOWN
