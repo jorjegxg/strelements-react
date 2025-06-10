@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { colors2 } from "../../shared/utils/colors";
 import Footer from "./components/Footer";
 import Navigation from "./components/Navigation";
 
@@ -10,7 +11,10 @@ type Props = {
 const Layout: React.FC<Props> = ({ children, relative = true }) => {
   return (
     <>
-      <div className="w-screen flex flex-col justify-between ">
+      <div
+        className="w-screen flex flex-col justify-between h-screen"
+        style={{ background: colors2.background }}
+      >
         <div>
           <Navigation relative={relative} />
           <main>{children}</main>

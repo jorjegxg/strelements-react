@@ -6,6 +6,7 @@ import "./index.css";
 import CallbackPage from "./modules/auth/CallbackPage";
 import CharacterSettingsPage from "./modules/dashboard/CharacterSettingsPage";
 import DashboardPage from "./modules/dashboard/DashboardPage";
+import EffectsStore from "./modules/effects_store/page";
 import FrontPage from "./modules/front_page/page";
 import Game2 from "./modules/little_humans/Game2";
 import TestPage from "./modules/test/TestPage";
@@ -37,6 +38,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route path="/effects" element={<EffectsStore />} />
             <Route
               path="/ef1/settings"
               element={
