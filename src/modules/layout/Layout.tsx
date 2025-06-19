@@ -1,5 +1,5 @@
+import { colors2 } from "@/shared/utils/colors";
 import { ReactNode } from "react";
-import { colors2 } from "../../shared/utils/colors";
 import Footer from "./components/Footer";
 import Navigation from "./components/Navigation";
 

@@ -1,15 +1,16 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import LoginWithKick from "./features/login/LoginWithKick";
-import StrelementsPage from "./features/StrelementsPage";
 import "./index.css";
 import CallbackPage from "./modules/auth/CallbackPage";
+import LoginWithKick from "./modules/auth/LoginWithKick";
 import CharacterSettingsPage from "./modules/dashboard/CharacterSettingsPage";
 import DashboardPage from "./modules/dashboard/DashboardPage";
+import DonationPage from "./modules/donation/page";
 import EffectsStore from "./modules/effects_store/page";
 import FrontPage from "./modules/front_page/page";
-import Game2 from "./modules/little_humans/Game2";
 import TestPage from "./modules/test/TestPage";
+import StrelementsPage from "./modules/testing/StrelementsPage";
+import Game2 from "./modules/tiny_walkers/Game2";
 import ProtectedRoute from "./PrivateRoute";
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
             />
 
             <Route path="/test" element={<TestPage />} />
+            <Route path="/donation" element={<DonationPage />} />
           </Routes>
         </BrowserRouter>
       </div>

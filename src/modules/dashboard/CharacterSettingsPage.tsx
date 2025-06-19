@@ -1,7 +1,7 @@
 import { colors2 } from "../../shared/utils/colors";
 import Layout from "../layout/Layout";
-import { useCharacterStore } from "../little_humans/characterStore";
-import CharacterTsx from "../little_humans/components/Character";
+import { useCharacterStore } from "../tiny_walkers/characterStore";
+import CharacterTsx from "../tiny_walkers/components/Character";
 
 const CharacterSettingsPage = () => {
   const setNameBackgroundColor = useCharacterStore(

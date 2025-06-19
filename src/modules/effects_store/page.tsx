@@ -7,12 +7,19 @@ const EffectsStore = () => {
   return (
     <Layout relative={false}>
       <div className=" px-32">
-        <div className="text-white text-4xl">Effects store</div>
-        {StoreCard({
-          title: "Tiny walkers",
-          price: "$10",
-          imagePath: "/new/COOL-STREAM.png",
-        })}
+        <div className="text-white text-4xl  ">Effects store</div>
+        <div className="grid grid-cols-3 p-4">
+          {StoreCard({
+            title: "Tiny walkers",
+            price: "$10",
+            imagePath: "/new/COOL-STREAM.png",
+          })}
+          {StoreCard({
+            title: "Starting soon boats",
+            price: "$5",
+            imagePath: "/boat.jpg",
+          })}
+        </div>
       </div>
     </Layout>
   );
@@ -27,8 +34,8 @@ const EffectsStore = () => {
     imagePath: string;
   }) {
     return (
-      <div className="ring-2 w-[400px] h-[200px] ">
-        <div className=" ring-1 flex justify-center bg-red-300 rounded-2xl">
+      <div className="w-[400px] h-[200px] ">
+        <div className=" flex justify-center bg-red-300 rounded-2xl">
           <img
             className="h-[200px] hover:scale-110 transition-transform duration-300 ease-in-out"
             src={imagePath}

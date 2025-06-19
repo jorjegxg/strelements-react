@@ -1,14 +1,17 @@
 {
-  
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "jsx": "react-jsx",  // Adăugăm suport pentru JSX în React 17+ (nu mai este nevoie de importul explicit al lui React)
+    "jsx": "react-jsx", // Adăugăm suport pentru JSX în React 17+ (nu mai este nevoie de importul explicit al lui React)
     "target": "ESNext",
-    "strict": true,  // Opțional, dar recomandat pentru un cod mai sigur
-    "skipLibCheck": true,  // Opțional, dacă vrei să economisești timp la compilare
-    "forceConsistentCasingInFileNames": true  // Opțional, pentru a preveni erorile de majuscule/minuscule
+    "strict": true, // Opțional, dar recomandat pentru un cod mai sigur
+    "skipLibCheck": true, // Opțional, dacă vrei să economisești timp la compilare
+    "forceConsistentCasingInFileNames": true, // Opțional, pentru a preveni erorile de majuscule/minuscule
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["cypress", "src"]
 }

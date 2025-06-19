@@ -2,13 +2,13 @@ import { CopyOutlined, UsergroupAddOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import { useSwitchStore } from "../../features/stores/switchStore";
 import { colors2 } from "../../shared/utils/colors";
 import { CONFIG } from "../../shared/utils/constants";
 import Layout from "../layout/Layout";
-import { useLiveSoket } from "../little_humans/soket";
+import { useLiveSoket } from "../tiny_walkers/soket";
 import IconButton from "./components/IconButton";
 import { Dashboard, useDasboardStore } from "./dashboardStore";
+import { useSwitchStore } from "./store/switchStore";
 // import { CONFIG } from "../../shared/utils/constants";
 
 const DashboardPage = () => {

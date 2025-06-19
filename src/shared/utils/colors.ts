@@ -14,4 +14,5 @@ export const colors2 = {
   error: "#d21a52",
   //
   fp: "#151417",
+  transparent: "transparent",
 };
