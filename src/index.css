@@ -1,3 +1,5 @@
+@tailwind utilities;
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -9,43 +11,65 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  --color-primary: #0070f3;
-
-  --primary: #1e40af; /* blue-800 */
-  --secondary: #53fc18;
-  --background: #ffffff;
-
-  --primary-color: #3490dc;
-
-  /* ----------- */
-  --color-bg: #141517;
-  --color-sec: #35383d;
-  --kick: #53fc18;
-  --color-text: #ffffff;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  /* min-height: 100vh; */
-  background-color: transparent;
-}
+/* Paletă de bază (background + container)
+Element	Culoare aproximativă	Cod HEX
 
-.body-normal {
-  background-color: var(--color-bg);
-}
+Fundal principal	Albastru închis	#0d1117
+--color-bg: #0d1117;
 
-h1,
-h2,
-h3,
-h4,
-p {
-  color: #ffffff;
-}
+Card container	Gri-albastru închis	#1b2431
+--color-container: #1b2431;
 
-label {
-  color: #ffffff;
+Form input	Gri-albastru	#2b3445
+--color-input: #2b3445;
+
+Linie progres bar	Albastru deschis	#2684ff
+--color-progress-bar: #2684ff;
+
+
+💡 Accente
+Element	Culoare aproximativă	Cod HEX
+Buton "Donate" (fundal)	Verde vibrant	#16a34a
+--color-button-donate: #16a34a;
+
+Buton "Donate" (hover)	Verde închis	#15803d
+--color-button-donate-hover: #15803d;
+
+Text albastru (RON)	Albastru intens	#3b82f6
+--color-text-blue: #3b82f6;
+
+Text purple (emoji 💜)	Violet	#a855f7
+--color-text-purple: #a855f7;
+
+
+⚪ Text și iconițe
+Element	Culoare aproximativă	Cod HEX
+Text principal	Gri foarte deschis	#e5e7eb
+--color-text-primary: #e5e7eb;
+
+Text secundar/timp	Gri mediu	#9ca3af
+--color-text-secondary: #9ca3af;
+
+Placeholder input	Gri deschis	#d1d5db
+--color-text-placeholder: #d1d5db;
+
+Text buton	Alb	#ffffff 
+--color-button-text: #ffffff;
+*/
+
+@theme {
+  --color-bg: #0d1117;
+  --color-container: #1b2431;
+  --color-input: #2b3445;
+  --color-progress-bar: #2684ff;
+  --color-button-donate: #16a34a;
+  --color-button-donate-hover: #15803d;
+  --color-text-blue: #3b82f6;
+  --color-text-purple: #a855f7;
+  --color-text-primary: #e5e7eb;
+  --color-text-secondary: #9ca3af;
+  --color-text-placeholder: #d1d5db;
+  --color-button-text: #ffffff;
 }

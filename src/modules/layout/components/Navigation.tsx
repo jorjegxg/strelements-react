@@ -73,8 +73,8 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
             ></span>
           ) : isAuthenticated ? (
             <>
-              {dashboardButton()}
-              <div className="ml-4"></div>
+              {/* {dashboardButton()}
+              <div className="ml-4"></div> */}
               {avatar()}
             </>
           ) : (

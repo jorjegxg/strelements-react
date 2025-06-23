@@ -9,7 +9,6 @@ const FrontPage = () => {
     <>
       <Layout>
         <FirstSection />
-        <div>mama</div>
       </Layout>
     </>
   );
@@ -17,10 +16,23 @@ const FrontPage = () => {
 
 export const FirstSection = () => {
   return (
-    <img
-      src="POZA-PRINCIPALA.png"
-      className="w-full h-screen  object-cover object-center"
-    />
+    <div className="relative">
+      <img
+        src="POZA-PRINCIPALA2.png"
+        className="w-full h-screen  object-cover object-center "
+        alt="main-image"
+      />
+      <div className="absolute inset-0 z-10 flex flex-col justify-center items-start   w-2/5 p-8 rounded-xl space-y-0 px-16">
+        <p className="text-white text-5xl font-bold  text-start">
+          Make Your Stream Unforgettable
+        </p>
+        <br />
+        <p className="text-white font-bold  text-text-secondary text-start">
+          Turn your audience into active participants and boost your income with
+          personalized, animated effects
+        </p>
+      </div>
+    </div>
   );
 };
 

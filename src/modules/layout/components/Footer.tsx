@@ -1,15 +1,10 @@
-import { colors2 } from "../../../shared/utils/colors";
-
 const Footer = () => {
   return (
     <footer
-      className="footer sm:footer-horizontal flex justify-center items-center p-4"
-      style={{ background: colors2.background }}
+      className="footer sm:footer-horizontal flex justify-center items-center p-4 bg-bg"
+      // style={{ background: colors2.background }}
     >
-      <aside
-        className="grid-flow-col items-center "
-        style={{ color: colors2.kick }}
-      >
+      <aside className="grid-flow-col items-center text-text-primary">
         <svg
           width="36"
           height="36"
@@ -31,7 +26,7 @@ const Footer = () => {
 
 const Socials = () => {
   return (
-    <footer className="footer footer-center p-4 bg-neutral text-neutral-content">
+    <footer className="footer footer-center p-4">
       <div className="flex gap-4">
         <a
           href="https://www.instagram.com/strelements/"
