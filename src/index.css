@@ -44,6 +44,7 @@ Text purple (emoji 💜)	Violet	#a855f7
 --color-text-purple: #a855f7;
 
 
+
 ⚪ Text și iconițe
 Element	Culoare aproximativă	Cod HEX
 Text principal	Gri foarte deschis	#e5e7eb
@@ -72,4 +73,5 @@ Text buton	Alb	#ffffff
   --color-text-secondary: #9ca3af;
   --color-text-placeholder: #d1d5db;
   --color-button-text: #ffffff;
+  --color-text-grey: #768383;
 }
