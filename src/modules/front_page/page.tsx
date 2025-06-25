@@ -2,12 +2,14 @@
 
 import { useAppAuthStore } from "@/modules/auth/appAuthStore";
 import GhostButton2 from "@/shared/components/GhostButton2";
+import { useRive } from "@rive-app/react-canvas";
 import { useState } from "react";
 import Layout from "../layout/Layout";
 import { descriptionSections } from "./info";
 
 const FrontPage = () => {
   const isAuthenticated = useAppAuthStore((state) => state.isAuthenticated);
+
   return (
     <>
       <Layout>
@@ -71,27 +73,9 @@ function HowItWorks() {
 
         {/* Conținut */}
         <div className="flex  md:flex-row items-center justify-center gap-12">
-          {/* Card */}
-          <div className="bg-container p-6 rounded-lg shadow-md w-64 text-center h-[200px]"></div>
-
           {descriptionSections.map((section, index) => {
             if (index === stateNumber) {
-              return (
-                <div className="max-w-md text-left">
-                  <h3 className="text-2xl font-semibold mb-2">
-                    {section.title2}
-                  </h3>
-                  <p className="text-color-text-secondary mb-4">
-                    {section.content}
-                  </p>
-                  <button
-                    className="btn rounded-full px-8 bg-color-button-donate hover:bg-color-button-donate-hover text-color-button-text focus:outline focus:ring-2 focus:ring-color-progress-bar"
-                    onClick={() => login()}
-                  >
-                    Try Now
-                  </button>
-                </div>
-              );
+              return FeatureCard(section, login);
             }
           })}
         </div>
@@ -101,3 +85,39 @@ function HowItWorks() {
 }
 
 export default FrontPage;
+function FeatureCard(
+  section: {
+    title: string;
+    title2: string;
+    content: string;
+    pathToAnimation: string;
+  },
+  login: () => Promise<void>
+) {
+  console.log(section);
+  const { rive, RiveComponent } = useRive({
+    src: section.pathToAnimation,
+    stateMachines: "State Machine 1", // Numele mașinii de stare
+    autoplay: true,
+  });
+
+  return (
+    <div className="flex ">
+      {/* Card */}
+      <div className="h-[400px] w-[400px] m-16 ring-2 rounded-2xl text-primary">
+        <RiveComponent />
+      </div>
+
+      <div className="max-w-md text-left flex flex-col justify-center">
+        <h3 className="text-2xl font-semibold mb-2">{section.title2}</h3>
+        <p className="text-color-text-secondary mb-4">{section.content}</p>
+        <button
+          className="btn rounded-full px-8 bg-color-button-donate hover:bg-color-button-donate-hover text-color-button-text focus:outline focus:ring-2 focus:ring-color-progress-bar"
+          onClick={() => login()}
+        >
+          Try Now
+        </button>
+      </div>
+    </div>
+  );
+}
