@@ -1,149 +1,71 @@
-import { CopyOutlined, UsergroupAddOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import { colors2 } from "../../shared/utils/colors";
-import { CONFIG } from "../../shared/utils/constants";
+import { LinkIcon, Settings, User, Zap } from "lucide-react";
+import { useState } from "react";
 import Layout from "../layout/Layout";
-import { useLiveSoket } from "../tiny_walkers/soket";
-import IconButton from "./components/IconButton";
-import { Dashboard, useDasboardStore } from "./dashboardStore";
-import { useSwitchStore } from "./store/switchStore";
-// import { CONFIG } from "../../shared/utils/constants";
+
+const items = [
+  { id: 1, title: "Effects", icon: Zap },
+  { id: 2, title: "Donation Links", icon: LinkIcon },
+  { id: 3, title: "Account", icon: User },
+  { id: 4, title: "Settings", icon: Settings },
+];
 
 const DashboardPage = () => {
-  useLiveSoket();
-  const userId = localStorage.getItem(CONFIG.localStorage.kickUserId);
-  const sessionId = userId;
-  const link = `https://strelements.com/strelements-original/${sessionId}`;
+  const [selectedId, setSelectedId] = useState(items[0].id);
 
-  const navigate = useNavigate();
-  const createSession = () => {
-    navigate(`/strelements-original/${sessionId}/preview`);
-  };
-
-  const isLive = useDasboardStore((state: Dashboard) => state.isLive);
-
-  return (
-    <Layout relative={false}>
-      <div
-        className={`p-8  h-screen`}
-        style={{ background: colors2.background }}
-      >
-        <div className="flex flex-col items-s justify-start space-y-4">
-          {isLive ? (
-            <p
-              className="text-white rounded-md"
-              style={{ background: colors2.error }}
-            >
-              You are live
-            </p>
-          ) : (
-            <p
-              className=" text-white rounded-md"
-              style={{ background: colors2.secondary }}
-            >
-              You are not live
-            </p>
-          )}
-
-          <div className="flex flex-col justify-center items-center ">
-            <EffectComponent textToCopy={link} />
-
-            <button
-              className="btn btn-outline px-6 mt-16"
-              style={{ background: "transparent", color: colors2.text }}
-              onClick={createSession}
-            >
-              See efects in action
-            </button>
-          </div>
-
-          <ToastContainer position="bottom-right" autoClose={2000} />
-        </div>
-      </div>
-    </Layout>
-  );
-};
-
-const EffectComponent = ({ textToCopy }: { textToCopy: string }) => {
-  const navigate = useNavigate();
-
-  const [copied, setCopied] = useState(false);
-  const isActive = useSwitchStore((state) => state.isActive);
-  const isLoading = useSwitchStore((state) => state.isLoading);
-  const toggleState = useSwitchStore((state) => state.toggleState);
-  const getEffectsState = useSwitchStore((state) => state.getEffectsState);
-  const getIsLive = useDasboardStore((state) => state.getIsLive);
-
-  useEffect(() => {
-    getEffectsState();
-    getIsLive();
-  }, []);
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(textToCopy);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-      toast.success("Text copied to clipboard!");
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
-      toast.error("Failed to copy text!");
+  const renderContent = () => {
+    switch (selectedId) {
+      case 1:
+        return <div>Content for Effects</div>;
+      case 2:
+        return <div>Content for Donation Links</div>;
+      case 3:
+        return <div>Content for Account</div>;
+      case 4:
+        return <div>Content for Settings</div>;
+      default:
+        return <div>Select a menu item</div>;
     }
   };
 
   return (
-    <div
-      className="px-8 py-4 flex justify-between items-center w-full ring-2  rounded-lg  shadow-sm space-x-8
-      max-sm:flex-col max-sm:items-start max-sm:space-y-2"
-      style={{ background: colors2.secondary }}
-    >
-      <div className="flex items-center  space-x-2">
-        <IconButton
-          onClick={() => {
-            navigate("/ef1/settings");
-          }}
-        />
-
-        {/* <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)} /> */}
-
-        <UsergroupAddOutlined style={{ color: colors2.text }} />
-        <h2>Tiny Walkers</h2>
-
-        <input
-          type="checkbox"
-          defaultChecked
-          className="toggle"
-          checked={isActive}
-          onChange={toggleState}
-          disabled={isLoading}
-          style={{ color: colors2.text, background: colors2.secondary }}
-        />
-      </div>
-      <div className="flex max-sm:w-full max-sm:justify-between ">
-        <div className="flex flex-col md:flex-row md:flex-wrap space-y-2 md:space-y-0 md:space-x-2 items-center">
-          <p className="max-lg:hidden ">
-            Copy this link into obs browser source:
-          </p>
-          <p
-            className=" p-2 rounded-xl break-all text-wrap max-md:max-w-[250px] text-start"
-            style={{ background: colors2.background }}
-          >
-            {/* {cutString(textToCopy, 18, 1)} */}
-            {textToCopy}
-          </p>
+    <div className="bg-bg">
+      <Layout relative={false}>
+        <div className="drawer lg:drawer-open ">
+          <input id="my-drawer-2" type="checkbox" className="drawer-toggle " />
+          <div className="drawer-side ">
+            <ul className="menu bg-base-200 text-text-primary min-h-full w-80 p-4 bg-third-bg">
+              {items.map((item) => (
+                <li
+                  key={item.id}
+                  className={
+                    selectedId === item.id
+                      ? "bg-primary text-text-primary bg-second-bg rounded-xl"
+                      : ""
+                  }
+                >
+                  <a
+                    href="#!"
+                    onClick={() => setSelectedId(item.id)}
+                    className="flex items-center gap-2"
+                  >
+                    <item.icon />
+                    {item.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="drawer-content flex flex-col items-center justify-center p-4">
+            {renderContent()}
+            <label
+              htmlFor="my-drawer-2"
+              className="btn btn-primary drawer-button lg:hidden mt-4"
+            >
+              Open drawer
+            </label>
+          </div>
         </div>
-        <button
-          onClick={handleCopy}
-          className="p-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors"
-          title={copied ? "Copied!" : "Copy"}
-        >
-          <CopyOutlined
-            style={{ fontSize: "16px", color: copied ? "green" : "black" }}
-          />
-        </button>
-      </div>
+      </Layout>
     </div>
   );
 };

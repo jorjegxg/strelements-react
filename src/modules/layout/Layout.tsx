@@ -11,7 +11,7 @@ const Layout: React.FC<Props> = ({ children, relative = true }) => {
   return (
     <>
       <div
-        className="w-screen flex flex-col justify-between h-screen bg-bg"
+        className="w-screen flex flex-col justify-between  bg-bg"
         // style={{ background: colors2.background }}
       >
         <div>

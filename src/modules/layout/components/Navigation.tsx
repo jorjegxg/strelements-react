@@ -55,13 +55,8 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
               className="w-[50px]"
             />
           </Link>
-          <Link to="/" className="ml-4">
-            <GhostButton
-              text="Effects"
-              onClick={() => {
-                window.location.href = "/effects";
-              }}
-            />{" "}
+          <Link to="/effects" className="ml-4">
+            <GhostButton text="Effects" onClick={() => {}} />{" "}
           </Link>
         </div>
 

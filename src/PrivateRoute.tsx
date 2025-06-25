@@ -8,7 +8,7 @@ type ProtectedRouteProps = {
   children: React.ReactNode;
 };
 
-const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
+export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   useEffect(() => {
     const checkAuth = async () => {
       console.log("Checking auth");
@@ -30,7 +30,7 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
         Logger.log("Token expired");
 
         // Așteaptă 2 secunde înainte de a continua
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        // await new Promise((resolve) => setTimeout(resolve, 2000));
 
         try {
           Logger.log("Is refreshing token");
@@ -39,7 +39,7 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
           Logger.log("No refresh token");
 
           // Așteaptă puțin și înainte de redirect
-          await new Promise((resolve) => setTimeout(resolve, 2000));
+          // await new Promise((resolve) => setTimeout(resolve, 2000));
 
           window.location.href = "/";
         }
@@ -51,5 +51,22 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 
   return children;
 };
+export const ProtectedRouteToDashboard = ({
+  children,
+}: ProtectedRouteProps) => {
+  useEffect(() => {
+    const checkAuth = async () => {
+      const expiresAt = Number(
+        localStorage.getItem(CONFIG.localStorage.kickTokenExpiresAt)
+      );
 
-export default ProtectedRoute;
+      if (expiresAt && Date.now() < expiresAt) {
+        window.location.href = "/dashboard";
+      }
+    };
+
+    checkAuth();
+  }, []);
+
+  return children;
+};

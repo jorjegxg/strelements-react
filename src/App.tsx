@@ -11,7 +11,7 @@ import FrontPage from "./modules/front_page/page";
 import TestPage from "./modules/test/TestPage";
 import StrelementsPage from "./modules/testing/StrelementsPage";
 import Game2 from "./modules/tiny_walkers/Game2";
-import ProtectedRoute from "./PrivateRoute";
+import { ProtectedRoute, ProtectedRouteToDashboard } from "./PrivateRoute";
 
 function App() {
   return (
@@ -19,7 +19,14 @@ function App() {
       <div>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<FrontPage />} />
+            <Route
+              path="/"
+              element={
+                <ProtectedRouteToDashboard>
+                  <FrontPage />
+                </ProtectedRouteToDashboard>
+              }
+            />
             <Route path="/callback" element={<CallbackPage />} />
             <Route path="/login" element={<LoginWithKick />} />
 
