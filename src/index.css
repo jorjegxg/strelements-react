@@ -77,3 +77,11 @@ Text buton	Alb	#ffffff
   --color-third-bg: #282e3f;
   --color-second-bg: #181c26;
 }
+
+p,
+h1,
+h2,
+h3,
+h4 {
+  color: var(--color-text-primary);
+}
