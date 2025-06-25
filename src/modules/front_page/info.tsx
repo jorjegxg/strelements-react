@@ -31,6 +31,9 @@ export const descriptionSections = [
 
 export const phoneSection = {
   title: "Let Your Audience Customize Their Characters",
+  subtitle: "Your audience, their characters — live on your stream",
+  title2: "Let viewers make it theirs",
   content:
     "Viewers can personalize their own characters, boats, or walkers directly from the Strelements Android app. These custom avatars show up live on your stream, making every interaction unique and more engaging.",
+  pathToAnimation: "rive/one_boat_good.riv",
 };

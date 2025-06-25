@@ -5,7 +5,7 @@ import GhostButton2 from "@/shared/components/GhostButton2";
 import { useRive } from "@rive-app/react-canvas";
 import { useState } from "react";
 import Layout from "../layout/Layout";
-import { descriptionSections } from "./info";
+import { descriptionSections, phoneSection } from "./info";
 
 const FrontPage = () => {
   const isAuthenticated = useAppAuthStore((state) => state.isAuthenticated);
@@ -16,6 +16,7 @@ const FrontPage = () => {
         <FirstSection />
         {/* <SecondSection /> */}
         <HowItWorks />
+        <PhoneSection />
       </Layout>
     </>
   );
@@ -46,7 +47,6 @@ export const FirstSection = () => {
 // components/HowItWorks.tsx
 function HowItWorks() {
   const [stateNumber, setStateNumber] = useState(0);
-  const login = useAppAuthStore((state) => state.login);
 
   return (
     <section className="bg-bg text-text-primary px-6 py-12">
@@ -75,7 +75,9 @@ function HowItWorks() {
         <div className="flex  md:flex-row items-center justify-center gap-12">
           {descriptionSections.map((section, index) => {
             if (index === stateNumber) {
-              return FeatureCard(section, login);
+              return (
+                <FeatureCard key={index} section={section} reversed={false} />
+              );
             }
           })}
         </div>
@@ -84,27 +86,30 @@ function HowItWorks() {
   );
 }
 
-export default FrontPage;
-function FeatureCard(
-  section: {
-    title: string;
-    title2: string;
-    content: string;
-    pathToAnimation: string;
-  },
-  login: () => Promise<void>
-) {
-  console.log(section);
+type FeatureSection = {
+  title: string;
+  title2: string;
+  content: string;
+  pathToAnimation: string;
+};
+
+type FeatureCardProps = {
+  section: FeatureSection;
+  reversed: boolean;
+};
+
+function FeatureCard({ section, reversed = false }: FeatureCardProps) {
+  const login = useAppAuthStore((state) => state.login);
   const { rive, RiveComponent } = useRive({
     src: section.pathToAnimation,
     stateMachines: "State Machine 1", // Numele mașinii de stare
     autoplay: true,
   });
-
+  console.log("reversed", reversed);
   return (
-    <div className="flex ">
+    <div className={`flex ${reversed ? "flex-row-reverse" : ""} `}>
       {/* Card */}
-      <div className="h-[400px] w-[400px] m-16 ring-2 rounded-2xl text-primary">
+      <div className="h-[400px] w-[400px] m-16  rounded-2xl text-primary">
         <RiveComponent />
       </div>
 
@@ -121,3 +126,26 @@ function FeatureCard(
     </div>
   );
 }
+
+function PhoneSection() {
+  return (
+    <section className="bg-bg text-text-primary px-6 py-12  bg-second-bg">
+      <div className="max-w-5xl mx-auto text-center">
+        <h2 className="text-3xl font-semibold mb-2">{phoneSection.title}</h2>
+        <p className="text-text-secondary mb-8">{phoneSection.subtitle}</p>
+        <FeatureCard
+          section={{
+            title: phoneSection.title,
+            title2: phoneSection.title2,
+            content: phoneSection.content,
+            pathToAnimation: phoneSection.pathToAnimation,
+          }}
+          reversed={true}
+        />
+        {/* Butoane */}
+      </div>
+    </section>
+  );
+}
+
+export default FrontPage;
