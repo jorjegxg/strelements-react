@@ -8,6 +8,9 @@ import DashboardPage from "./modules/dashboard/DashboardPage";
 import DonationPage from "./modules/donation/page";
 import EffectsStore from "./modules/effects_store/page";
 import FrontPage from "./modules/front_page/page";
+import Failure from "./modules/stripe/FailurePage";
+import StripeCallback from "./modules/stripe/StripeCallback";
+import Success from "./modules/stripe/SuccessPage";
 import TestPage from "./modules/test/TestPage";
 import StrelementsPage from "./modules/testing/StrelementsPage";
 import Game2 from "./modules/tiny_walkers/Game2";
@@ -67,6 +70,9 @@ function App() {
 
             <Route path="/test" element={<TestPage />} />
             <Route path="/donation" element={<DonationPage />} />
+            <Route path="/stripe/success" element={<Success />} />
+            <Route path="/stripe/failure" element={<Failure />} />
+            <Route path="/stripe/callback" element={<StripeCallback />} />
           </Routes>
         </BrowserRouter>
       </div>

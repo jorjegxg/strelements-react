@@ -7,7 +7,7 @@ export const descriptionSections = [
     pathToAnimation: "rive/dollar.riv",
   },
   {
-    title: "Custom Boats",
+    title: "Starting Soon Screens",
     title2: "Let viewers show up on your Starting Soon screen",
     content:
       "Add a fun touch to your Starting Soon scene: viewers’ names and chat messages float across the screen on boats. They can customize their own boats through the Strelements mobile app, making your stream more interactive from the start.",

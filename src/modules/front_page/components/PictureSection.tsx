@@ -2,7 +2,7 @@ export const PictureSection = () => {
   return (
     <div className="relative">
       <img
-        src="POZA-PRINCIPALA2.png"
+        src="POZA-PRINCIPALA2-jpg.jpg"
         className="w-full h-screen  object-cover object-center "
         alt="main-image"
       />

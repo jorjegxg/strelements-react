@@ -12,6 +12,7 @@ export default defineConfig({
       "KICK_CLIENT_SECRET",
       "FRONTEND_URL",
       "WEBSOKET_URL",
+      "STRIPE_CLIENT_ID",
     ]),
   ],
   resolve: {
