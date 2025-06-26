@@ -29,12 +29,15 @@ const DashboardPage = () => {
 
     function DonationSection() {
       return (
-        <GhostButton2
-          text={"Connect with stripe"}
-          onClick={() =>
-            (window.location.href = `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${process.env.STRIPE_CLIENT_ID}&scope=read_write&redirect_uri=${process.env.STRIPE_REDIRECT_URL}`)
-          }
-        />
+        <div>
+          <GhostButton2
+            text={"Connect with stripe"}
+            onClick={() =>
+              (window.location.href = `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${process.env.STRIPE_CLIENT_ID}&scope=read_write&redirect_uri=${process.env.STRIPE_REDIRECT_URL}&state=dashboard`)
+            }
+          />
+          <p className="pt-4">Give us your IBAN securely thru stripe</p>
+        </div>
       );
     }
   };
