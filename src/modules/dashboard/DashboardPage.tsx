@@ -32,7 +32,7 @@ const DashboardPage = () => {
         <GhostButton2
           text={"Connect with stripe"}
           onClick={() =>
-            (window.location.href = `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${process.env.STRIPE_CLIENT_ID}&scope=read_write&redirect_uri=https://strelements.com/stripe/callback`)
+            (window.location.href = `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${process.env.STRIPE_CLIENT_ID}&scope=read_write&redirect_uri=${process.env.STRIPE_REDIRECT_URL}`)
           }
         />
       );

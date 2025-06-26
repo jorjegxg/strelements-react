@@ -13,6 +13,7 @@ export default defineConfig({
       "FRONTEND_URL",
       "WEBSOKET_URL",
       "STRIPE_CLIENT_ID",
+      "STRIPE_REDIRECT_URL",
     ]),
   ],
   resolve: {
