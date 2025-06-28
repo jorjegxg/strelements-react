@@ -47,14 +47,7 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
         style={{ background: relative ? "transparent" : colors2.background }}
       >
         <div className="navbar-start">
-          <Link to="/">
-            <img
-              src={"/logo.svg"}
-              alt="Logo-ul aplicației"
-              style={{ color: colors2.text }}
-              className="w-[50px]"
-            />
-          </Link>
+          {LogoWithLink()}
           {/* <Link to="/effects" className="ml-4">
             <GhostButton text="Effects" onClick={() => {}} />{" "}
           </Link> */}
@@ -63,8 +56,8 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
         <div className="navbar-end">
           {authIsLoading ? (
             <span
-              className="loading loading-spinner loading-xl"
-              style={{ color: colors2.kick }}
+              className="loading loading-spinner loading-xl text-text-primary"
+              // style={{ color: colors2.kick }}
             ></span>
           ) : isAuthenticated ? (
             <>
@@ -119,8 +112,8 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
         </summary>
 
         <ul
-          className="menu dropdown-content bg-base-100 rounded-box z-10 w-52 p-2 shadow-md mt-2  "
-          style={{ background: colors2.kick }}
+          className="bg-second-bg text-text-primary ring-1 menu dropdown-content bg-base-100 rounded-box z-10 w-52 p-2 shadow-md mt-2  "
+          // style={{ background: colors2.kick }}
         >
           {/* <li>
             <div
@@ -147,3 +140,16 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
 };
 
 export default Navigation;
+function LogoWithLink() {
+  const isAuthenticated = useAppAuthStore((state) => state.isAuthenticated);
+  return (
+    <Link to={isAuthenticated ? "/dashboard" : "/"}>
+      <img
+        src={"/logo.svg"}
+        alt="Logo-ul aplicației"
+        style={{ color: colors2.text }}
+        className="w-[50px]"
+      />
+    </Link>
+  );
+}
