@@ -23,7 +23,7 @@ export default function OneEffectPage() {
           </div>
           <div className="pt-4"></div>
           <div>
-            <p>Copy this link into obs</p>
+            <p>Copy this link into obs as browser source</p>
             <CopyableInput
               text={"https://strelements.com/strelements-original/43653464"}
             />

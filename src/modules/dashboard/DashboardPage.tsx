@@ -63,14 +63,14 @@ const DashboardPage = () => {
               ))}
             </ul>
           </div>
-          <div className="drawer-content flex   justify-center p-4">
-            {renderContent()}
+          <div className="drawer-content p-8">
             <label
               htmlFor="my-drawer-2"
               className="btn btn-primary drawer-button lg:hidden mt-4"
             >
-              Open drawer
+              Open dashboard
             </label>
+            {renderContent()}
           </div>
         </div>
         {/* <Footer /> */}

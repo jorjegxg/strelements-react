@@ -116,7 +116,7 @@ const DonationPage = () => {
             <Heart className="w-10 h-10 text-white" />
           </div>
           <h1 className="pl-4 text-4xl md:text-6xl font-bold text-white mb-4">
-            Nectarians' tipping page
+            Nectarian's tipping page
           </h1>
         </div>
 

@@ -45,7 +45,7 @@ export const AddCharacterButton = () => {
 
   return (
     <div className="p-8">
-      <GhostButton text={"Send test user"} onClick={handleMessage} />
+      <GhostButton text={"Test effect"} onClick={handleMessage} />
     </div>
   );
 };
