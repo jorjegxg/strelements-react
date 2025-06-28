@@ -33,15 +33,15 @@ const CharacterSettingsPage = () => {
           🎨 Character Settings
         </h2>
 
-        <div className="min-h-screen w-screen p-6 flex flex-col md:flex-row gap-6  items-start body-normal">
+        <div className="min-h-screen w-screen p-6 flex  md:flex-row gap-6  items-start body-normal">
           {/* Settings Card */}
-          <div className="   p-6 w-full md:w-1/2 space-y-5 ">
+          <div className="   p-6  md:w-1/2 space-y-5 ">
             <div className=" ">
               {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4"> */}
               <div>
-                <label className="block font-medium mb-1">
+                <p className="block font-medium mb-1">
                   📛 Name Background Color
-                </label>
+                </p>
                 ;
                 <input
                   type="color"
@@ -52,9 +52,9 @@ const CharacterSettingsPage = () => {
               </div>
 
               <div>
-                <label className="block font-medium mb-1">
+                <p className="block font-medium mb-1">
                   💬 Message Background Color
-                </label>
+                </p>
                 <input
                   type="color"
                   className="w-full h-10 rounded"
@@ -64,9 +64,7 @@ const CharacterSettingsPage = () => {
               </div>
 
               <div>
-                <label className="block font-medium mb-1">
-                  📝 Message Text Color
-                </label>
+                <p className="block font-medium mb-1">📝 Message Text Color</p>
                 <input
                   type="color"
                   className="w-full h-10 rounded"
@@ -76,9 +74,7 @@ const CharacterSettingsPage = () => {
               </div>
 
               <div className=" ">
-                <label className="block font-medium mb-1">
-                  🔠 Overall Size
-                </label>
+                <p className="block font-medium mb-1">🔠 Overall Size</p>
 
                 <input
                   type="range"
@@ -93,9 +89,7 @@ const CharacterSettingsPage = () => {
               </div>
 
               <div>
-                <label className="block font-medium mb-1">
-                  🔤 Message Text Size
-                </label>
+                <p className="block font-medium mb-1">🔤 Message Text Size</p>
 
                 <input
                   type="range"
@@ -103,16 +97,14 @@ const CharacterSettingsPage = () => {
                   max={2}
                   step={0.1}
                   value={messageSize}
-                  className="range range-neutral w-full"
+                  className="range range-neutral w-full "
                   onChange={(e) => setMessageSize(Number(e.target.value))}
                   style={{ color: colors2.kick, background: colors2.text }}
                 />
               </div>
 
               <div>
-                <label className="block font-medium mb-1">
-                  👤 Name Text Size
-                </label>
+                <p className="block font-medium mb-1">👤 Name Text Size</p>
 
                 <input
                   type="range"

@@ -2,13 +2,16 @@ import { CopyOutlined, UsergroupAddOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import { colors2 } from "../../shared/utils/colors";
-import { CONFIG } from "../../shared/utils/constants";
-import Layout from "../layout/Layout";
-import { useLiveSoket } from "../tiny_walkers/soket";
-import IconButton from "./components/IconButton";
-import { Dashboard, useDasboardStore } from "./dashboardStore";
-import { useSwitchStore } from "./store/switchStore";
+import IconButton from "../modules/dashboard/components/IconButton";
+import {
+  Dashboard,
+  useDasboardStore,
+} from "../modules/dashboard/dashboardStore";
+import { useSwitchStore } from "../modules/dashboard/store/switchStore";
+import Layout from "../modules/layout/Layout";
+import { useLiveSoket } from "../modules/tiny_walkers/soket";
+import { colors2 } from "../shared/utils/colors";
+import { CONFIG } from "../shared/utils/constants";
 // import { CONFIG } from "../../shared/utils/constants";
 
 const DashboardPage = () => {

@@ -5,7 +5,7 @@ import CallbackPage from "./modules/auth/CallbackPage";
 import LoginWithKick from "./modules/auth/LoginWithKick";
 import CharacterSettingsPage from "./modules/dashboard/CharacterSettingsPage";
 import DashboardPage from "./modules/dashboard/DashboardPage";
-import EffectsPage from "./modules/dashboard/pages/EffectsPage";
+import OneEffectPage from "./modules/dashboard/pages/OneEffectPage";
 import DonationPage from "./modules/donation/page";
 import FrontPage from "./modules/front_page/page";
 import Failure from "./modules/stripe/FailurePage";
@@ -49,7 +49,8 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/effects" element={<EffectsPage />} />
+
+            <Route path="/effect/:id" element={<OneEffectPage />} />
             <Route
               path="/ef1/settings"
               element={

@@ -3,7 +3,7 @@ import { useState } from "react";
 import Layout from "../layout/Layout";
 import AccountPage from "./pages/AccountPage";
 import DonationsLinkPage from "./pages/DonationsLinkPage";
-import EffectsPage from "./pages/EffectsPage";
+import { EffectsPage } from "./pages/EffectsPage";
 
 const items = [
   { id: 1, title: "Effects", icon: Zap },
@@ -63,7 +63,7 @@ const DashboardPage = () => {
               ))}
             </ul>
           </div>
-          <div className="drawer-content flex flex-col items-center justify-center p-4">
+          <div className="drawer-content flex   justify-center p-4">
             {renderContent()}
             <label
               htmlFor="my-drawer-2"

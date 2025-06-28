@@ -55,9 +55,9 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
               className="w-[50px]"
             />
           </Link>
-          <Link to="/effects" className="ml-4">
+          {/* <Link to="/effects" className="ml-4">
             <GhostButton text="Effects" onClick={() => {}} />{" "}
-          </Link>
+          </Link> */}
         </div>
 
         <div className="navbar-end">
@@ -84,16 +84,16 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
     </>
   );
 
-  function dashboardButton() {
-    return (
-      <GhostButton
-        text="Try strelements now"
-        onClick={() => {
-          window.location.href = "/dashboard";
-        }}
-      />
-    );
-  }
+  // function dashboardButton() {
+  //   return (
+  //     <GhostButton
+  //       text="Try strelements now"
+  //       onClick={() => {
+  //         window.location.href = "/dashboard";
+  //       }}
+  //     />
+  //   );
+  // }
 
   function loginButton() {
     return (
