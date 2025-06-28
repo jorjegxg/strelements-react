@@ -1,9 +1,8 @@
+import Layout from "@/modules/layout/Layout";
+import { colors2 } from "@/shared/utils/colors";
 import { ShoppingCart } from "lucide-react";
-import { colors2 } from "../../shared/utils/colors";
-import Layout from "../layout/Layout";
-
 //TODO: aici trebuie lucrat
-const EffectsStore = () => {
+const EffectsPage = () => {
   return (
     <Layout relative={false}>
       <div className=" px-32">
@@ -62,4 +61,4 @@ const EffectsStore = () => {
   }
 };
 
-export default EffectsStore;
+export default EffectsPage;

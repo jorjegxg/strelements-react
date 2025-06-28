@@ -1,7 +1,9 @@
-import GhostButton2 from "@/shared/components/GhostButton2";
 import { LinkIcon, Settings, User, Zap } from "lucide-react";
 import { useState } from "react";
 import Layout from "../layout/Layout";
+import AccountPage from "./pages/AccountPage";
+import DonationsLinkPage from "./pages/DonationsLinkPage";
+import SettingsPage from "./pages/SettingsPage";
 
 const items = [
   { id: 1, title: "Effects", icon: Zap },
@@ -18,27 +20,13 @@ const DashboardPage = () => {
       case 1:
         return <p>Content for Effects</p>;
       case 2:
-        return DonationSection();
+        return DonationsLinkPage();
       case 3:
-        return <p>Content for Account</p>;
+        return AccountPage();
       case 4:
-        return <p>Content for Settings</p>;
+        return SettingsPage();
       default:
         return <p>Select a menu item</p>;
-    }
-
-    function DonationSection() {
-      return (
-        <div>
-          <GhostButton2
-            text={"Connect with stripe"}
-            onClick={() =>
-              (window.location.href = `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${process.env.STRIPE_CLIENT_ID}&scope=read_write&redirect_uri=${process.env.STRIPE_REDIRECT_URL}&state=dashboard`)
-            }
-          />
-          <p className="pt-4">Give us your IBAN securely thru stripe</p>
-        </div>
-      );
     }
   };
 

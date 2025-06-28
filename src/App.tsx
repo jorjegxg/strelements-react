@@ -5,8 +5,8 @@ import CallbackPage from "./modules/auth/CallbackPage";
 import LoginWithKick from "./modules/auth/LoginWithKick";
 import CharacterSettingsPage from "./modules/dashboard/CharacterSettingsPage";
 import DashboardPage from "./modules/dashboard/DashboardPage";
+import EffectsPage from "./modules/dashboard/pages/EffectsPage";
 import DonationPage from "./modules/donation/page";
-import EffectsStore from "./modules/effects_store/page";
 import FrontPage from "./modules/front_page/page";
 import Failure from "./modules/stripe/FailurePage";
 import StripeCallback from "./modules/stripe/StripeCallback";
@@ -49,7 +49,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/effects" element={<EffectsStore />} />
+            <Route path="/effects" element={<EffectsPage />} />
             <Route
               path="/ef1/settings"
               element={
