@@ -1,15 +1,15 @@
-import { LinkIcon, Settings, User, Zap } from "lucide-react";
+import { LinkIcon, User, Zap } from "lucide-react";
 import { useState } from "react";
 import Layout from "../layout/Layout";
 import AccountPage from "./pages/AccountPage";
 import DonationsLinkPage from "./pages/DonationsLinkPage";
-import SettingsPage from "./pages/SettingsPage";
+import EffectsPage from "./pages/EffectsPage";
 
 const items = [
   { id: 1, title: "Effects", icon: Zap },
   { id: 2, title: "Donation Links", icon: LinkIcon },
   { id: 3, title: "Account", icon: User },
-  { id: 4, title: "Settings", icon: Settings },
+  // { id: 4, title: "Settings", icon: Settings },
 ];
 
 const DashboardPage = () => {
@@ -18,13 +18,13 @@ const DashboardPage = () => {
   const renderContent = () => {
     switch (selectedId) {
       case 1:
-        return <p>Content for Effects</p>;
+        return EffectsPage();
       case 2:
         return DonationsLinkPage();
       case 3:
         return AccountPage();
-      case 4:
-        return SettingsPage();
+      // case 4:
+      //   return SettingsPage();
       default:
         return <p>Select a menu item</p>;
     }

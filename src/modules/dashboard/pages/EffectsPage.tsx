@@ -1,60 +1,35 @@
-import Layout from "@/modules/layout/Layout";
-import { colors2 } from "@/shared/utils/colors";
-import { ShoppingCart } from "lucide-react";
 //TODO: aici trebuie lucrat
 const EffectsPage = () => {
   return (
-    <Layout relative={false}>
-      <div className=" px-32">
-        <div className="text-white text-4xl  ">Effects store</div>
-        <div className="grid grid-cols-3 p-4">
-          {StoreCard({
-            title: "Tiny walkers",
-            price: "$10",
-            imagePath: "/new/COOL-STREAM.png",
-          })}
-          {StoreCard({
-            title: "Starting soon boats",
-            price: "$5",
-            imagePath: "/boat.jpg",
-          })}
-        </div>
+    <div className="w-full px-32 h-full">
+      <div className="text-white text-4xl  ">Effects store</div>
+      <div className="grid grid-cols-3 p-4 space-x-8">
+        {StoreCard({
+          title: "Tiny walkers",
+          imagePath: "/new/COOL-STREAM.png",
+        })}
+        {StoreCard({
+          title: "Starting soon boats",
+          imagePath: "/boat.jpg",
+        })}
       </div>
-    </Layout>
+    </div>
   );
 
   function StoreCard({
     title,
-    price,
     imagePath,
   }: {
     title: string;
-    price: string;
     imagePath: string;
   }) {
     return (
-      <div className="w-[400px] h-[200px] ">
+      <div className="hover:scale-110 transition-transform duration-300 ease-in-out">
         <div className=" flex justify-center bg-red-300 rounded-2xl">
-          <img
-            className="h-[200px] hover:scale-110 transition-transform duration-300 ease-in-out"
-            src={imagePath}
-          />
+          <img className="h-[200px] " src={imagePath} />
         </div>
         <div className="flex justify-between py-2">
           <h1 className="text-start text-xl ">{title}</h1>
-          <div className="flex space-x-4">
-            <h1 className="text-start text-xl  ">{price}</h1>
-            {/* cart button icon */}
-            <div
-              className=""
-              style={{ color: colors2.text }}
-              onClick={() => {
-                console.log("cart");
-              }}
-            >
-              <ShoppingCart />
-            </div>
-          </div>
         </div>
       </div>
     );
