@@ -7,7 +7,7 @@ function GhostButton({
 }) {
   return (
     <button
-      className={`btn btn-ghost text- hover:bg-transparent text-text-primary `}
+      className={`btn btn-outline text-container   `}
       // style={{ color: colors2.kick, background: colors2.background }}
       onClick={onClick}
     >

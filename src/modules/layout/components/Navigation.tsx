@@ -1,7 +1,7 @@
+import GhostButton2 from "@/shared/components/GhostButton2";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import GhostButton from "../../../shared/components/GhostButton";
 import { colors2 } from "../../../shared/utils/colors";
 import { CONFIG } from "../../../shared/utils/constants";
 import { useAppAuthStore } from "../../auth/appAuthStore";
@@ -90,7 +90,7 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
 
   function loginButton() {
     return (
-      <GhostButton
+      <GhostButton2
         text={"Login"}
         onClick={() => {
           login();

@@ -6,7 +6,7 @@ import LoginWithKick from "./modules/auth/LoginWithKick";
 import CharacterSettingsPage from "./modules/dashboard/CharacterSettingsPage";
 import DashboardPage from "./modules/dashboard/DashboardPage";
 import OneEffectPage from "./modules/dashboard/pages/OneEffectPage";
-import DonationPage from "./modules/donation/page";
+import DonationPage from "./modules/donation/DonationPage";
 import FrontPage from "./modules/front_page/page";
 import Failure from "./modules/stripe/FailurePage";
 import StripeCallback from "./modules/stripe/StripeCallback";
@@ -70,7 +70,7 @@ function App() {
             />
 
             <Route path="/test" element={<TestPage />} />
-            <Route path="/donation" element={<DonationPage />} />
+            <Route path="/donate/nectarian" element={<DonationPage />} />
             <Route path="/stripe/success" element={<Success />} />
             <Route path="/stripe/failure" element={<Failure />} />
             <Route path="/stripe/callback" element={<StripeCallback />} />

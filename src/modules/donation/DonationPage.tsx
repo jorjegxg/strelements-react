@@ -5,7 +5,6 @@ import {
   MessageCircle,
   Star,
   User,
-  Zap,
 } from "lucide-react";
 import useDonationStore from "./donationStore";
 
@@ -105,30 +104,20 @@ const DonationPage = () => {
 
   return (
     <div className="min-h-screen w-screen bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800">
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-emerald-600 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-teal-600 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
-      </div>
-
       <div className="relative z-10 container mx-auto px-4 py-8">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 flex justify-center items-center">
           <div
-            className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-6 shadow-lg"
+            className=" inline-flex items-center justify-center w-20 h-20 rounded-full mb-6 shadow-lg"
             style={{
               background: `linear-gradient(to right, ${colors.primary[500]}, ${colors.primary[700]})`,
             }}
           >
             <Heart className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-            Support the Stream
+          <h1 className="pl-4 text-4xl md:text-6xl font-bold text-white mb-4">
+            Nectarians' tipping page
           </h1>
-          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            Your fans appreciate your work! Help them show their support through
-            donations.
-          </p>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
@@ -281,37 +270,6 @@ const DonationPage = () => {
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* Donation Goal */}
-            <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-6 shadow-2xl border border-white/20">
-              <h3 className="text-xl font-bold text-white mb-4 flex items-center">
-                <Zap
-                  className="mr-2"
-                  style={{ color: colors.secondary[500] }}
-                />
-                Monthly Goal
-              </h3>
-
-              <div className="mb-4">
-                <div className="flex justify-between text-white mb-2">
-                  <span>1,250 RON / 2,000 RON</span>
-                  <span>62.5%</span>
-                </div>
-                <div className="w-full bg-slate-700/50 rounded-full h-3">
-                  <div
-                    className="h-3 rounded-full"
-                    style={{
-                      width: "62.5%",
-                      background: `linear-gradient(to right, ${colors.secondary[500]}, ${colors.secondary[700]})`,
-                    }}
-                  ></div>
-                </div>
-              </div>
-
-              <p className="text-slate-300 text-sm">
-                This month's goal: Upgrade to new equipment for better quality!
-              </p>
             </div>
 
             {/* Top Supporters */}

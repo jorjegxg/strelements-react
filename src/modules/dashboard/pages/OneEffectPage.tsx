@@ -1,5 +1,6 @@
 import Layout from "@/modules/layout/Layout";
 import CopyableInput from "@/shared/components/CopyableInput";
+import GhostButton2 from "@/shared/components/GhostButton2";
 import { useRive } from "@rive-app/react-canvas";
 
 export default function OneEffectPage() {
@@ -20,11 +21,27 @@ export default function OneEffectPage() {
               <span className="pl-5 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400"></span>
             </h1>
           </div>
+          <div className="pt-4"></div>
           <div>
+            <p>Copy this link into obs</p>
             <CopyableInput
               text={"https://strelements.com/strelements-original/43653464"}
             />
-            <p>Copy this link into obs</p>
+            <div className="flex justify-center space-x-4">
+              <GhostButton2
+                text={"Test effect"}
+                onClick={() => {
+                  window.location.href =
+                    "/strelements-original/34324325/isPreview";
+                }}
+              />
+              <GhostButton2
+                text={"Settings"}
+                onClick={() => {
+                  window.location.href = "/ef1/settings";
+                }}
+              />
+            </div>
           </div>
           {/* Rive Animation Section */}
           <div className="flex justify-center mb-12">
