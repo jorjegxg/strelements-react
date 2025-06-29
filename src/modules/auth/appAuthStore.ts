@@ -95,11 +95,6 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
 
       const parsedResponse = userSchema.parse(response);
 
-      localStorage.setItem(
-        CONFIG.localStorage.kickAcessToken,
-        parsedResponse.data.kickAuthData.access_token
-      );
-      //TODO: cred ca trebuie sters
       const expiresIn = parsedResponse.data.kickAuthData.expires_in;
       if (expiresIn !== null) {
         const expiresAt = expiresIn * 1000 + Date.now();
@@ -108,7 +103,12 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
           expiresAt.toString()
         );
       }
-      //
+
+      localStorage.setItem(
+        CONFIG.localStorage.kickAcessToken,
+        parsedResponse.data.kickAuthData.access_token
+      );
+
       localStorage.setItem(
         CONFIG.localStorage.kickRefreshToken,
         parsedResponse.data.kickAuthData.refresh_token
@@ -127,10 +127,10 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
         parsedResponse.data.kickAuthData.access_token
       );
 
+      set({ isAuthenticated: true });
+
       //set status to success thru setStatus
       get().setStatus("success", "Login successful");
-
-      set({ isAuthenticated: true });
     } catch (error) {
       if (error instanceof z.ZodError) {
         error.errors.forEach((issue) => {
