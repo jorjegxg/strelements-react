@@ -26,19 +26,20 @@ interface AppAuthState {
 }
 const userSchema = z.object({
   data: z.object({
-    authData: z.object({
+    kickAuthData: z.object({
       access_token: z.string(),
       expires_in: z.number(),
       refresh_token: z.string(),
       scope: z.string(),
       token_type: z.string(),
     }),
-    user: z.object({
+    kickUser: z.object({
       user_id: z.number(),
       name: z.string(),
       email: z.string().email(),
       profile_picture: z.string().url(),
     }),
+    userId: z.number(),
   }),
 });
 
@@ -96,10 +97,10 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
 
       localStorage.setItem(
         CONFIG.localStorage.kickAcessToken,
-        parsedResponse.data.authData.access_token
+        parsedResponse.data.kickAuthData.access_token
       );
       //TODO: cred ca trebuie sters
-      const expiresIn = parsedResponse.data.authData.expires_in;
+      const expiresIn = parsedResponse.data.kickAuthData.expires_in;
       if (expiresIn !== null) {
         const expiresAt = expiresIn * 1000 + Date.now();
         localStorage.setItem(
@@ -110,20 +111,20 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
       //
       localStorage.setItem(
         CONFIG.localStorage.kickRefreshToken,
-        parsedResponse.data.authData.refresh_token
+        parsedResponse.data.kickAuthData.refresh_token
       );
       localStorage.setItem(
         CONFIG.localStorage.kickUsername,
-        parsedResponse.data.user.name
+        parsedResponse.data.kickUser.name
       );
       localStorage.setItem(
         CONFIG.localStorage.kickUserId,
-        parsedResponse.data.user.user_id.toString()
+        parsedResponse.data.kickUser.user_id.toString()
       );
 
       console.log(
-        "parsedResponse.data.authData.access_token",
-        parsedResponse.data.authData.access_token
+        "parsedResponse.data.kickAuthData.access_token",
+        parsedResponse.data.kickAuthData.access_token
       );
 
       //set status to success thru setStatus

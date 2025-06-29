@@ -30,7 +30,7 @@ const useDasboardStore = create<Dashboard>((set) => ({
       console.log(isLive);
 
       set({ isLive: isLive });
-    } catch (error) {
+    } catch {
       set({ isLive: false });
     }
   },

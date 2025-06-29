@@ -9,7 +9,7 @@ import OneEffectPage from "./modules/dashboard/pages/OneEffectPage";
 import DonationPage from "./modules/donation/DonationPage";
 import FrontPage from "./modules/front_page/page";
 import Failure from "./modules/stripe/FailurePage";
-import StripeCallback from "./modules/stripe/StripeCallback";
+import StripeCallbackPage from "./modules/stripe/StripeCallbackPage";
 import Success from "./modules/stripe/SuccessPage";
 import TestPage from "./modules/test/TestPage";
 import StrelementsPage from "./modules/testing/StrelementsPage";
@@ -73,7 +73,7 @@ function App() {
             <Route path="/donate/nectarian" element={<DonationPage />} />
             <Route path="/stripe/success" element={<Success />} />
             <Route path="/stripe/failure" element={<Failure />} />
-            <Route path="/stripe/callback" element={<StripeCallback />} />
+            <Route path="/stripe/callback" element={<StripeCallbackPage />} />
           </Routes>
         </BrowserRouter>
       </div>

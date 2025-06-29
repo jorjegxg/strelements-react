@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useAppAuthStore } from "./modules/auth/appAuthStore";
 import { refreshAccessToken } from "./shared/utils/autoRefresh";
 import { CONFIG } from "./shared/utils/constants";
 import Logger from "./shared/utils/Logger";
@@ -9,8 +10,10 @@ type ProtectedRouteProps = {
 };
 
 export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
+  const isAuthenticated = useAppAuthStore((state) => state.isAuthenticated);
   useEffect(() => {
     const checkAuth = async () => {
+      console.log("isKickAuthenticated: " + isAuthenticated);
       console.log("Checking auth");
 
       const expiresAt = Number(
@@ -18,8 +21,8 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
       );
 
       Logger.log(
-        "Date: " +
-          new Date(expiresAt).getDay() +
+        "Kick token will expire at date : " +
+          new Date(expiresAt).getDate() +
           " / " +
           new Date(expiresAt).getMonth() +
           " / " +
@@ -54,13 +57,24 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 export const ProtectedRouteToDashboard = ({
   children,
 }: ProtectedRouteProps) => {
+  const isAuthenticated = useAppAuthStore((state) => state.isAuthenticated);
+
   useEffect(() => {
+    console.log("isKickAuthenticated:" + isAuthenticated);
+
     const checkAuth = async () => {
       const expiresAt = Number(
         localStorage.getItem(CONFIG.localStorage.kickTokenExpiresAt)
       );
-
+      if (!expiresAt) {
+        Logger.log("No refresh token found");
+      }
+      if (expiresAt && Date.now() > expiresAt) {
+        Logger.log("Found expired refresh token");
+        await refreshAccessToken();
+      }
       if (expiresAt && Date.now() < expiresAt) {
+        Logger.log("Found the valid refresh token");
         window.location.href = "/dashboard";
       }
     };

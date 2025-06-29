@@ -15,12 +15,12 @@ type FeatureCardProps = {
 
 export function FeatureCard({ section, reversed = false }: FeatureCardProps) {
   const login = useAppAuthStore((state) => state.login);
-  const { rive, RiveComponent } = useRive({
+  const { RiveComponent } = useRive({
     src: section.pathToAnimation,
     stateMachines: "State Machine 1", // Numele mașinii de stare
     autoplay: true,
   });
-  console.log("reversed", reversed);
+
   return (
     <div className={`flex ${reversed ? "flex-row-reverse" : ""} `}>
       {/* Card */}

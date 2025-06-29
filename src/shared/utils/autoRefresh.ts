@@ -50,10 +50,19 @@ async function refreshAccessToken(): Promise<string> {
     CONFIG.localStorage.kickRefreshToken,
     data.refresh_token
   );
+
+  Logger.log("data.expires_in -- " + data.expires_in);
   localStorage.setItem(
     CONFIG.localStorage.kickTokenExpiresAt,
     (Date.now() + data.expires_in * 1000).toString()
   );
+
+  localStorage.getItem(CONFIG.localStorage.kickTokenExpiresAt);
+
+  // const expiresAt = Number(
+  //   localStorage.getItem(CONFIG.localStorage.kickTokenExpiresAt)
+  // );
+  // Logger.log("data.expires_in -- " + new Date(expiresAt).getDate() + new Date(expiresAt).getMonth() );
 
   return data.access_token;
 }
