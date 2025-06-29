@@ -7,6 +7,7 @@ const CONFIG = {
     kickUsername: "kickUsername",
     kickTokenExpiresAt: "kickTokenExpiresAt",
     kickRefreshToken: "kickRefreshToken",
+    appUserId: "appUserId",
   },
   scopes:
     "user:read channel:read channel:write chat:write streamkey:read events:subscribe",

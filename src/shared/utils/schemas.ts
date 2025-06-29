@@ -8,6 +8,11 @@ const refreshTokensSchema = z.object({
   token_type: z.string(),
 });
 
+export const stripePageSchema = z.object({
+  hasConnection: z.boolean(),
+  stripe_user_id: z.string(),
+});
+
 type Character = {
   id: number;
   name: string;

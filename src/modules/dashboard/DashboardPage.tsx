@@ -1,8 +1,9 @@
 import { LinkIcon, User, Zap } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "../layout/Layout";
 import AccountPage from "./pages/AccountPage";
-import DonationsLinkPage from "./pages/DonationsLinkPage";
+import DonationsLinkPage from "./pages/DonationLinkPage/DonationsLinkPage";
+import { useStripeStore } from "./pages/DonationLinkPage/stripeStore";
 import { EffectsPage } from "./pages/EffectsPage";
 
 const items = [
@@ -14,13 +15,22 @@ const items = [
 
 const DashboardPage = () => {
   const [selectedId, setSelectedId] = useState(items[0].id);
+  const isLoading = useStripeStore((state) => state.isLoading);
+  const connection = useStripeStore((state) => state.connection);
+  const getConnectionState = useStripeStore(
+    (state) => state.getConnectionState
+  );
+
+  useEffect(() => {
+    getConnectionState();
+  }, []);
 
   const renderContent = () => {
     switch (selectedId) {
       case 1:
         return EffectsPage();
       case 2:
-        return DonationsLinkPage();
+        return DonationsLinkPage(isLoading, connection);
       case 3:
         return AccountPage();
       // case 4:

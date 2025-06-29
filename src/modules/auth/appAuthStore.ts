@@ -95,6 +95,11 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
 
       const parsedResponse = userSchema.parse(response);
 
+      localStorage.setItem(
+        CONFIG.localStorage.appUserId,
+        parsedResponse.data.userId.toString()
+      );
+
       const expiresIn = parsedResponse.data.kickAuthData.expires_in;
       if (expiresIn !== null) {
         const expiresAt = expiresIn * 1000 + Date.now();
@@ -127,7 +132,7 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
         parsedResponse.data.kickAuthData.access_token
       );
 
-      set({ isAuthenticated: true });
+      get().setAuthenticated(true);
 
       //set status to success thru setStatus
       get().setStatus("success", "Login successful");

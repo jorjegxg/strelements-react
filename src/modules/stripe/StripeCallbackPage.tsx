@@ -1,30 +1,27 @@
+import { CONFIG } from "@/shared/utils/constants";
 import axios from "axios";
 import { useEffect } from "react";
 
 const StripeCallbackPage = () => {
   useEffect(() => {
-    //get fron url
-    const url = new URL(window.location.href);
-    const code = url.searchParams.get("code");
-    const state = url.searchParams.get("state");
+    const check = async () => {
+      const app_user_id: number = Number(
+        localStorage.getItem(CONFIG.localStorage.appUserId)
+      );
 
-    console.log("eadfe");
+      //get fron url
+      const url = new URL(window.location.href);
+      const code = url.searchParams.get("code")!;
 
-    // fetch(`${process.env.BACKEND_URL}/stripe/callback`, {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ name: code, state: state }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data));
-
-    axios.get(`${process.env.BACKEND_URL}/stripe/callback`, {
-      params: {
-        code: code,
-        state: state,
-      },
+      axios.get(`${process.env.BACKEND_URL}/stripe/callback`, {
+        params: {
+          code: code,
+          app_user_id: app_user_id,
+        },
+      });
+    };
+    check().then(() => {
+      window.location.href = "/dashboard";
     });
   });
   return <div>StripeCallback</div>;
