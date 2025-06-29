@@ -21,7 +21,7 @@ interface AppAuthState {
   setAuthenticated: (isAuthenticated: boolean) => void;
 
   getKickAuthToken: () => Promise<void>;
-  login: () => Promise<void>;
+  startLoginWithKick: () => Promise<void>;
   logout: () => Promise<void>;
 }
 const userSchema = z.object({
@@ -55,7 +55,7 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
     set({ status: { name, message } });
   },
 
-  login: async () => {
+  startLoginWithKick: async () => {
     const verifier = generateCodeVerifier();
     const codeChallenge = await generateCodeChallenge(verifier);
 

@@ -14,7 +14,7 @@ type FeatureCardProps = {
 };
 
 export function FeatureCard({ section, reversed = false }: FeatureCardProps) {
-  const login = useAppAuthStore((state) => state.login);
+  const login = useAppAuthStore((state) => state.startLoginWithKick);
   const { RiveComponent } = useRive({
     src: section.pathToAnimation,
     stateMachines: "State Machine 1", // Numele mașinii de stare

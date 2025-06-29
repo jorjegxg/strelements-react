@@ -13,7 +13,7 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
   const isAuthenticated = useAppAuthStore((state) => state.isAuthenticated);
   const setAuthenticated = useAppAuthStore((state) => state.setAuthenticated);
   const logout = useAppAuthStore((state) => state.logout);
-  const login = useAppAuthStore((state) => state.login);
+  const login = useAppAuthStore((state) => state.startLoginWithKick);
   const authIsLoading = useAppAuthStore((state) => state.isLoading);
   const status = useAppAuthStore((state) => state.status);
   const setStatus = useAppAuthStore((state) => state.setStatus);
