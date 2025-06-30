@@ -1,3 +1,4 @@
+import GhostButton2 from "@/shared/components/GhostButton2";
 import { colors2 } from "../../shared/utils/colors";
 import Layout from "../layout/Layout";
 import { useCharacterStore } from "../tiny_walkers/characterStore";
@@ -82,9 +83,8 @@ const CharacterSettingsPage = () => {
                   max={2}
                   step={0.1}
                   value={size}
-                  className="range range-neutral w-full"
+                  className="range range-neutral w-full text-text-purple bg-primary"
                   onChange={(e) => setSize(Number(e.target.value))}
-                  style={{ color: colors2.kick, background: colors2.text }}
                 />
               </div>
 
@@ -97,9 +97,8 @@ const CharacterSettingsPage = () => {
                   max={2}
                   step={0.1}
                   value={messageSize}
-                  className="range range-neutral w-full "
+                  className="range range-neutral w-full text-text-purple bg-primary "
                   onChange={(e) => setMessageSize(Number(e.target.value))}
-                  style={{ color: colors2.kick, background: colors2.text }}
                 />
               </div>
 
@@ -112,15 +111,20 @@ const CharacterSettingsPage = () => {
                   max={2}
                   step={0.1}
                   value={nameSize}
-                  className="range range-neutral w-full"
+                  className="range range-neutral w-full text-text-purple bg-primary"
                   onChange={(e) => setNameSize(Number(e.target.value))}
-                  style={{ color: colors2.kick, background: colors2.text }}
                   defaultValue={nameSize}
                 />
               </div>
             </div>
-            <div>
-              <h3>(Autosaving)</h3>
+            //TODO: buton go back
+            <div className="flex justify-center">
+              <GhostButton2
+                text={"Go Back"}
+                onClick={() => {
+                  window.location.href = "/dashboard";
+                }}
+              />
             </div>
           </div>
 

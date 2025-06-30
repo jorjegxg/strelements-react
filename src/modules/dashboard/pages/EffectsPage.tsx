@@ -3,7 +3,7 @@ export const EffectsPage = () => {
   return (
     <div className="w-full h-full">
       <div className="text-white text-4xl flex justify-center items-center pb-8">
-        Effects store
+        Effects page
       </div>
       {/* <div className="grid 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 space-y-8 justify-items-center align-items-center"> */}
       <div className="grid mic:grid-cols-2 mic2:grid-cols-1 mic3:grid-cols-2 mic4:grid-cols-3 space-y-8 justify-items-center align-items-center">

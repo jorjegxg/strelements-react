@@ -12,10 +12,10 @@ import { JSX } from "react";
 
 export default function StreamerAccountPage(): JSX.Element {
   const streamerInfo = {
-    name: "PixelWarrior",
-    email: "contact@pixelwarrior.gg",
-    phone: "Business inquiries only",
-    location: "Los Angeles, CA",
+    name: "Nectarian",
+    email: "contact@nectarian.gg",
+    phone: "(123) 456-7890",
+    location: "San Francisco, CA",
     occupation: "Professional Streamer & Content Creator",
     company: "",
     platforms: {
@@ -34,7 +34,7 @@ export default function StreamerAccountPage(): JSX.Element {
       <div className="max-w-2xl mx-auto bg-gray-800 rounded-lg shadow-lg p-8 border border-purple-500">
         {/* Header */}
         <div className="flex items-center space-x-4 mb-8">
-          <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center">
+          <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center ">
             <User className="w-8 h-8 text-gray-100" />
           </div>
           <div className=" w-full">

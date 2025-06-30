@@ -18,6 +18,7 @@ const CONFIG = {
   nodeEnv: process.env.NODE_ENV,
   SUCCESS_URL: process.env.SUCCESS_URL!,
   CANCEL_URL: process.env.CANCEL_URL!,
+  FRONTEND_URL: process.env.FRONTEND_URL!,
 };
 
 export { CONFIG };

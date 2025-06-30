@@ -16,6 +16,7 @@ export default defineConfig({
       "STRIPE_REDIRECT_URL",
       "SUCCESS_URL",
       "CANCEL_URL",
+      "FRONTEND_URL",
     ]),
   ],
   resolve: {

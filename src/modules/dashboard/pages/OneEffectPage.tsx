@@ -1,6 +1,7 @@
 import Layout from "@/modules/layout/Layout";
 import CopyableInput from "@/shared/components/CopyableInput";
 import GhostButton2 from "@/shared/components/GhostButton2";
+import { CONFIG } from "@/shared/utils/constants";
 import { useRive } from "@rive-app/react-canvas";
 
 export default function OneEffectPage() {
@@ -25,7 +26,7 @@ export default function OneEffectPage() {
           <div>
             <p>Copy this link into obs as browser source</p>
             <CopyableInput
-              text={"https://strelements.com/strelements-original/43653464"}
+              text={`${CONFIG.FRONTEND_URL}/strelements-original/43653464`}
             />
             <div className="flex justify-center space-x-4">
               <GhostButton2
