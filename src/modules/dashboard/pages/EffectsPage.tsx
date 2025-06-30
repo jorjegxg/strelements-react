@@ -18,13 +18,34 @@ export const EffectsPage = () => {
           id: 2,
         })}
         {StoreCard({
-          title: "Starting soon boats",
-          imagePath: "/boat.jpg",
+          title: "Bubble gum machine",
+          imagePath: "/stock-pics/bubblegum.jpg",
           id: 2,
         })}
         {StoreCard({
-          title: "Starting soon boats",
-          imagePath: "/boat.jpg",
+          title: "Switch gears",
+          imagePath: "/stock-pics/gears.jpg",
+          id: 2,
+        })}
+        {StoreCard({
+          title: "Doggo",
+          imagePath: "/stock-pics/dog.jpg",
+          id: 2,
+        })}
+        {StoreCard({
+          title: "Jets",
+          imagePath: "/stock-pics/plane.jpg",
+          id: 2,
+        })}
+
+        {StoreCard({
+          title: "Donation clouds",
+          imagePath: "/stock-pics/clouds.jpg",
+          id: 2,
+        })}
+        {StoreCard({
+          title: "Speedy",
+          imagePath: "/stock-pics/speed.jpg",
           id: 2,
         })}
       </div>
@@ -41,7 +62,7 @@ export const EffectsPage = () => {
     id: number;
   }) {
     return (
-      <a href={`/effect/${id}`} className="flex justify-center items-center">
+      <a href={`/effect/${id}`} className="flex ">
         <div className="hover:scale-110 transition-transform duration-300 ease-in-out w-[350px]">
           <div className=" flex justify-center bg-red-300 rounded-2xl">
             <img className=" h-[200px]" src={imagePath} />
