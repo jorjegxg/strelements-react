@@ -21,7 +21,7 @@ const StripeCallbackPage = () => {
       });
     };
     check().then(() => {
-      window.location.href = "/dashboard";
+      window.location.href = "/dashboard/";
     });
   });
   return <div>StripeCallback</div>;
