@@ -12,10 +12,10 @@ export default function Success() {
         Your payment has been processed successfully.
       </p>
       <Link
-        to="/"
+        to="/donate/nectarian"
         className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
       >
-        Back to Platform
+        Back to Donations
       </Link>
     </div>
   );

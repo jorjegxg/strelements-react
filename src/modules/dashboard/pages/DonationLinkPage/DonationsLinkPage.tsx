@@ -41,7 +41,7 @@ export default function DonationsLinkPage() {
                 disconnectFromStripe();
               }}
             />
-            <CopyableInput text="https://strelements.com/donate/nectarian" />
+            <CopyableInput text="http://localhost:5173/donate/nectarian" />
           </div>
         ) : (
           <div>

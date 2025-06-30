@@ -88,6 +88,7 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
       const verifier = localStorage.getItem(CONFIG.localStorage.pkceVerifier);
 
       const url = `${process.env.BACKEND_URL}/kick/login/exchange-code`;
+
       const response = await axios.post(url, {
         authorizationCode: code,
         codeVerifier: verifier,

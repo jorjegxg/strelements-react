@@ -78,15 +78,18 @@ const DonationPage = () => {
   const setMessage = useDonationStore((state) => state.setMessage);
   const setIsAnonymous = useDonationStore((state) => state.setIsAnonymous);
   const resetForm = useDonationStore((state) => state.resetForm);
+  const donate = useDonationStore((state) => state.donate);
+  const isLoading = useDonationStore((state) => state.isLoading);
+  const error = useDonationStore((state) => state.error);
 
   const getSelectedAmount = () => {
     return selectedAmount || parseFloat(customAmount) || 0;
   };
 
-  const handleDonate = () => {
+  const handleDonate = async () => {
     const amount = getSelectedAmount();
     if (amount <= 0) {
-      alert("Te rog selectează o sumă validă!");
+      alert("Please select an amount to donate.");
       return;
     }
 
@@ -98,8 +101,9 @@ const DonationPage = () => {
       isAnonymous,
     });
 
-    alert(`Redirecționare către Stripe pentru donația de ${amount} RON`);
-    resetForm();
+    // alert(`Redirecționare către Stripe pentru donația de ${amount} RON`);
+    await donate(amount);
+    // resetForm();
   };
 
   return (
@@ -216,17 +220,27 @@ const DonationPage = () => {
 
               {/* Donate Button */}
               <button
+                disabled={isLoading}
                 onClick={handleDonate}
                 className="w-full text-white font-bold py-4 px-8 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-2"
                 style={{
                   background: `linear-gradient(to right, ${colors.primary[600]}, ${colors.primary[700]})`,
                 }}
               >
-                <Heart className="w-6 h-6" />
-                <span>
-                  Donate{" "}
-                  {getSelectedAmount() > 0 ? `${getSelectedAmount()}` : ""}
-                </span>
+                {isLoading ? (
+                  <span
+                    className="loading loading-spinner loading-xl text-text-primary"
+                    // style={{ color: colors2.kick }}
+                  ></span>
+                ) : (
+                  <>
+                    <Heart className="w-6 h-6" />
+                    <span>
+                      Donate{" "}
+                      {getSelectedAmount() > 0 ? `${getSelectedAmount()}` : ""}
+                    </span>
+                  </>
+                )}
               </button>
 
               <p className="text-center text-slate-400 mt-4 text-sm">

@@ -14,6 +14,8 @@ export default defineConfig({
       "WEBSOKET_URL",
       "STRIPE_CLIENT_ID",
       "STRIPE_REDIRECT_URL",
+      "SUCCESS_URL",
+      "CANCEL_URL",
     ]),
   ],
   resolve: {

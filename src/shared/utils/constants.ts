@@ -16,6 +16,8 @@ const CONFIG = {
   clientId: process.env.KICK_CLIENT_ID!,
   clientSecret: process.env.KICK_CLIENT_SECRET!,
   nodeEnv: process.env.NODE_ENV,
+  SUCCESS_URL: process.env.SUCCESS_URL!,
+  CANCEL_URL: process.env.CANCEL_URL!,
 };
 
 export { CONFIG };
