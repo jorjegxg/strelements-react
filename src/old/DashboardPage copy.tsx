@@ -69,7 +69,7 @@ const DashboardPage = () => {
   );
 };
 
-const EffectComponent = ({ textToCopy }: { textToCopy: string }) => {
+export const EffectComponent = ({ textToCopy }: { textToCopy: string }) => {
   const navigate = useNavigate();
 
   const [copied, setCopied] = useState(false);

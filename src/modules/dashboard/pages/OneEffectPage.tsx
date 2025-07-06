@@ -28,6 +28,7 @@ export default function OneEffectPage() {
             <CopyableInput
               text={`${CONFIG.FRONTEND_URL}/strelements-original/43653464`}
             />
+
             <div className="flex justify-center space-x-4">
               <GhostButton2
                 text={"Test effect"}

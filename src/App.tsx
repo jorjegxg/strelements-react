@@ -7,6 +7,7 @@ import CharacterSettingsPage from "./modules/dashboard/CharacterSettingsPage";
 import DashboardPage from "./modules/dashboard/DashboardPage";
 import OneEffectPage from "./modules/dashboard/pages/OneEffectPage";
 import DonationPage from "./modules/donation/DonationPage";
+import RainPage from "./modules/effects/rain/RainPage";
 import FrontPage from "./modules/front_page/page";
 import StripeCallbackPage from "./modules/stripe/StripeCallbackPage";
 import Failure from "./modules/stripe/StripeCanceledPage";
@@ -74,6 +75,7 @@ function App() {
             <Route path="/stripe/success" element={<Success />} />
             <Route path="/stripe/failure" element={<Failure />} />
             <Route path="/stripe/callback" element={<StripeCallbackPage />} />
+            <Route path="/rain" element={<RainPage />} />
           </Routes>
         </BrowserRouter>
       </div>
