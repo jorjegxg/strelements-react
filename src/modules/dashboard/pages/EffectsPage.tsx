@@ -12,42 +12,6 @@ export const EffectsPage = () => {
           imagePath: "/new/COOL-STREAM.png",
           id: 1,
         })}
-        {StoreCard({
-          title: "Starting soon boats",
-          imagePath: "/boat.jpg",
-          id: 2,
-        })}
-        {StoreCard({
-          title: "Bubble gum machine",
-          imagePath: "/stock-pics/bubblegum.jpg",
-          id: 2,
-        })}
-        {StoreCard({
-          title: "Switch gears",
-          imagePath: "/stock-pics/gears.jpg",
-          id: 2,
-        })}
-        {StoreCard({
-          title: "Doggo",
-          imagePath: "/stock-pics/dog.jpg",
-          id: 2,
-        })}
-        {StoreCard({
-          title: "Jets",
-          imagePath: "/stock-pics/plane.jpg",
-          id: 2,
-        })}
-
-        {StoreCard({
-          title: "Donation clouds",
-          imagePath: "/stock-pics/clouds.jpg",
-          id: 2,
-        })}
-        {StoreCard({
-          title: "Speedy",
-          imagePath: "/stock-pics/speed.jpg",
-          id: 2,
-        })}
       </div>
     </div>
   );

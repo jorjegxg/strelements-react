@@ -7,8 +7,9 @@ import {
 } from "../../shared/utils/auth_functions";
 import { api } from "../../shared/utils/autoRefresh";
 import { CONFIG } from "../../shared/utils/constants";
+import { KickUser, kickUserSchema } from "./schema";
 
-interface AppAuthState {
+interface KickAuthState {
   error?: string;
   isLoading: boolean;
   isAuthenticated: boolean;
@@ -24,26 +25,8 @@ interface AppAuthState {
   startLoginWithKick: () => Promise<void>;
   logout: () => Promise<void>;
 }
-const userSchema = z.object({
-  data: z.object({
-    kickAuthData: z.object({
-      access_token: z.string(),
-      expires_in: z.number(),
-      refresh_token: z.string(),
-      scope: z.string(),
-      token_type: z.string(),
-    }),
-    kickUser: z.object({
-      user_id: z.number(),
-      name: z.string(),
-      email: z.string().email(),
-      profile_picture: z.string().url(),
-    }),
-    userId: z.number(),
-  }),
-});
 
-export const useAppAuthStore = create<AppAuthState>((set, get) => ({
+export const useKickAuthStore = create<KickAuthState>((set, get) => ({
   isAuthenticated: false,
   isLoading: false,
   error: "",
@@ -94,44 +77,9 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
         codeVerifier: verifier,
       });
 
-      const parsedResponse = userSchema.parse(response);
+      const parsedResponse = kickUserSchema.parse(response);
 
-      localStorage.setItem(
-        CONFIG.localStorage.appUserId,
-        parsedResponse.data.userId.toString()
-      );
-
-      const expiresIn = parsedResponse.data.kickAuthData.expires_in;
-      if (expiresIn !== null) {
-        const expiresAt = expiresIn * 1000 + Date.now();
-        localStorage.setItem(
-          CONFIG.localStorage.kickTokenExpiresAt,
-          expiresAt.toString()
-        );
-      }
-
-      localStorage.setItem(
-        CONFIG.localStorage.kickAcessToken,
-        parsedResponse.data.kickAuthData.access_token
-      );
-
-      localStorage.setItem(
-        CONFIG.localStorage.kickRefreshToken,
-        parsedResponse.data.kickAuthData.refresh_token
-      );
-      localStorage.setItem(
-        CONFIG.localStorage.kickUsername,
-        parsedResponse.data.kickUser.name
-      );
-      localStorage.setItem(
-        CONFIG.localStorage.kickUserId,
-        parsedResponse.data.kickUser.user_id.toString()
-      );
-
-      console.log(
-        "parsedResponse.data.kickAuthData.access_token",
-        parsedResponse.data.kickAuthData.access_token
-      );
+      takeVariablesToSharedPrefs(parsedResponse);
 
       get().setAuthenticated(true);
 
@@ -180,3 +128,40 @@ export const useAppAuthStore = create<AppAuthState>((set, get) => ({
     }
   },
 }));
+function takeVariablesToSharedPrefs(parsedResponse: KickUser) {
+  localStorage.setItem(
+    CONFIG.localStorage.appUserId,
+    parsedResponse.data.userId.toString()
+  );
+
+  const expiresIn = parsedResponse.data.kickAuthData.expires_in;
+  if (expiresIn !== null) {
+    const expiresAt = expiresIn * 1000 + Date.now();
+    localStorage.setItem(
+      CONFIG.localStorage.kickTokenExpiresAt,
+      expiresAt.toString()
+    );
+  }
+
+  localStorage.setItem(
+    CONFIG.localStorage.kickAcessToken,
+    parsedResponse.data.kickAuthData.access_token
+  );
+
+  localStorage.setItem(
+    CONFIG.localStorage.kickRefreshToken,
+    parsedResponse.data.kickAuthData.refresh_token
+  );
+  localStorage.setItem(
+    CONFIG.localStorage.kickUsername,
+    parsedResponse.data.kickUser.name
+  );
+  localStorage.setItem(
+    CONFIG.localStorage.kickUserId,
+    parsedResponse.data.kickUser.user_id.toString()
+  );
+  localStorage.setItem(
+    CONFIG.localStorage.kickEmail,
+    parsedResponse.data.kickUser.email
+  );
+}

@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import { colors2 } from "../../shared/utils/colors";
-import { useAppAuthStore } from "./appAuthStore";
+import { useKickAuthStore } from "./KickAuthStore";
 
-const CallbackPage: React.FC = () => {
-  const userLogin = useAppAuthStore((state) => state.getKickAuthToken);
-  const error = useAppAuthStore((state) => state.error);
+const KickCallbackPage: React.FC = () => {
+  const userLogin = useKickAuthStore((state) => state.getKickAuthToken);
+  const error = useKickAuthStore((state) => state.error);
   const navigate = useNavigate();
-  const isAuthenticated = useAppAuthStore((state) => state.isAuthenticated);
+  const isAuthenticated = useKickAuthStore((state) => state.isAuthenticated);
 
   const notify = (message: string) =>
     toast.error(`❌ ${message}`, {
@@ -46,4 +46,4 @@ const CallbackPage: React.FC = () => {
   );
 };
 
-export default CallbackPage;
+export default KickCallbackPage;

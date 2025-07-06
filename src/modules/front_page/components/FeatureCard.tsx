@@ -1,4 +1,4 @@
-import { useAppAuthStore } from "@/modules/auth/appAuthStore";
+import { useKickAuthStore } from "@/modules/auth/KickAuthStore";
 import { useRive } from "@rive-app/react-canvas";
 
 type FeatureSection = {
@@ -14,7 +14,7 @@ type FeatureCardProps = {
 };
 
 export function FeatureCard({ section, reversed = false }: FeatureCardProps) {
-  const login = useAppAuthStore((state) => state.startLoginWithKick);
+  const login = useKickAuthStore((state) => state.startLoginWithKick);
   const { RiveComponent } = useRive({
     src: section.pathToAnimation,
     stateMachines: "State Machine 1", // Numele mașinii de stare

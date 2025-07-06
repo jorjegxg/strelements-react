@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import "./index.css";
-import CallbackPage from "./modules/auth/CallbackPage";
+import KickCallbackPage from "./modules/auth/KickCallbackPage";
 import LoginWithKick from "./modules/auth/LoginWithKick";
 import CharacterSettingsPage from "./modules/dashboard/CharacterSettingsPage";
 import DashboardPage from "./modules/dashboard/DashboardPage";
@@ -31,7 +31,7 @@ function App() {
                 </ProtectedRouteToDashboard>
               }
             />
-            <Route path="/callback" element={<CallbackPage />} />
+            <Route path="/callback" element={<KickCallbackPage />} />
             <Route path="/login" element={<LoginWithKick />} />
 
             <Route

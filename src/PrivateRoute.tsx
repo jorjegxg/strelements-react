@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAppAuthStore } from "./modules/auth/appAuthStore";
+import { useKickAuthStore } from "./modules/auth/KickAuthStore";
 import { refreshAccessToken } from "./shared/utils/autoRefresh";
 import { CONFIG } from "./shared/utils/constants";
 import Logger from "./shared/utils/Logger";
@@ -10,7 +10,7 @@ type ProtectedRouteProps = {
 };
 
 export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const isAuthenticated = useAppAuthStore((state) => state.isAuthenticated);
+  const isAuthenticated = useKickAuthStore((state) => state.isAuthenticated);
   useEffect(() => {
     const checkAuth = async () => {
       console.log("isKickAuthenticated: " + isAuthenticated);
@@ -57,7 +57,7 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 export const ProtectedRouteToDashboard = ({
   children,
 }: ProtectedRouteProps) => {
-  const isAuthenticated = useAppAuthStore((state) => state.isAuthenticated);
+  const isAuthenticated = useKickAuthStore((state) => state.isAuthenticated);
 
   useEffect(() => {
     console.log("isKickAuthenticated:" + isAuthenticated);

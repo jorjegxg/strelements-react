@@ -4,19 +4,19 @@ import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { colors2 } from "../../../shared/utils/colors";
 import { CONFIG } from "../../../shared/utils/constants";
-import { useAppAuthStore } from "../../auth/appAuthStore";
+import { useKickAuthStore } from "../../auth/KickAuthStore";
 
 type Props = {
   relative?: boolean;
 };
 const Navigation: React.FC<Props> = ({ relative = true }) => {
-  const isAuthenticated = useAppAuthStore((state) => state.isAuthenticated);
-  const setAuthenticated = useAppAuthStore((state) => state.setAuthenticated);
-  const logout = useAppAuthStore((state) => state.logout);
-  const login = useAppAuthStore((state) => state.startLoginWithKick);
-  const authIsLoading = useAppAuthStore((state) => state.isLoading);
-  const status = useAppAuthStore((state) => state.status);
-  const setStatus = useAppAuthStore((state) => state.setStatus);
+  const isAuthenticated = useKickAuthStore((state) => state.isAuthenticated);
+  const setAuthenticated = useKickAuthStore((state) => state.setAuthenticated);
+  const logout = useKickAuthStore((state) => state.logout);
+  const login = useKickAuthStore((state) => state.startLoginWithKick);
+  const authIsLoading = useKickAuthStore((state) => state.isLoading);
+  const status = useKickAuthStore((state) => state.status);
+  const setStatus = useKickAuthStore((state) => state.setStatus);
 
   useEffect(() => {
     if (status.name === "error") {
@@ -141,7 +141,7 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
 
 export default Navigation;
 function LogoWithLink() {
-  const isAuthenticated = useAppAuthStore((state) => state.isAuthenticated);
+  const isAuthenticated = useKickAuthStore((state) => state.isAuthenticated);
   return (
     <Link to={isAuthenticated ? "/dashboard" : "/"}>
       <img

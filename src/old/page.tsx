@@ -1,9 +1,9 @@
 // import { colors } from "../../shared/utils/colors";
 
-import { useAppAuthStore } from "@/modules/auth/appAuthStore";
+import { useKickAuthStore } from "@/modules/auth/KickAuthStore";
 
 const Deprecated_FrontPage = () => {
-  const isAuthenticated = useAppAuthStore((state) => state.isAuthenticated);
+  const isAuthenticated = useKickAuthStore((state) => state.isAuthenticated);
   return <>mama</>;
 };
 

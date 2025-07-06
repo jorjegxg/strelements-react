@@ -4,10 +4,11 @@ const CONFIG = {
     pkceVerifier: "pkceVerifier",
     kickUserId: "kickUserId",
     profilePicture: "profilePicture",
-    kickUsername: "kickUsername",
     kickTokenExpiresAt: "kickTokenExpiresAt",
     kickRefreshToken: "kickRefreshToken",
     appUserId: "appUserId",
+    kickUsername: "kickUsername",
+    kickEmail: "kickEmail",
   },
   scopes:
     "user:read channel:read channel:write chat:write streamkey:read events:subscribe",
