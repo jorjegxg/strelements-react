@@ -26,6 +26,7 @@ const CharacterSettingsPage = () => {
   const size = useCharacterStore((state) => state.size);
   const messageSize = useCharacterStore((state) => state.messageSize);
   const nameSize = useCharacterStore((state) => state.nameSize);
+  const updateInDb = useCharacterStore((state) => state.updateInDb);
 
   return (
     <Layout>
@@ -36,14 +37,14 @@ const CharacterSettingsPage = () => {
 
         <div className="min-h-screen w-screen p-6 flex  md:flex-row gap-6  items-start body-normal">
           {/* Settings Card */}
-          <div className="   p-6  md:w-1/2 space-y-5 ">
+          <div className="  p-6  md:w-1/2 space-y-5 ">
             <div className=" ">
               {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4"> */}
               <div>
                 <p className="block font-medium mb-1">
                   📛 Name Background Color
                 </p>
-                ;
+
                 <input
                   type="color"
                   className="w-full h-10 rounded"
@@ -120,9 +121,9 @@ const CharacterSettingsPage = () => {
             //TODO: buton go back
             <div className="flex justify-center">
               <GhostButton2
-                text={"Go Back"}
+                text={"Update"}
                 onClick={() => {
-                  window.location.href = "/dashboard";
+                  updateInDb("tiny-walkers");
                 }}
               />
             </div>
