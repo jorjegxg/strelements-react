@@ -3,13 +3,25 @@ import CopyableInput from "@/shared/components/CopyableInput";
 import GhostButton2 from "@/shared/components/GhostButton2";
 import { CONFIG } from "@/shared/utils/constants";
 import { useRive } from "@rive-app/react-canvas";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export default function OneEffectPage() {
+  //url params:
+
+  const params = useParams();
+
+  console.log(params.name);
+
   const { RiveComponent } = useRive({
     src: "/rive/tiny-walkers.riv",
     stateMachines: "State Machine 1", // Numele mașinii de stare
     autoplay: true,
   });
+  //TODO: aici sa
+  useEffect(() => {
+    const kickId = localStorage.getItem(CONFIG.localStorage.kickUserId);
+  }, []);
 
   return (
     <Layout>
@@ -18,23 +30,23 @@ export default function OneEffectPage() {
           {/* Title Section */}
           <div className="text-center mb-4">
             <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight">
-              Tiny Walkers
-              <span className="pl-5 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400"></span>
+              <span className="pl-5 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
+                Tiny Walkers
+              </span>
             </h1>
           </div>
           <div className="pt-4"></div>
           <div>
             <p>Copy this link into obs as browser source</p>
             <CopyableInput
-              text={`${CONFIG.FRONTEND_URL}/strelements-original/43653464`}
+              text={`${CONFIG.FRONTEND_URL}/${params.name}/43653464`}
             />
 
             <div className="flex justify-center space-x-4">
               <GhostButton2
                 text={"Test effect"}
                 onClick={() => {
-                  window.location.href =
-                    "/strelements-original/34324325/isPreview";
+                  window.location.href = `/${params.name}/34324325/isPreview`;
                 }}
               />
               <GhostButton2

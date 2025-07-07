@@ -51,7 +51,7 @@ function App() {
               }
             />
 
-            <Route path="/effect/:id" element={<OneEffectPage />} />
+            <Route path="/effect/:name" element={<OneEffectPage />} />
             <Route
               path="/ef1/settings"
               element={
@@ -62,13 +62,10 @@ function App() {
             />
 
             <Route
-              path="/strelements-original/:sessionId/:isPreview"
+              path="/tiny-walkers/:sessionId/:isPreview"
               element={<Game2 />}
             />
-            <Route
-              path="/strelements-original/:sessionId"
-              element={<Game2 />}
-            />
+            <Route path="/tiny-walkers/:sessionId" element={<Game2 />} />
 
             <Route path="/test" element={<TestPage />} />
             <Route path="/donate/nectarian" element={<DonationPage />} />

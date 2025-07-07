@@ -18,11 +18,11 @@ const DashboardPage = () => {
   useLiveSoket();
   const userId = localStorage.getItem(CONFIG.localStorage.kickUserId);
   const sessionId = userId;
-  const link = `https://strelements.com/strelements-original/${sessionId}`;
+  const link = `https://strelements.com/tiny-walkers/${sessionId}`;
 
   const navigate = useNavigate();
   const createSession = () => {
-    navigate(`/strelements-original/${sessionId}/preview`);
+    navigate(`/tiny-walkers/${sessionId}/preview`);
   };
 
   const isLive = useDasboardStore((state: Dashboard) => state.isLive);
