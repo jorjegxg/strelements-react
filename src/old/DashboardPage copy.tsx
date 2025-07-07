@@ -105,7 +105,7 @@ export const EffectComponent = ({ textToCopy }: { textToCopy: string }) => {
       <div className="flex items-center  space-x-2">
         <IconButton
           onClick={() => {
-            navigate("/ef1/settings");
+            navigate("/tiny-walkers/settings");
           }}
         />
 

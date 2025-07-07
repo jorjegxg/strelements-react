@@ -53,7 +53,7 @@ function App() {
 
             <Route path="/effect/:name" element={<OneEffectPage />} />
             <Route
-              path="/ef1/settings"
+              path="/tiny-walkers/settings"
               element={
                 <ProtectedRoute>
                   <CharacterSettingsPage />

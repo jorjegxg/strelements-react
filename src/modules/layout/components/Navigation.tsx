@@ -1,4 +1,5 @@
 import GhostButton2 from "@/shared/components/GhostButton2";
+import { MySpinner } from "@/shared/components/Spinner";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
@@ -9,6 +10,7 @@ import { useKickAuthStore } from "../../auth/KickAuthStore";
 type Props = {
   relative?: boolean;
 };
+
 const Navigation: React.FC<Props> = ({ relative = true }) => {
   const isAuthenticated = useKickAuthStore((state) => state.isAuthenticated);
   const setAuthenticated = useKickAuthStore((state) => state.setAuthenticated);
@@ -55,10 +57,7 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
 
         <div className="navbar-end">
           {authIsLoading ? (
-            <span
-              className="loading loading-spinner loading-xl text-text-primary"
-              // style={{ color: colors2.kick }}
-            ></span>
+            <MySpinner />
           ) : isAuthenticated ? (
             <>
               {/* {dashboardButton()}
