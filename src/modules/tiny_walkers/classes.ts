@@ -42,12 +42,26 @@ export class TinyWalkersSettings {
     ];
   }
 
-  getFromArray(array: string[]) {
-    this.nameBackgroundColor = array[0];
-    this.messageBackgroundColor = array[1];
-    this.messageColor = array[2];
-    this.size = Number(array[3]);
-    this.messageSize = Number(array[4]);
-    this.nameSize = Number(array[5]);
+  static getFromArray(arr: string[]): TinyWalkersSettings {
+    if (!Array.isArray(arr) || arr.length !== 6) {
+      throw new Error("Settings array must have exactly 6 elements");
+    }
+
+    const [
+      nameBackgroundColor,
+      messageBackgroundColor,
+      messageColor,
+      size,
+      messageSize,
+      nameSize,
+    ] = arr;
+    return new TinyWalkersSettings({
+      nameBackgroundColor,
+      messageBackgroundColor,
+      messageColor,
+      size: Number(size),
+      messageSize: Number(messageSize),
+      nameSize: Number(nameSize),
+    });
   }
 }

@@ -1,4 +1,5 @@
 import GhostButton2 from "@/shared/components/GhostButton2";
+import { useEffect } from "react";
 import { colors2 } from "../../shared/utils/colors";
 import Layout from "../layout/Layout";
 import { useCharacterStore } from "../tiny_walkers/characterStore";
@@ -27,6 +28,13 @@ const CharacterSettingsPage = () => {
   const messageSize = useCharacterStore((state) => state.messageSize);
   const nameSize = useCharacterStore((state) => state.nameSize);
   const updateInDb = useCharacterStore((state) => state.updateInDb);
+  const getEffectSettings = useCharacterStore(
+    (state) => state.getEffectSettings
+  );
+
+  useEffect(() => {
+    getEffectSettings("tiny-walkers");
+  }, []);
 
   return (
     <Layout>

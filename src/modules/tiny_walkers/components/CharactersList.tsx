@@ -24,8 +24,8 @@ export const CharacterList = () => {
   Logger.log(
     " size " + size + " messageSize " + messageSize + " nameSize " + nameSize
   );
-  return <>{characters.map((char) => Ch(char))}</>;
 
+  return <>{characters.map((char) => Ch(char))}</>;
   function Ch(char: Character) {
     return (
       <div

@@ -5,6 +5,7 @@ import { CONFIG } from "@/shared/utils/constants";
 import axios from "axios";
 import { Character } from "../../shared/utils/schemas";
 import { TinyWalkersSettings } from "./classes";
+import { CharacterSchema } from "./schema";
 
 const timeForCharacter = 13 * 1000;
 const timeForChat = 6 * 1000;
@@ -38,6 +39,8 @@ interface Store extends PersistentSettings, TemporaryState {
   moveCharactersRandomly: () => void;
 
   updateInDb: (effectName: string) => void;
+  getEffectSettings: (effectName: string) => void;
+  getEffectSettings2: (effectName: string, platformId: number) => void;
 }
 
 const getEmoji = (name: string) => {
@@ -140,6 +143,61 @@ export const useCharacterStore = create<Store>()(
           set({ timers: restTimers });
         }
       },
+      getEffectSettings: async (effectName: string) => {
+        try {
+          const app_user_id = Number(
+            localStorage.getItem(CONFIG.localStorage.appUserId)
+          );
+          const response = await axios.get(
+            `${process.env.BACKEND_URL}/effect/settings?app_user_id=${app_user_id}&effect_name=${effectName}`
+          );
+
+          const parsedResponse = CharacterSchema.safeParse(response.data);
+          console.log(response.data);
+
+          const effectSettings = TinyWalkersSettings.getFromArray(
+            parsedResponse.data?.settings!
+          );
+          set({
+            nameBackgroundColor: effectSettings.nameBackgroundColor,
+            messageBackgroundColor: effectSettings.messageBackgroundColor,
+            messageColor: effectSettings.messageColor,
+            size: effectSettings.size,
+            messageSize: effectSettings.messageSize,
+            nameSize: effectSettings.nameSize,
+          });
+        } catch (error) {
+          console.error("Eroare la preluarea datelor:", error);
+        }
+      },
+
+      getEffectSettings2: async (effectName: string, platformId: number) => {
+        try {
+          const app_user_id = Number(
+            localStorage.getItem(CONFIG.localStorage.appUserId)
+          );
+          const response = await axios.get(
+            `${process.env.BACKEND_URL}/effect/settings/platform?platform_id=${platformId}&effect_name=${effectName}`
+          );
+
+          const parsedResponse = CharacterSchema.safeParse(response.data);
+          console.log(response.data);
+
+          const effectSettings = TinyWalkersSettings.getFromArray(
+            parsedResponse.data?.settings!
+          );
+          set({
+            nameBackgroundColor: effectSettings.nameBackgroundColor,
+            messageBackgroundColor: effectSettings.messageBackgroundColor,
+            messageColor: effectSettings.messageColor,
+            size: effectSettings.size,
+            messageSize: effectSettings.messageSize,
+            nameSize: effectSettings.nameSize,
+          });
+        } catch (error) {
+          console.error("Eroare la preluarea datelor:", error);
+        }
+      },
 
       updateInDb: async (effectName: string) => {
         try {
@@ -160,7 +218,7 @@ export const useCharacterStore = create<Store>()(
           });
 
           const response = await axios.put(
-            `${process.env.BACKEND_URL}/tiny-walkers/settings`,
+            `${process.env.BACKEND_URL}/effect/settings`,
             {
               app_user_id: app_user_id,
               effect_name: effectName,
