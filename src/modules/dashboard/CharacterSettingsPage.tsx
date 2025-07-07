@@ -28,6 +28,7 @@ const CharacterSettingsPage = () => {
   const messageSize = useCharacterStore((state) => state.messageSize);
   const nameSize = useCharacterStore((state) => state.nameSize);
   const updateInDb = useCharacterStore((state) => state.updateInDb);
+  const isLoading = useCharacterStore((state) => state.isLoading);
   const getEffectSettings = useCharacterStore(
     (state) => state.getEffectSettings
   );
@@ -128,12 +129,15 @@ const CharacterSettingsPage = () => {
             </div>
             //TODO: buton go back
             <div className="flex justify-center">
-              <GhostButton2
-                text={"Update"}
-                onClick={() => {
-                  updateInDb("tiny-walkers");
-                }}
-              />
+              {
+                <GhostButton2
+                  isLoading={isLoading}
+                  text={"Update"}
+                  onClick={() => {
+                    updateInDb("tiny-walkers");
+                  }}
+                />
+              }
             </div>
           </div>
 

@@ -24,6 +24,8 @@ interface TemporaryState {
   characters: Character[];
   timers: Record<number, ReturnType<typeof setTimeout>>;
   messageTimers: Record<number, ReturnType<typeof setTimeout>>;
+  isLoading: boolean;
+  error: string;
 }
 
 interface Store extends PersistentSettings, TemporaryState {
@@ -67,6 +69,8 @@ export const useCharacterStore = create<Store>()(
       setSize: (size) => set({ size }),
       setMessageSize: (size) => set({ messageSize: size }),
       setNameSize: (textSize) => set({ nameSize: textSize }),
+      isLoading: false,
+      error: "",
 
       lastZIndex: 0,
       characters: [],
@@ -201,6 +205,9 @@ export const useCharacterStore = create<Store>()(
 
       updateInDb: async (effectName: string) => {
         try {
+          set({
+            isLoading: true,
+          });
           ////////////////////////////////////////////////////////////////////////////////////////////////////////////
           const app_user_id = Number(
             localStorage.getItem(CONFIG.localStorage.appUserId)
@@ -227,7 +234,14 @@ export const useCharacterStore = create<Store>()(
           );
 
           console.log(response.data);
+          set({
+            isLoading: false,
+          });
         } catch (error) {
+          set({
+            isLoading: false,
+            error: "An error occurred while updating data",
+          });
           console.error("Eroare la actualizarea datelor:", error);
         }
       },
