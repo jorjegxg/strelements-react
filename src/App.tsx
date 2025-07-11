@@ -1,15 +1,21 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import LoginWithKick from "./features/login/LoginWithKick";
-import StrelementsPage from "./features/StrelementsPage";
 import "./index.css";
-import CallbackPage from "./modules/auth/CallbackPage";
+import KickCallbackPage from "./modules/auth/KickCallbackPage";
+import LoginWithKick from "./modules/auth/LoginWithKick";
 import CharacterSettingsPage from "./modules/dashboard/CharacterSettingsPage";
 import DashboardPage from "./modules/dashboard/DashboardPage";
+import OneEffectPage from "./modules/dashboard/pages/OneEffectPage";
+import DonationPage from "./modules/donation/DonationPage";
+import RainPage from "./modules/effects/rain/RainPage";
 import FrontPage from "./modules/front_page/page";
-import Game2 from "./modules/little_humans/Game2";
+import StripeCallbackPage from "./modules/stripe/StripeCallbackPage";
+import Failure from "./modules/stripe/StripeCanceledPage";
+import Success from "./modules/stripe/StripeSuccessPage";
 import TestPage from "./modules/test/TestPage";
-import ProtectedRoute from "./PrivateRoute";
+import StrelementsPage from "./modules/testing/StrelementsPage";
+import Game2 from "./modules/tiny_walkers/Game2";
+import { ProtectedRoute, ProtectedRouteToDashboard } from "./PrivateRoute";
 
 function App() {
   return (
@@ -17,8 +23,15 @@ function App() {
       <div>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<FrontPage />} />
-            <Route path="/callback" element={<CallbackPage />} />
+            <Route
+              path="/"
+              element={
+                <ProtectedRouteToDashboard>
+                  <FrontPage />
+                </ProtectedRouteToDashboard>
+              }
+            />
+            <Route path="/callback" element={<KickCallbackPage />} />
             <Route path="/login" element={<LoginWithKick />} />
 
             <Route
@@ -37,8 +50,10 @@ function App() {
                 </ProtectedRoute>
               }
             />
+
+            <Route path="/effect/:name" element={<OneEffectPage />} />
             <Route
-              path="/ef1/settings"
+              path="/tiny-walkers/settings"
               element={
                 <ProtectedRoute>
                   <CharacterSettingsPage />
@@ -47,15 +62,17 @@ function App() {
             />
 
             <Route
-              path="/strelements-original/:sessionId/:isPreview"
+              path="/tiny-walkers/:sessionId/:isPreview"
               element={<Game2 />}
             />
-            <Route
-              path="/strelements-original/:sessionId"
-              element={<Game2 />}
-            />
+            <Route path="/tiny-walkers/:sessionId" element={<Game2 />} />
 
             <Route path="/test" element={<TestPage />} />
+            <Route path="/donate/nectarian" element={<DonationPage />} />
+            <Route path="/stripe/success" element={<Success />} />
+            <Route path="/stripe/failure" element={<Failure />} />
+            <Route path="/stripe/callback" element={<StripeCallbackPage />} />
+            <Route path="/rain" element={<RainPage />} />
           </Routes>
         </BrowserRouter>
       </div>

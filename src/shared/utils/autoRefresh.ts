@@ -1,5 +1,6 @@
 import axios from "axios";
 import { CONFIG } from "./constants";
+import Logger from "./Logger";
 import { refreshTokensSchema } from "./schemas";
 
 const api = axios.create();
@@ -21,6 +22,7 @@ api.interceptors.request.use(async (config) => {
 });
 
 async function refreshAccessToken(): Promise<string> {
+  Logger.log("Is refreshing token ------");
   //get items
   const refreshToken = localStorage.getItem(
     CONFIG.localStorage.kickRefreshToken
@@ -48,10 +50,19 @@ async function refreshAccessToken(): Promise<string> {
     CONFIG.localStorage.kickRefreshToken,
     data.refresh_token
   );
+
+  Logger.log("data.expires_in -- " + data.expires_in);
   localStorage.setItem(
     CONFIG.localStorage.kickTokenExpiresAt,
     (Date.now() + data.expires_in * 1000).toString()
   );
+
+  localStorage.getItem(CONFIG.localStorage.kickTokenExpiresAt);
+
+  // const expiresAt = Number(
+  //   localStorage.getItem(CONFIG.localStorage.kickTokenExpiresAt)
+  // );
+  // Logger.log("data.expires_in -- " + new Date(expiresAt).getDate() + new Date(expiresAt).getMonth() );
 
   return data.access_token;
 }

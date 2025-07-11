@@ -12,4 +12,7 @@ export const colors2 = {
   secondary: "#171C1E",
   text: "#ffffff",
   error: "#d21a52",
+  //
+  fp: "#151417",
+  transparent: "transparent",
 };

@@ -1,22 +1,24 @@
+import GhostButton2 from "@/shared/components/GhostButton2";
+import { MySpinner } from "@/shared/components/Spinner";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import GhostButton from "../../../shared/components/GhostButton";
 import { colors2 } from "../../../shared/utils/colors";
 import { CONFIG } from "../../../shared/utils/constants";
-import { useAppAuthStore } from "../../auth/appAuthStore";
+import { useKickAuthStore } from "../../auth/KickAuthStore";
 
 type Props = {
   relative?: boolean;
 };
+
 const Navigation: React.FC<Props> = ({ relative = true }) => {
-  const isAuthenticated = useAppAuthStore((state) => state.isAuthenticated);
-  const setAuthenticated = useAppAuthStore((state) => state.setAuthenticated);
-  const logout = useAppAuthStore((state) => state.logout);
-  const login = useAppAuthStore((state) => state.login);
-  const authIsLoading = useAppAuthStore((state) => state.isLoading);
-  const status = useAppAuthStore((state) => state.status);
-  const setStatus = useAppAuthStore((state) => state.setStatus);
+  const isAuthenticated = useKickAuthStore((state) => state.isAuthenticated);
+  const setAuthenticated = useKickAuthStore((state) => state.setAuthenticated);
+  const logout = useKickAuthStore((state) => state.logout);
+  const login = useKickAuthStore((state) => state.startLoginWithKick);
+  const authIsLoading = useKickAuthStore((state) => state.isLoading);
+  const status = useKickAuthStore((state) => state.status);
+  const setStatus = useKickAuthStore((state) => state.setStatus);
 
   useEffect(() => {
     if (status.name === "error") {
@@ -47,34 +49,19 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
         style={{ background: relative ? "transparent" : colors2.background }}
       >
         <div className="navbar-start">
-          <Link to="/">
-            <img
-              src={"/logo.svg"}
-              alt="Logo-ul aplicației"
-              style={{ color: colors2.text }}
-              className="w-[50px]"
-            />
-          </Link>
-          {/* <Link to="/" className="ml-4">
-            <GhostButton
-              text="Home"
-              onClick={() => {
-                window.location.href = "/";
-              }}
-            />{" "}
+          {LogoWithLink()}
+          {/* <Link to="/effects" className="ml-4">
+            <GhostButton text="Effects" onClick={() => {}} />{" "}
           </Link> */}
         </div>
 
         <div className="navbar-end">
           {authIsLoading ? (
-            <span
-              className="loading loading-spinner loading-xl"
-              style={{ color: colors2.kick }}
-            ></span>
+            <MySpinner />
           ) : isAuthenticated ? (
             <>
-              {dashboardButton()}
-              <div className="ml-4"></div>
+              {/* {dashboardButton()}
+              <div className="ml-4"></div> */}
               {avatar()}
             </>
           ) : (
@@ -89,20 +76,20 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
     </>
   );
 
-  function dashboardButton() {
-    return (
-      <GhostButton
-        text="Try strelements now"
-        onClick={() => {
-          window.location.href = "/dashboard";
-        }}
-      />
-    );
-  }
+  // function dashboardButton() {
+  //   return (
+  //     <GhostButton
+  //       text="Try strelements now"
+  //       onClick={() => {
+  //         window.location.href = "/dashboard";
+  //       }}
+  //     />
+  //   );
+  // }
 
   function loginButton() {
     return (
-      <GhostButton
+      <GhostButton2
         text={"Login"}
         onClick={() => {
           login();
@@ -124,8 +111,8 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
         </summary>
 
         <ul
-          className="menu dropdown-content bg-base-100 rounded-box z-10 w-52 p-2 shadow-md mt-2  "
-          style={{ background: colors2.kick }}
+          className="bg-second-bg text-text-primary ring-1 menu dropdown-content bg-base-100 rounded-box z-10 w-52 p-2 shadow-md mt-2  "
+          // style={{ background: colors2.kick }}
         >
           {/* <li>
             <div
@@ -152,3 +139,16 @@ const Navigation: React.FC<Props> = ({ relative = true }) => {
 };
 
 export default Navigation;
+function LogoWithLink() {
+  const isAuthenticated = useKickAuthStore((state) => state.isAuthenticated);
+  return (
+    <Link to={isAuthenticated ? "/dashboard" : "/"}>
+      <img
+        src={"/logo.svg"}
+        alt="Logo-ul aplicației"
+        style={{ color: colors2.text }}
+        className="w-[50px]"
+      />
+    </Link>
+  );
+}

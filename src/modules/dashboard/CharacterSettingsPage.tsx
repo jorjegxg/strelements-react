@@ -1,7 +1,9 @@
+import GhostButton2 from "@/shared/components/GhostButton2";
+import { useEffect } from "react";
 import { colors2 } from "../../shared/utils/colors";
 import Layout from "../layout/Layout";
-import { useCharacterStore } from "../little_humans/characterStore";
-import CharacterTsx from "../little_humans/components/Character";
+import { useCharacterStore } from "../tiny_walkers/characterStore";
+import CharacterTsx from "../tiny_walkers/components/Character";
 
 const CharacterSettingsPage = () => {
   const setNameBackgroundColor = useCharacterStore(
@@ -25,6 +27,15 @@ const CharacterSettingsPage = () => {
   const size = useCharacterStore((state) => state.size);
   const messageSize = useCharacterStore((state) => state.messageSize);
   const nameSize = useCharacterStore((state) => state.nameSize);
+  const updateInDb = useCharacterStore((state) => state.updateInDb);
+  const isLoading = useCharacterStore((state) => state.isLoading);
+  const getEffectSettings = useCharacterStore(
+    (state) => state.getEffectSettings
+  );
+
+  useEffect(() => {
+    getEffectSettings("tiny-walkers");
+  }, []);
 
   return (
     <Layout>
@@ -33,16 +44,16 @@ const CharacterSettingsPage = () => {
           🎨 Character Settings
         </h2>
 
-        <div className="min-h-screen w-screen p-6 flex flex-col md:flex-row gap-6  items-start body-normal">
+        <div className="min-h-screen w-screen p-6 flex  md:flex-row gap-6  items-start body-normal">
           {/* Settings Card */}
-          <div className="   p-6 w-full md:w-1/2 space-y-5 ">
+          <div className="  p-6  md:w-1/2 space-y-5 ">
             <div className=" ">
               {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4"> */}
               <div>
-                <label className="block font-medium mb-1">
+                <p className="block font-medium mb-1">
                   📛 Name Background Color
-                </label>
-                ;
+                </p>
+
                 <input
                   type="color"
                   className="w-full h-10 rounded"
@@ -52,9 +63,9 @@ const CharacterSettingsPage = () => {
               </div>
 
               <div>
-                <label className="block font-medium mb-1">
+                <p className="block font-medium mb-1">
                   💬 Message Background Color
-                </label>
+                </p>
                 <input
                   type="color"
                   className="w-full h-10 rounded"
@@ -64,9 +75,7 @@ const CharacterSettingsPage = () => {
               </div>
 
               <div>
-                <label className="block font-medium mb-1">
-                  📝 Message Text Color
-                </label>
+                <p className="block font-medium mb-1">📝 Message Text Color</p>
                 <input
                   type="color"
                   className="w-full h-10 rounded"
@@ -76,9 +85,7 @@ const CharacterSettingsPage = () => {
               </div>
 
               <div className=" ">
-                <label className="block font-medium mb-1">
-                  🔠 Overall Size
-                </label>
+                <p className="block font-medium mb-1">🔠 Overall Size</p>
 
                 <input
                   type="range"
@@ -86,16 +93,13 @@ const CharacterSettingsPage = () => {
                   max={2}
                   step={0.1}
                   value={size}
-                  className="range range-neutral w-full"
+                  className="range range-neutral w-full text-text-purple bg-primary"
                   onChange={(e) => setSize(Number(e.target.value))}
-                  style={{ color: colors2.kick, background: colors2.text }}
                 />
               </div>
 
               <div>
-                <label className="block font-medium mb-1">
-                  🔤 Message Text Size
-                </label>
+                <p className="block font-medium mb-1">🔤 Message Text Size</p>
 
                 <input
                   type="range"
@@ -103,16 +107,13 @@ const CharacterSettingsPage = () => {
                   max={2}
                   step={0.1}
                   value={messageSize}
-                  className="range range-neutral w-full"
+                  className="range range-neutral w-full text-text-purple bg-primary "
                   onChange={(e) => setMessageSize(Number(e.target.value))}
-                  style={{ color: colors2.kick, background: colors2.text }}
                 />
               </div>
 
               <div>
-                <label className="block font-medium mb-1">
-                  👤 Name Text Size
-                </label>
+                <p className="block font-medium mb-1">👤 Name Text Size</p>
 
                 <input
                   type="range"
@@ -120,21 +121,29 @@ const CharacterSettingsPage = () => {
                   max={2}
                   step={0.1}
                   value={nameSize}
-                  className="range range-neutral w-full"
+                  className="range range-neutral w-full text-text-purple bg-primary"
                   onChange={(e) => setNameSize(Number(e.target.value))}
-                  style={{ color: colors2.kick, background: colors2.text }}
                   defaultValue={nameSize}
                 />
               </div>
             </div>
-            <div>
-              <h3>(Autosaving)</h3>
+            //TODO: buton go back
+            <div className="flex justify-center">
+              {
+                <GhostButton2
+                  isLoading={isLoading}
+                  text={"Update"}
+                  onClick={() => {
+                    updateInDb("tiny-walkers");
+                  }}
+                />
+              }
             </div>
           </div>
 
           {/* Preview Area */}
           <div className="flex-1 rounded-2xl p-6 flex items-center justify-center relative overflow-hidden">
-            <div className="relative w-full h-[400px] border border-dashed border-gray-300 rounded-xl ">
+            <div className="relative w-full h-[400px] border border-dashed border-gray-300 rounded-xl flex ">
               {/* Character preview, bottom-centered */}
               <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 ">
                 {CharacterTsx({
