@@ -4,7 +4,7 @@ import { defineConfig } from "vite";
 import EnvironmentPlugin from "vite-plugin-environment";
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/strelements-react",
+  base: "/strelements-react/",
   plugins: [
     react(),
     EnvironmentPlugin([
