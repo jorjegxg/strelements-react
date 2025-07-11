@@ -1,9 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
     <script>
-      sessionStorage.redirect = location.pathname;
+      // Salvează ruta curentă și redirecționează către index.html
+      sessionStorage.setItem("redirectPath", window.location.pathname);
+      window.location.href = "/strelements-react/";
     </script>
-    <meta http-equiv="refresh" content="0;URL='/strelements-react/'"></meta>
   </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
 </html>
