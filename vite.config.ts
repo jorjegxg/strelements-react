@@ -5,6 +5,9 @@ import EnvironmentPlugin from "vite-plugin-environment";
 // https://vite.dev/config/
 export default defineConfig({
   base: "/strelements-react/", // <--- foarte important
+  build: {
+    outDir: "dist",
+  },
 
   plugins: [
     react(),
