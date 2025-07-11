@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       <div>
-        <BrowserRouter>
+        <BrowserRouter basename="/strelements-react">
           <Routes>
             <Route
               path="/"
