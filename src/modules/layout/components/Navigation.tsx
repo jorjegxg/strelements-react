@@ -144,7 +144,7 @@ function LogoWithLink() {
   return (
     <Link to={isAuthenticated ? "/dashboard" : "/"}>
       <img
-        src={"/logo.svg"}
+        src={"/logo2.svg"}
         alt="Logo-ul aplicației"
         style={{ color: colors2.text }}
         className="w-[50px]"
