@@ -1,4 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import "./index.css";
 import KickCallbackPage from "./modules/auth/KickCallbackPage";
@@ -18,6 +19,16 @@ import Game2 from "./modules/tiny_walkers/Game2";
 import { ProtectedRoute, ProtectedRouteToDashboard } from "./PrivateRoute";
 
 function App() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const redirectPath = sessionStorage.getItem("redirectPath");
+    if (redirectPath) {
+      sessionStorage.removeItem("redirectPath");
+      navigate(redirectPath);
+    }
+  }, [navigate]);
+
   return (
     <>
       <div>
