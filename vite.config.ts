@@ -4,6 +4,8 @@ import { defineConfig } from "vite";
 import EnvironmentPlugin from "vite-plugin-environment";
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/",
+
   plugins: [
     react(),
     EnvironmentPlugin([
