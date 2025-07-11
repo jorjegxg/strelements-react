@@ -3,6 +3,7 @@ import {
   Fit,
   Layout,
   useRive,
+  useStateMachineInput,
   useViewModel,
   useViewModelInstance,
   useViewModelInstanceNumber,
@@ -144,6 +145,38 @@ export const RiveDemo = () => {
 };
 
 export default function TestPage() {
+  const { RiveComponent, rive } = useRive({
+    src: "/rive/walker.riv",
+    stateMachines: "State Machine 1",
+    autoplay: true,
+    layout: new Layout({ fit: Fit.Contain, alignment: Alignment.Center }),
+  });
+
+  useEffect(() => {
+    if (rive) {
+      console.log(
+        "Rive text was initially: ",
+        rive.getTextRunValue("chat-message")
+      );
+      rive.setTextRunValue(
+        "chat-message",
+        "Mesaj mai lung , ce fain e stream-ul !!!"
+      );
+      console.log("Rive text is now: ", rive.getTextRunValue("chat-message"));
+    }
+  }, [rive]);
+
+  const messageTrigger = useStateMachineInput(
+    rive,
+    "State Machine 1",
+    "chat-message-sent"
+  );
+  const dissapearTrigger = useStateMachineInput(
+    rive,
+    "State Machine 1",
+    "dissapear"
+  );
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
       <header className="mb-8 text-center">
@@ -152,7 +185,20 @@ export default function TestPage() {
         </h1>
         <p className="text-gray-600">Powered by Rive Data Binding</p>
       </header>
-      <RiveDemo />
+      {/* <RiveDemo /> */}
+      <div className="w-[500px] h-[500px]">
+        <RiveComponent />
+      </div>
+      <div
+        className="btn "
+        onClick={() => {
+          // messageTrigger?.fire();
+          dissapearTrigger?.fire();
+        }}
+      >
+        ceva
+      </div>
+      <div />
     </div>
   );
 }
